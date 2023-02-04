@@ -6,7 +6,7 @@ const colors = {
   sub1: '#E3D35A',
   sub2: '#F1F1F1',
   sub3: '#FDA400',
-  ligthGrey: '#D9D9D9',
+  lightGrey: '#D9D9D9',
 };
 
 const theme = {
