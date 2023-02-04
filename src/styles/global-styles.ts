@@ -19,8 +19,9 @@ const GlobalStyle = createGlobalStyle`
         outline: none;
       }
       h1, h2, h3, h4, h5, h6{
-        font-family:'Maven Pro', sans-serif;
+        font-family: Pretendard, -apple-system, sans-serif;
       }
+      
       #__next {
         min-height: 100vh;
       }
@@ -30,17 +31,6 @@ const GlobalStyle = createGlobalStyle`
         display: flex;
         flex: 1;
         justify-content: center;
-      }
-      @media only screen and (max-width: 768px) {
-        body {
-          font-size: 12px;
-        }
-      }
-
-      @media only screen and (max-width: 576px) {
-        body {
-          font-size: 10px;
-        }
       }
     `;
 
