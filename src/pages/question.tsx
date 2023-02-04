@@ -41,7 +41,7 @@ function Question() {
       <div>
         <div>
           <Image
-            src="/우주 이미지.png"
+            src="/space-image.png"
             alt="우주 이미지"
             width={244}
             height={244}
