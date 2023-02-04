@@ -1,12 +1,30 @@
+import { useState } from 'react';
+import styled from 'styled-components';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 import AButton from '@/component/common/AButton';
 import AText from '@/component/common/AText';
 import CircleButton from '@/component/common/CircleButton';
 import withLayout from '@/component/hoc/withLayout';
-import Image from 'next/image';
-import styled from 'styled-components';
+
+const QUESTION_END_CNT = 10;
 
 function Question() {
+  const router = useRouter();
+
+  const [questionIndex, setQuestionIndex] = useState<number>(0);
+
   const handleBackButtonClick = () => {};
+
+  const handleAnswerClick = (flag: 'YES' | 'NO') => {
+    console.log('flag: ', flag);
+    setQuestionIndex((index) => index + 1);
+
+    if (questionIndex === QUESTION_END_CNT) {
+      //TODO: test end
+    }
+  };
+
   return (
     <Wrapper>
       <div>
@@ -17,7 +35,7 @@ function Question() {
           alt="we-are-The Astronauts"
         />
       </div>
-      <div>---------------------------------</div>
+      <div>--------------{questionIndex}---------------</div>
       <div>
         <div>
           <Image
@@ -33,10 +51,10 @@ function Question() {
         </QuestionWrapper>
       </div>
       <ButtonWrapper>
-        <AButton content="> YES" />
+        <AButton content="> YES" onClick={() => handleAnswerClick('YES')} />
       </ButtonWrapper>
       <ButtonWrapper>
-        <AButton content="> NO" />
+        <AButton content="> NO" onClick={() => handleAnswerClick('NO')} />
       </ButtonWrapper>
       <CircleButton onClick={handleBackButtonClick}>
         <Image
