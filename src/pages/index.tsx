@@ -1,4 +1,5 @@
 import AButton from '@/component/common/AButton';
+import AText from '@/component/common/AText';
 import withLayout from '@/component/hoc/withLayout';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -39,7 +40,7 @@ const Wrapper = styled.div`
   width: 100%;
   min-width: 100%;
   height: 100%;
-  padding: 60px 20px;
+  padding: 50px 20px;
 `;
 
 const MainLogoWrapper = styled.div`
@@ -50,14 +51,11 @@ const MainLogoWrapper = styled.div`
   }
 `;
 
-const TextWrapper = styled.div`
+const TextWrapper = styled(AText)`
   color: ${(props) => props.theme.colors.bg2};
   background-color: ${(props) => props.theme.colors.main2};
   border: 1px solid ${(props) => `${props.theme.colors.sub3}`};
   padding: 20px 0;
-  text-align: center;
-  line-height: normal;
-  font-size: 20px;
   border-radius: 20px;
   width: 100%;
 `;

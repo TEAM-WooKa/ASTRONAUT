@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 interface AButtonProps {
   content: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 function AButton({ content, onClick }: AButtonProps) {
   return <Wrapper onClick={onClick}>{content}</Wrapper>;
@@ -13,7 +13,7 @@ const Wrapper = styled.button`
   color: #000;
 
   width: 100%;
-  padding: 20px;
+  padding: 15px;
   border-radius: 20px;
   text-align: center;
 
