@@ -1,4 +1,4 @@
-import Button from '@/component/common/Button';
+import AButton from '@/component/common/AButton';
 import withLayout from '@/component/hoc/withLayout';
 import Image from 'next/image';
 import styled from 'styled-components';
@@ -17,6 +17,9 @@ function Home() {
           <p>우주인 ID 카드를 발급 받을 수 있습니다.</p>
         </TextWrapper>
       </div>
+      <ButtonWrapper>
+        <AButton content="> test" />
+      </ButtonWrapper>
     </Wrapper>
   );
 }
@@ -25,11 +28,21 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-width: 100%;
+  height: 100%;
+  padding: 60px 20px;
 `;
 
 const MainLogoWrapper = styled.div`
-  margin: 60px 0;
+  margin-bottom: 60px;
+
+  img {
+    max-width: 100%;
+  }
 `;
+
 const TextWrapper = styled.div`
   color: ${(props) => props.theme.colors.bg2};
   background-color: ${(props) => props.theme.colors.main2};
@@ -39,6 +52,11 @@ const TextWrapper = styled.div`
   line-height: normal;
   font-size: 20px;
   border-radius: 20px;
+  width: 100%;
+`;
+
+const ButtonWrapper = styled.div`
+  width: 280px;
 `;
 
 export default withLayout(Home, 'title', 'desc');
