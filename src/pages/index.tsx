@@ -1,9 +1,16 @@
 import AButton from '@/component/common/AButton';
 import withLayout from '@/component/hoc/withLayout';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 function Home() {
+  const router = useRouter();
+
+  const goTest = () => {
+    router.push('question');
+  };
+
   return (
     <Wrapper>
       <div>
@@ -18,7 +25,7 @@ function Home() {
         </TextWrapper>
       </div>
       <ButtonWrapper>
-        <AButton content="> test" />
+        <AButton content="> test" onClick={goTest} />
       </ButtonWrapper>
     </Wrapper>
   );

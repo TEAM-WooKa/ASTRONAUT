@@ -2,9 +2,10 @@ import styled from 'styled-components';
 
 interface AButtonProps {
   content: string;
+  onClick: () => void;
 }
-function AButton({ content }: AButtonProps) {
-  return <Wrapper>{content}</Wrapper>;
+function AButton({ content, onClick }: AButtonProps) {
+  return <Wrapper onClick={onClick}>{content}</Wrapper>;
 }
 
 const Wrapper = styled.button`
