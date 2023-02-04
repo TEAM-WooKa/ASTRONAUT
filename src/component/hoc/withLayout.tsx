@@ -29,7 +29,9 @@ const Container = styled.div`
 `;
 
 const Main = styled.div`
+  max-width: 475px;
   text-align: center;
-  padding: 10px;
+  margin: 20px;
+  width: 100%;
 `;
 export default withLayout;

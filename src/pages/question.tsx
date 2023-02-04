@@ -17,12 +17,14 @@ function Question() {
   const handleBackButtonClick = () => {};
 
   const handleAnswerClick = (flag: 'YES' | 'NO') => {
+    if (questionIndex === QUESTION_END_CNT - 1) {
+      //TODO: test end
+      const resultID: number = 1;
+      router.push(`/result/${resultID}`);
+    }
+
     console.log('flag: ', flag);
     setQuestionIndex((index) => index + 1);
-
-    if (questionIndex === QUESTION_END_CNT) {
-      //TODO: test end
-    }
   };
 
   return (
