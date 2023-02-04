@@ -40,12 +40,7 @@ function Question() {
       <div>--------------{questionIndex}---------------</div>
       <div>
         <div>
-          <Image
-            src="/space-image.png"
-            alt="우주 이미지"
-            width={244}
-            height={244}
-          />
+          <Image src="/space-image.png" alt="space" width={244} height={244} />
         </div>
         <QuestionWrapper>
           <p> Q1. 나는 우주에 인간 외에</p>
@@ -85,6 +80,7 @@ const QuestionWrapper = styled(AText)`
 const ButtonWrapper = styled.div`
   width: 200px;
 `;
+
 export default withLayout(
   Question,
   '우주인 테스트',
