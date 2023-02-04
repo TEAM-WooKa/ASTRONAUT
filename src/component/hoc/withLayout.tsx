@@ -11,9 +11,9 @@ function withLayout(
       <>
         <Container className="container">
           <header></header>
-          <main>
+          <Main>
             <Component {...props} />
-          </main>
+          </Main>
         </Container>
       </>
     );
@@ -27,4 +27,5 @@ const Container = styled.div`
   color: #fff;
 `;
 
+const Main = styled.div``;
 export default withLayout;
