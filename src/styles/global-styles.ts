@@ -25,17 +25,11 @@ const GlobalStyle = createGlobalStyle`
         min-height: 100vh;
       }
       .container {
-        background-color: #000;
-        color: #fff;
         height: 100%;
         min-height: 100vh;
         display: flex;
         flex: 1;
         justify-content: center;
-      }
-      main {
-          
-
       }
       @media only screen and (max-width: 768px) {
         body {
