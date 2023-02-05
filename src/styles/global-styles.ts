@@ -31,6 +31,7 @@ const GlobalStyle = createGlobalStyle`
         display: flex;
         flex: 1;
         justify-content: center;
+        color : #171717;
       }
     `;
 

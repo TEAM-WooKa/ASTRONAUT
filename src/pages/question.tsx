@@ -6,6 +6,7 @@ import AButton from '@/component/common/AButton';
 import AText from '@/component/common/AText';
 import CircleButton from '@/component/common/CircleButton';
 import withLayout from '@/component/hoc/withLayout';
+import ProgressBar from '@/component/question/progress-bar';
 
 const QUESTION_END_CNT = 10;
 
@@ -37,7 +38,7 @@ function Question() {
           alt="we-are-The Astronauts"
         />
       </div>
-      <div>--------------{questionIndex}---------------</div>
+      <ProgressBar percent={questionIndex * 10} />
       <div>
         <div>
           <Image src="/space-image.png" alt="space" width={244} height={244} />
