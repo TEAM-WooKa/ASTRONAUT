@@ -1,4 +1,3 @@
-import AButton from '@/component/common/AButton';
 import AText from '@/component/common/AText';
 import withLayout from '@/component/hoc/withLayout';
 import Image from 'next/image';
@@ -8,6 +7,7 @@ const DUMMY = [
   ' 당신은 ㅇㅇ한 별 출신일지도??',
   'ㅇㅇ하고 ㅇㅇ한 사람, 가끔은 ㅇㅇ한  공상에 빠져 시간 가는 줄 모른적 있지  않나요? ',
 ];
+
 function Result() {
   return (
     <>
@@ -26,7 +26,7 @@ function Result() {
 
         <TextWrapper>
           {DUMMY.map((text) => (
-            <div>{text}</div>
+            <div key={text}>{text}</div>
           ))}
         </TextWrapper>
         <TextWrapper>친구별 : ㅇㅇ별 </TextWrapper>
