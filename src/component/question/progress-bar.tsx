@@ -7,7 +7,6 @@ interface ProgressBarProps {
 
 function ProgressBar({ percent }: ProgressBarProps) {
   const move = Math.round((percent / 10) * 22);
-  console.log('move: ', move);
   return (
     <Wrapper>
       <Bar move={move}>

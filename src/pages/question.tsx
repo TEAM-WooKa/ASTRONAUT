@@ -13,7 +13,8 @@ const QUESTION_END_CNT = 10;
 function Question() {
   const router = useRouter();
 
-  const [questionIndex, setQuestionIndex] = useState<number>(0);
+  const [answers, setAnswers] = useState<string[]>([]);
+  const questionIndex = answers.length;
 
   const handleBackButtonClick = () => {};
 
@@ -24,8 +25,7 @@ function Question() {
       router.push(`/result/${resultID}`);
     }
 
-    console.log('flag: ', flag);
-    setQuestionIndex((index) => index + 1);
+    setAnswers([...answers, flag]);
   };
 
   return (
