@@ -1,6 +1,7 @@
 import AText from '@/component/common/AText';
 import withLayout from '@/component/hoc/withLayout';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 const DUMMY = [
@@ -9,6 +10,11 @@ const DUMMY = [
 ];
 
 function Result() {
+  const router = useRouter();
+
+  const handleIDCardMakeClick = () => {
+    router.push('/result/card');
+  };
   return (
     <>
       <h1>
@@ -21,7 +27,7 @@ function Result() {
 
         <ButtonWrapper>
           <Button>&gt; 공유하기</Button>
-          <Button>&gt; ID 카드 만들기</Button>
+          <Button onClick={handleIDCardMakeClick}>&gt; ID 카드 만들기</Button>
         </ButtonWrapper>
 
         <TextWrapper>

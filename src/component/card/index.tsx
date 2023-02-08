@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 interface IDCardProps {
@@ -7,8 +8,14 @@ interface IDCardProps {
   hobby: string;
 }
 function IDCard({ name, birth, hobby }: IDCardProps) {
+  const [isRotate, setIsRotate] = useState<boolean>(false);
+
+  const onClick = () => {
+    setIsRotate(!isRotate);
+  };
+
   return (
-    <Card>
+    <Card onClick={onClick} className={isRotate ? 'rotate' : ''}>
       <Front className="front">
         <Image src="/space-image.png" width="123" height="113" alt="img" />
         <TextWrapper>
@@ -26,8 +33,9 @@ const Card = styled.div`
   height: 220px;
   perspective: 600px;
   position: relative;
+  cursor: pointer;
 
-  &:hover {
+  &.rotate {
     .front {
       transform: rotateY(-180deg); /*카드가 Y축을 기준으로 회전 -180도 회전*/
       transition: all 0.5s ease-in-out;
@@ -67,9 +75,9 @@ const Back = styled(Face)`
 
 const TextWrapper = styled.div`
   text-align: left;
-  margin-top: 30px;
-  * > div {
-    margin-bottom: 10px;
-  }
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;
 export default IDCard;
