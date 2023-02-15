@@ -11,10 +11,10 @@ function ProgressBar({ percent }: ProgressBarProps) {
     <Wrapper>
       <Bar move={move}>
         <Comet move={move}>
-          <Image src={'/Comet.svg'} width="45" height={45} alt="comet" />
+          <Image src={'/Comet.png'} width="45" height={45} alt="comet" />
         </Comet>
         <Planet>
-          <Image src={'/Planet-9.svg'} width="45" height={45} alt="comet" />
+          <Image src={'/Planet-9.png'} width="45" height={45} alt="comet" />
         </Planet>
       </Bar>
     </Wrapper>
