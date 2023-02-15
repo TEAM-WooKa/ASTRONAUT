@@ -7,7 +7,6 @@ import AText from '@/component/common/AText';
 import CircleButton from '@/component/common/CircleButton';
 import withLayout from '@/component/hoc/withLayout';
 import ProgressBar from '@/component/question/progress-bar';
-import AImage from '@/component/common/AImage';
 
 const QUESTION_END_CNT = 10;
 
