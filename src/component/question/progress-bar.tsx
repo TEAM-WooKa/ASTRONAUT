@@ -13,9 +13,9 @@ function ProgressBar({ percent }: ProgressBarProps) {
         <Comet move={move}>
           <Image src={'/Comet.png'} width="45" height={45} alt="comet" />
         </Comet>
-        <Planet>
+        {/* <Planet>
           <Image src={'/Planet-9.png'} width="45" height={45} alt="comet" />
-        </Planet>
+        </Planet> */}
       </Bar>
     </Wrapper>
   );
@@ -31,7 +31,7 @@ const Bar = styled.div<{ move: number }>`
   background-color: #d9d9d9;
   height: 6px;
   border-radius: 6px;
-  width: 220px;
+  width: 240px;
   margin: auto;
   position: relative;
 
@@ -40,7 +40,12 @@ const Bar = styled.div<{ move: number }>`
     top: 0;
     left: 0;
     content: '';
-    background-color: ${(props) => props.theme.colors.sub3};
+    background: linear-gradient(
+      193deg,
+      rgba(254, 172, 94, 1) 0%,
+      rgba(199, 121, 208, 1) 50%,
+      rgba(75, 192, 200, 1) 100%
+    );
     width: ${(props) => `${props.move}px`};
     height: 6px;
 

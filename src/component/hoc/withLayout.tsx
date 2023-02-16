@@ -33,9 +33,10 @@ const Main = styled.div`
   text-align: center;
   width: 100%;
   padding: 20px;
-  background-image: url('/images/bg2.png');
+  background-image: url('/images/bg3.png');
   background-origin: border-box;
   background-repeat: no-repeat;
   background-size: cover;
 `;
+
 export default withLayout;
