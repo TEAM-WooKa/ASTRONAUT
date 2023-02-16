@@ -33,7 +33,6 @@ const Wrapper = styled.button`
 
   background-origin: border-box;
   background-clip: content-box, border-box;
-  margin: 10px;
 `;
 
 export default GradientButton;

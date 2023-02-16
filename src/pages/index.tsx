@@ -18,7 +18,12 @@ function Home() {
     <Wrapper>
       <div>
         <MainLogoWrapper>
-          <Image src={'/main_logo.png'} alt="logo" width={380} height={80} />
+          <Image
+            src={'/images/at_title_img.webp'}
+            alt="logo"
+            width={380}
+            height={80}
+          />
         </MainLogoWrapper>
         <GradientBox>
           <TextWrapper>

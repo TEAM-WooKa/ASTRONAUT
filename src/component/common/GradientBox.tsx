@@ -18,12 +18,12 @@ function GradientBox({ title, children }: GradientBoxProps) {
 const TitleWrapper = styled(Gradient1)`
   height: 25px;
   border-radius: 10px 10px 0 0;
-  opacity: 0.8;
+  opacity: 0.9;
 `;
 
 const Content = styled.div`
   border-radius: 0 0 10px 10px;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(241, 241, 241, 0.7);
 `;
 
 export default GradientBox;
