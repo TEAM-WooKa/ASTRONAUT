@@ -1,5 +1,7 @@
 import AButton from '@/component/common/AButton';
 import AText from '@/component/common/AText';
+import GradientBox from '@/component/common/GradientBox';
+import GradientButton from '@/component/common/GradientButton';
 import withLayout from '@/component/hoc/withLayout';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -18,15 +20,17 @@ function Home() {
         <MainLogoWrapper>
           <Image src={'/main_logo.png'} alt="logo" width={380} height={80} />
         </MainLogoWrapper>
-        <TextWrapper>
-          <p>지구에 불시착한 길잃은 우주인인 당신!</p>
-          <p>당신의 고향별은 어디였을까요?</p>
-          <p>우주인 테스트 후</p>
-          <p>우주인 ID 카드를 발급 받을 수 있습니다.</p>
-        </TextWrapper>
+        <GradientBox>
+          <TextWrapper>
+            <p>지구에 불시착한 길잃은 우주인인 당신!</p>
+            <p>당신의 고향별은 어디였을까요?</p>
+            <p>우주인 테스트 후</p>
+            <p>우주인 ID 카드를 발급 받을 수 있습니다.</p>
+          </TextWrapper>
+        </GradientBox>
       </div>
       <ButtonWrapper>
-        <AButton content="> test" onClick={goTest} />
+        <GradientButton content="> test" onClick={goTest} />
       </ButtonWrapper>
     </Wrapper>
   );
@@ -52,9 +56,9 @@ const MainLogoWrapper = styled.div`
 `;
 
 const TextWrapper = styled(AText)`
-  color: ${(props) => props.theme.colors.bg2};
-  background-color: ${(props) => props.theme.colors.main2};
-  border: 1px solid ${(props) => `${props.theme.colors.sub3}`};
+  line-height: 30px;
+  color: ${(props) => props.theme.colors.bg};
+  font-weight: 700;
   padding: 20px 0;
   border-radius: 20px;
   width: 100%;
