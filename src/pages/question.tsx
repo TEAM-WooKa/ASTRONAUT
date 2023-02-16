@@ -2,11 +2,12 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import AButton from '@/component/common/AButton';
 import AText from '@/component/common/AText';
-import CircleButton from '@/component/common/CircleButton';
+
 import withLayout from '@/component/hoc/withLayout';
 import ProgressBar from '@/component/question/progress-bar';
+import { GradientButtonStyled } from '@/assets/styles/gradient';
+import GradientBox from '@/component/common/GradientBox';
 
 const QUESTION_END_CNT = 10;
 
@@ -32,9 +33,9 @@ function Question() {
     <Wrapper>
       <div>
         <Image
-          src="/we-are-The Astronauts.png"
-          width={230}
-          height={52}
+          src="/images/we_are_the_astronauts.png"
+          width={255}
+          height={75}
           alt="we-are-The Astronauts"
         />
       </div>
@@ -51,22 +52,30 @@ function Question() {
             priority
           />
         </div>
-        <QuestionWrapper>
-          <p> Q1. 나는 우주에 인간 외에</p>
-          <p> 다른 지적 생명체가 존재한다고 생각한다.</p>
-        </QuestionWrapper>
+        <GradientBox title="Q1">
+          <InnerGradientBox>
+            <p>나는 우주에 인간 외에</p>
+            <p>다른 지적 생명체가 존재한다고 생각한다.</p>
+          </InnerGradientBox>
+        </GradientBox>
       </div>
+
       <ButtonWrapper>
-        <AButton content="> YES" onClick={() => handleAnswerClick('YES')} />
+        <GradientButton onClick={() => handleAnswerClick('YES')}>
+          <span>YES</span>
+        </GradientButton>
       </ButtonWrapper>
       <ButtonWrapper>
-        <AButton content="> NO" onClick={() => handleAnswerClick('NO')} />
+        <GradientButton onClick={() => handleAnswerClick('NO')}>
+          <span>NO</span>
+        </GradientButton>
       </ButtonWrapper>
+
       <CircleButton onClick={handleBackButtonClick}>
         <Image
           src={'/back-arrow.png'}
-          width={27}
-          height={23}
+          width={20}
+          height={24}
           alt="back-button"
         />
       </CircleButton>
@@ -82,13 +91,39 @@ const Wrapper = styled.div`
   gap: 20px;
 `;
 
-const QuestionWrapper = styled(AText)`
-  color: ${(props) => props.theme.colors.sub2};
+const ButtonWrapper = styled.div`
+  width: 120px;
 `;
 
-const ButtonWrapper = styled.div`
-  width: 200px;
+const CircleButton = styled.button`
+  border-radius: 50%;
+  background-color: ${(props) => props.theme.colors.lightGrey};
+  width: 43px;
+  height: 43px;
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
 `;
+
+const InnerGradientBox = styled.div`
+  padding: 20px;
+  font-size: 16px;
+  width: 330px;
+`;
+
+const GradientButton = styled(GradientButtonStyled)`
+  font-size: 32px;
+  border-radius: 40px;
+  padding: 2px;
+  width: 120px;
+
+  span {
+    position: relative;
+    left: -3px;
+    bottom: 1px;
+  }
+`;
+
 export default withLayout(
   Question,
   '우주인 테스트',

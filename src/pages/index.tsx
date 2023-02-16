@@ -1,7 +1,7 @@
+import { GradientButtonStyled } from '@/assets/styles/gradient';
 import AButton from '@/component/common/AButton';
 import AText from '@/component/common/AText';
 import GradientBox from '@/component/common/GradientBox';
-import GradientButton from '@/component/common/GradientButton';
 import withLayout from '@/component/hoc/withLayout';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -35,7 +35,7 @@ function Home() {
         </GradientBox>
       </div>
       <ButtonWrapper>
-        <GradientButton content="> test" onClick={goTest} />
+        <GradientButton onClick={goTest}>&gt; test</GradientButton>
       </ButtonWrapper>
     </Wrapper>
   );
@@ -73,6 +73,12 @@ const TextWrapper = styled(AText)`
 
 const ButtonWrapper = styled.div`
   width: 280px;
+`;
+
+const GradientButton = styled(GradientButtonStyled)`
+  font-size: 32px;
+  border-radius: 20px;
+  padding: 2px;
 `;
 
 export default withLayout(Home, 'title', 'desc');
