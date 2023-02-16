@@ -18,7 +18,12 @@ function Home() {
     <Wrapper>
       <div>
         <MainLogoWrapper>
-          <Image src={'/main_logo.png'} alt="logo" width={380} height={80} />
+          <Image
+            src={'/images/at_title_img.webp'}
+            alt="logo"
+            width={380}
+            height={80}
+          />
         </MainLogoWrapper>
         <GradientBox>
           <TextWrapper>
@@ -56,12 +61,14 @@ const MainLogoWrapper = styled.div`
 `;
 
 const TextWrapper = styled(AText)`
-  line-height: 30px;
+  line-height: 25px;
   color: ${(props) => props.theme.colors.bg};
+  font-size: 1.05rem;
   font-weight: 700;
   padding: 20px 0;
   border-radius: 20px;
   width: 100%;
+  letter-spacing: 0.5%;
 `;
 
 const ButtonWrapper = styled.div`
