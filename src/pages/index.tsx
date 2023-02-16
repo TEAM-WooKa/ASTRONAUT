@@ -50,8 +50,6 @@ const Wrapper = styled.div`
   min-width: 100%;
   height: 100%;
   padding: 50px 20px;
-  background-image: url('/images/background1.webp');
-  background-position: center;
 `;
 
 const MainLogoWrapper = styled.div`
@@ -63,12 +61,14 @@ const MainLogoWrapper = styled.div`
 `;
 
 const TextWrapper = styled(AText)`
-  line-height: 30px;
+  line-height: 25px;
   color: ${(props) => props.theme.colors.bg};
+  font-size: 1.05rem;
   font-weight: 700;
   padding: 20px 0;
   border-radius: 20px;
   width: 100%;
+  letter-spacing: 0.5%;
 `;
 
 const ButtonWrapper = styled.div`

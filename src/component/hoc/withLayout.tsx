@@ -31,7 +31,11 @@ const Container = styled.div`
 const Main = styled.div`
   max-width: 475px;
   text-align: center;
-  margin: 20px;
   width: 100%;
+  padding: 20px;
+  background-image: url('/images/bg2.png');
+  background-origin: border-box;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 export default withLayout;
