@@ -1,3 +1,4 @@
+import { GradientBoxStyled } from '@/assets/styles/gradient';
 import Image from 'next/image';
 import { useState } from 'react';
 import styled from 'styled-components';
@@ -17,19 +18,25 @@ function IDCard({ name, birth, hobby }: IDCardProps) {
   return (
     <Card onClick={onClick} className={isRotate ? 'rotate' : ''}>
       <Front className="front">
-        <Image src="/space-image.png" width="123" height="113" alt="img" />
-        <TextWrapper>
-          <div>이름 : {name}</div>
-          <div>생년월일 : {birth}</div>
-          <div>취미 : {hobby}</div>
-        </TextWrapper>
+        <InnerFace>
+          <Image src="/space-image.png" width="123" height="113" alt="img" />
+          <TextWrapper>
+            <div>이름 : {name}</div>
+            <div>생년월일 : {birth}</div>
+            <div>취미 : {hobby}</div>
+          </TextWrapper>
+        </InnerFace>
       </Front>
-      <Back className="back">back</Back>
+      <Back className="back">
+        <InnerFace>back</InnerFace>
+      </Back>
     </Card>
   );
 }
 
 const Card = styled.div`
+  max-width: 350px;
+  margin: 10px auto;
   height: 220px;
   perspective: 600px;
   position: relative;
@@ -49,14 +56,11 @@ const Card = styled.div`
   }
 `;
 
-const Face = styled.div`
-  background-color: ${(props) => props.theme.colors.lightGrey};
-  border-color: ${(props) => props.theme.colors.main1};
+const Face = styled(GradientBoxStyled)`
   border-radius: 16px;
 
-  display: flex;
   gap: 30px;
-  padding: 20px;
+  padding: 1px;
 
   position: absolute;
   top: 0;
@@ -71,6 +75,12 @@ const Front = styled(Face)`
 `;
 const Back = styled(Face)`
   z-index: 0;
+`;
+
+const InnerFace = styled.div`
+  padding: 20px;
+
+  display: flex;
 `;
 
 const TextWrapper = styled.div`
