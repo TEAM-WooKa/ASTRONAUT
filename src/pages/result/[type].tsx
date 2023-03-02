@@ -1,5 +1,9 @@
+import DownloadIcon from '@/assets/icons/DownloadIcon';
+import ReplayIcon from '@/assets/icons/ReplayIcon';
+import ShareIcon from '@/assets/icons/ShareIcon';
 import AText from '@/component/common/AText';
 import withLayout from '@/component/hoc/withLayout';
+import Card from '@/component/result/card';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
@@ -18,9 +22,22 @@ function Result() {
   return (
     <>
       <h1>
-        <Image src={'/result.png'} width={100} height={25} alt="result" />
+        <Image
+          src={'/images/id_card_service.png'}
+          width={236}
+          height={62}
+          alt="result"
+        />
       </h1>
-      <Wrapper>
+
+      <Card />
+
+      <ShareWrapper>
+        <DownloadIcon />
+        <ShareIcon />
+        <ReplayIcon />
+      </ShareWrapper>
+      <Content>
         <AstronautImage>
           <div>우주인 이미지</div>
         </AstronautImage>
@@ -37,12 +54,19 @@ function Result() {
         </TextWrapper>
         <TextWrapper>친구별 : ㅇㅇ별 </TextWrapper>
         <TextWrapper>라이벌 : ㅇㅇ별 </TextWrapper>
-      </Wrapper>
+      </Content>
     </>
   );
 }
 
-const Wrapper = styled.div`
+const ShareWrapper = styled.div`
+  display: flex;
+  margin: 35px 0;
+  gap: 75px;
+  justify-content: center;
+`;
+
+const Content = styled.div`
   background-color: ${(props) => props.theme.colors.sub2};
   border: 2px solid ${(props) => props.theme.colors.sub3};
   border-radius: 16px;
@@ -93,4 +117,5 @@ const Button = styled.div`
   border-radius: 20px;
   flex: 1;
 `;
+
 export default withLayout(Result, '우주인 결과', '우주인 테스트 결과 페이지');
