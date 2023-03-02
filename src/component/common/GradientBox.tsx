@@ -1,4 +1,5 @@
 import { Gradient1 } from '@/assets/styles/gradient';
+import GradientBorderBox from '@/component/common/GradientBorderBox';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 
@@ -8,10 +9,12 @@ interface GradientBoxProps {
 }
 function GradientBox({ title, children }: GradientBoxProps) {
   return (
-    <Wrapper>
-      <TitleWrapper>{title}</TitleWrapper>
-      <Content>{children}</Content>
-    </Wrapper>
+    <GradientBorderBox borderRadius="10px">
+      <Wrapper>
+        <TitleWrapper>{title}</TitleWrapper>
+        <Content>{children}</Content>
+      </Wrapper>
+    </GradientBorderBox>
   );
 }
 
@@ -34,11 +37,11 @@ const TitleWrapper = styled(Gradient1)`
 `;
 
 const Content = styled.div`
-  height: 100%;
+  /* height: 100%;
   border-radius: 0 0 10px 10px;
   font-weight: 500;
 
-  background-color: rgba(241, 241, 241, 0.7);
+  background-color: rgba(241, 241, 241, 0.7); */
 `;
 
 export default GradientBox;

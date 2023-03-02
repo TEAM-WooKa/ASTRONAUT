@@ -11,7 +11,7 @@ function ProgressBar({ percent }: ProgressBarProps) {
     <Wrapper>
       <Bar move={move}>
         <Comet move={move}>
-          <Image src={'/Comet.png'} width="45" height={45} alt="comet" />
+          <Image src={'/Star2.png'} width="51" height={51} alt="comet" />
         </Comet>
         {/* <Planet>
           <Image src={'/Planet-9.png'} width="45" height={45} alt="comet" />
@@ -28,7 +28,12 @@ const Wrapper = styled.div`
 `;
 
 const Bar = styled.div<{ move: number }>`
-  background-color: #d9d9d9;
+  background: linear-gradient(
+    84.8deg,
+    #feac5e 35.52%,
+    #c779d0 50.6%,
+    #4bc0c8 66.97%
+  );
   height: 6px;
   border-radius: 6px;
   width: 240px;
@@ -55,7 +60,7 @@ const Bar = styled.div<{ move: number }>`
 
 const Comet = styled.div<{ move: number }>`
   position: absolute;
-  top: -20px;
+  top: -25px;
   left: -20px;
   z-index: 2;
   transition: 0.6s;
