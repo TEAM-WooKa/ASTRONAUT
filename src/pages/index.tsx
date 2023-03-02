@@ -1,4 +1,7 @@
-import { GradientButtonStyled } from '@/assets/styles/gradient';
+import {
+  GradientBoxStyled,
+  GradientButtonStyled,
+} from '@/assets/styles/gradient';
 import AButton from '@/component/common/AButton';
 import AText from '@/component/common/AText';
 import GradientBox from '@/component/common/GradientBox';
@@ -25,14 +28,21 @@ function Home() {
             height={80}
           />
         </MainLogoWrapper>
-        <GradientBox>
+        <TextBox>
           <TextWrapper>
-            <p>지구에 불시착한 길잃은 우주인인 당신!</p>
-            <p>당신의 고향별은 어디였을까요?</p>
-            <p>우주인 테스트 후</p>
-            <p>우주인 ID 카드를 발급 받을 수 있습니다.</p>
+            <p>지구별에 여행 온 우주인인 당신!</p>
+            <p>지구별에서 행복한 여행을 즐기고 있으신가요?</p>
+            <br />
+            <p>언젠가 수명이 다해 고향별로 돌아가기 위해선</p>
+            <p> 우주인 ID 카드 발급이 필요합니다</p>
+            <br />
+            <p> 우주인 테스트 후 ID 카드를 발급 받을 수 있습니다.</p>
+            <p> 같은 별에서 온 우주인 친구들을 찾아보세요.</p>
           </TextWrapper>
-        </GradientBox>
+          <BgBox>
+            <InnerBox></InnerBox>
+          </BgBox>
+        </TextBox>
       </div>
       <ButtonWrapper>
         <GradientButton onClick={goTest}>&gt; test</GradientButton>
@@ -62,13 +72,38 @@ const MainLogoWrapper = styled.div`
 
 const TextWrapper = styled(AText)`
   line-height: 25px;
-  color: ${(props) => props.theme.colors.bg};
-  font-size: 1.05rem;
+  color: ${(props) => props.theme.colors.main2};
+  font-size: 1rem;
   font-weight: 700;
   padding: 20px 0;
   border-radius: 20px;
   width: 100%;
   letter-spacing: 0.5%;
+  z-index: 10;
+  display: block;
+  position: relative;
+`;
+
+const TextBox = styled.div`
+  position: relative;
+  z-index: 1;
+`;
+
+const BgBox = styled(GradientBoxStyled)`
+  opacity: 0.7;
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  border-radius: 20px;
+  z-index: 0;
+  overflow: hidden;
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+`;
+
+const InnerBox = styled.div`
+  background: rgba(241, 241, 241, 0.7);
 `;
 
 const ButtonWrapper = styled.div`
