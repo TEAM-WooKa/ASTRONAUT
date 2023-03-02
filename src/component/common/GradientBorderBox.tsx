@@ -41,8 +41,6 @@ const BgBox = styled(GradientBoxStyled)<{ borderRadius?: string }>`
   box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
-const BgInnerBox = styled.div`
-  /* background: rgba(241, 241, 241, 0.7); */
-`;
+const BgInnerBox = styled.div``;
 
 export default GradientBorderBox;

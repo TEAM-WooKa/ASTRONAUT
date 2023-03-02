@@ -19,11 +19,11 @@ function IDCard({ name, birth, hobby }: IDCardProps) {
     <Card onClick={onClick} className={isRotate ? 'rotate' : ''}>
       <Front className="front">
         <InnerFace>
-          <Image src="/space-image.png" width="123" height="113" alt="img" />
+          <Image src="/images/romi.png" width="140" height="107" alt="romi" />
           <TextWrapper>
-            <div>이름 : {name}</div>
+            {/* <div>이름 : {name}</div>
             <div>생년월일 : {birth}</div>
-            <div>취미 : {hobby}</div>
+            <div>취미 : {hobby}</div> */}
           </TextWrapper>
         </InnerFace>
       </Front>
