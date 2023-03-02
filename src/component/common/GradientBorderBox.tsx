@@ -15,6 +15,7 @@ function GradientBorderBox({ children }: { children: React.ReactNode }) {
 
 const Wrapper = styled.div`
   position: relative;
+  width: 100%;
 `;
 
 const InnerWrapper = styled.div`

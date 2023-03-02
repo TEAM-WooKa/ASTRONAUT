@@ -20,12 +20,7 @@ function Home() {
     <Wrapper>
       <div>
         <MainLogoWrapper>
-          <Image
-            src={'/images/at_title_img.webp'}
-            alt="logo"
-            width={380}
-            height={80}
-          />
+          <Image src={'/images/title.png'} alt="logo" width={323} height={80} />
         </MainLogoWrapper>
         <GradientBorderBox>
           <TextWrapper>
@@ -39,6 +34,15 @@ function Home() {
             <p> 같은 별에서 온 우주인 친구들을 찾아보세요.</p>
           </TextWrapper>
         </GradientBorderBox>
+
+        <ImageWrapper>
+          <Image
+            src={'/images/main_image.png'}
+            alt="logo"
+            width={216}
+            height={157}
+          />
+        </ImageWrapper>
       </div>
       <ButtonWrapper>
         <GradientButton onClick={goTest}>&gt; test</GradientButton>
@@ -51,15 +55,14 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
+
   width: 100%;
-  min-width: 100%;
   height: 100%;
-  padding: 50px 20px;
 `;
 
 const MainLogoWrapper = styled.div`
-  margin-bottom: 60px;
+  margin-bottom: 32px;
 
   img {
     max-width: 100%;
@@ -67,23 +70,27 @@ const MainLogoWrapper = styled.div`
 `;
 
 const TextWrapper = styled(AText)`
-  line-height: 25px;
   color: ${(props) => props.theme.colors.main2};
   font-size: 1rem;
   font-weight: 700;
   padding: 20px 0;
   border-radius: 20px;
-  letter-spacing: 0.5%;
+  line-height: 24px;
 `;
 
 const ButtonWrapper = styled.div`
   width: 280px;
+  margin: 0 auto;
 `;
 
 const GradientButton = styled(GradientButtonStyled)`
   font-size: 32px;
-  border-radius: 20px;
+  border-radius: 40px;
   padding: 2px;
+`;
+
+const ImageWrapper = styled.div`
+  margin-top: 25px;
 `;
 
 export default withLayout(Home, 'title', 'desc');

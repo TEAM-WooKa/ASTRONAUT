@@ -12,7 +12,9 @@ function withLayout(
         <Container className="container">
           <header></header>
           <Main>
-            <Component {...props} />
+            <MainInner>
+              <Component {...props} />
+            </MainInner>
           </Main>
         </Container>
       </>
@@ -37,6 +39,14 @@ const Main = styled.div`
   background-origin: border-box;
   background-repeat: no-repeat;
   background-size: cover;
+`;
+
+const MainInner = styled.div`
+  width: 340px;
+  padding: 50px 0;
+  margin: auto;
+  max-width: 340px;
+  height: 100%;
 `;
 
 export default withLayout;
