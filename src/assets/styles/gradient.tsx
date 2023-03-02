@@ -13,8 +13,8 @@ export const Gradient1 = styled.div`
 export const GradientBoxStyled = styled.div`
   border: 3px solid transparent;
   background-image: linear-gradient(
-      ${(props) => props.theme.colors.lightGrey},
-      ${(props) => props.theme.colors.lightGrey}
+      ${(props) => props.theme.colors.sub2},
+      ${(props) => props.theme.colors.sub2}
     ),
     linear-gradient(
       193deg,
@@ -36,8 +36,8 @@ export const GradientButtonStyled = styled.button`
 
   border: 1px solid transparent;
   background-image: linear-gradient(
-      ${(props) => props.theme.colors.lightGrey},
-      ${(props) => props.theme.colors.lightGrey}
+      ${(props) => props.theme.colors.sub2},
+      ${(props) => props.theme.colors.sub2}
     ),
     linear-gradient(
       193deg,

@@ -37,7 +37,7 @@ const BgBox = styled(GradientBoxStyled)`
 `;
 
 const BgInnerBox = styled.div`
-  background: rgba(241, 241, 241, 0.7);
+  /* background: rgba(241, 241, 241, 0.7); */
 `;
 
 export default GradientBorderBox;
