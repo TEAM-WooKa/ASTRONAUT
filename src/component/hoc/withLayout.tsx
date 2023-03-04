@@ -39,6 +39,8 @@ const Main = styled.div`
   background-origin: border-box;
   background-repeat: no-repeat;
   background-size: cover;
+
+  position: relative;
 `;
 
 const MainInner = styled.div`
