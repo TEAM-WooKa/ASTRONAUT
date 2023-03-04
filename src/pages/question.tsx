@@ -41,21 +41,21 @@ function Question() {
       </div>
       <ProgressBar percent={questionIndex * 10} />
       <div>
-        <div>
+        <ImageBox>
           <Image
-            src="/images/planet.webp"
+            src="/images/romi.png"
             alt="space image"
-            width={244}
-            height={244}
+            width={250}
+            height={191}
             placeholder="blur"
             blurDataURL={'/images/blur.webp'}
             priority
           />
-        </div>
+        </ImageBox>
         <GradientBox title="Q1">
           <InnerGradientBox>
-            <p>나는 우주에 인간 외에</p>
-            <p>다른 지적 생명체가 존재한다고 생각한다.</p>
+            <p>우주에 인간 외에 </p>
+            <p>다른 지적 생명체가 존재한다고 생각하시나요?</p>
           </InnerGradientBox>
         </GradientBox>
       </div>
@@ -95,6 +95,13 @@ const ButtonWrapper = styled.div`
   width: 120px;
 `;
 
+const ImageBox = styled.div`
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const CircleButton = styled.button`
   border-radius: 50%;
   background-color: ${(props) => props.theme.colors.lightGrey};
@@ -108,14 +115,17 @@ const CircleButton = styled.button`
 const InnerGradientBox = styled.div`
   padding: 20px;
   font-size: 16px;
+  font-weight: 600;
   width: 330px;
 `;
 
 const GradientButton = styled(GradientButtonStyled)`
+  font-family: 'Space-Rave';
+
   font-size: 32px;
   border-radius: 40px;
   padding: 2px;
-  width: 120px;
+  width: 126px;
 
   span {
     position: relative;

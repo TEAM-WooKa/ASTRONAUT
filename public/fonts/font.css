@@ -5,6 +5,14 @@
   font-style: italic;
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'Space-Rave';
+  src: url('space_rave/Space\ Rave\ Italic.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
 /* 
 @font-face {
   font-family: 'Pretendard';
