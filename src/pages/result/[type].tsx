@@ -30,7 +30,6 @@ function Result() {
           alt="result"
         />
       </h1>
-
       <Card />
 
       <ShareWrapper>

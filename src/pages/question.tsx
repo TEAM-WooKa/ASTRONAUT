@@ -8,6 +8,7 @@ import GradientBox from '@/component/common/GradientBox';
 import Answer from '@/component/question/answer';
 import { QUESTION_DATA } from '@/component/question/data';
 
+
 const QUESTION_END_CNT = QUESTION_DATA.length;
 
 const questions = QUESTION_DATA;
@@ -28,17 +29,19 @@ function Question() {
   const handleAnswerClick = (answer: string) => {
     console.log('answer: ', answer);
     if (questionIndex === QUESTION_END_CNT - 1) {
-      console.log('answers: ', [
+      const lastAnswers = [
         ...answers,
         {
           id: currentQuestion.id,
           answer,
         },
-      ]);
+      ];
 
-      //TODO: test end
-      const resultID: number = 1;
-      router.push(`/result/${resultID}`);
+      localStorage.setItem('astronauts-answers', JSON.stringify(lastAnswers));
+      router.push(`/user`);
+      // //TODO: test end
+      // const resultID: number = 1;
+      // router.push(`/result/${resultID}`);
     }
     setAnswers([
       ...answers,
@@ -48,6 +51,7 @@ function Question() {
       },
     ]);
   };
+
 
   const handleAnswerChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -121,16 +125,6 @@ const ImageBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-const CircleButton = styled.button`
-  border-radius: 50%;
-  background-color: ${(props) => props.theme.colors.lightGrey};
-  width: 43px;
-  height: 43px;
-  position: absolute;
-  bottom: 12px;
-  left: 12px;
 `;
 
 const QuestionInnerBox = styled.div`
