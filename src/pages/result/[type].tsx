@@ -1,5 +1,10 @@
+import DownloadIcon from '@/assets/icons/DownloadIcon';
+import ReplayIcon from '@/assets/icons/ReplayIcon';
+import ShareIcon from '@/assets/icons/ShareIcon';
 import AText from '@/component/common/AText';
+import GradientBorderBox from '@/component/common/GradientBorderBox';
 import withLayout from '@/component/hoc/withLayout';
+import Card from '@/component/result/card';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
@@ -18,33 +23,52 @@ function Result() {
   return (
     <>
       <h1>
-        <Image src={'/result.png'} width={100} height={25} alt="result" />
+        <Image
+          src={'/images/id_card_service.png'}
+          width={236}
+          height={62}
+          alt="result"
+        />
       </h1>
-      <Wrapper>
-        <AstronautImage>
-          <div>우주인 이미지</div>
-        </AstronautImage>
+      <Card />
 
-        <ButtonWrapper>
-          <Button>&gt; 공유하기</Button>
-          <Button onClick={handleIDCardMakeClick}>&gt; ID 카드 만들기</Button>
-        </ButtonWrapper>
+      <ShareWrapper>
+        <DownloadIcon />
+        <ShareIcon />
+        <ReplayIcon />
+      </ShareWrapper>
+      <GradientBorderBox>
+        <Content>
+          {/* <AstronautImage>
+            <div>우주인 이미지</div>
+          </AstronautImage> */}
 
-        <TextWrapper>
-          {DUMMY.map((text) => (
-            <div key={text}>{text}</div>
-          ))}
-        </TextWrapper>
-        <TextWrapper>친구별 : ㅇㅇ별 </TextWrapper>
-        <TextWrapper>라이벌 : ㅇㅇ별 </TextWrapper>
-      </Wrapper>
+          {/* <ButtonWrapper>
+            <Button>&gt; 공유하기</Button>
+            <Button onClick={handleIDCardMakeClick}>&gt; ID 카드 만들기</Button>
+          </ButtonWrapper> */}
+
+          <TextWrapper>
+            {DUMMY.map((text) => (
+              <div key={text}>{text}</div>
+            ))}
+          </TextWrapper>
+          <TextWrapper>친구별 : ㅇㅇ별 </TextWrapper>
+          <TextWrapper>라이벌 : ㅇㅇ별 </TextWrapper>
+        </Content>
+      </GradientBorderBox>
     </>
   );
 }
 
-const Wrapper = styled.div`
-  background-color: ${(props) => props.theme.colors.sub2};
-  border: 2px solid ${(props) => props.theme.colors.sub3};
+const ShareWrapper = styled.div`
+  display: flex;
+  margin: 35px 0;
+  gap: 75px;
+  justify-content: center;
+`;
+
+const Content = styled.div`
   border-radius: 16px;
   width: 100%;
   padding: 20px;
@@ -55,12 +79,14 @@ const Wrapper = styled.div`
 `;
 
 const TextWrapper = styled(AText)`
-  color: #000;
+  font-size: 18px;
+  font-weight: 600;
+
+  color: ${(props) => props.theme.colors.bg};
   text-align: left;
 `;
 
 const AstronautImage = styled.div`
-  background-color: ${(props) => props.theme.colors.sub3};
   position: relative;
   width: 100%;
   border-radius: 16px;
@@ -88,9 +114,10 @@ const ButtonWrapper = styled.div`
 `;
 
 const Button = styled.div`
-  background-color: ${(props) => props.theme.colors.lightGrey};
+  /* background-color: ${(props) => props.theme.colors.lightGrey}; */
   padding: 20px;
   border-radius: 20px;
   flex: 1;
 `;
+
 export default withLayout(Result, '우주인 결과', '우주인 테스트 결과 페이지');

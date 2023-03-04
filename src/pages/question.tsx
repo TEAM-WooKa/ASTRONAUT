@@ -1,71 +1,117 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import AButton from '@/component/common/AButton';
-import AText from '@/component/common/AText';
-import CircleButton from '@/component/common/CircleButton';
 import withLayout from '@/component/hoc/withLayout';
 import ProgressBar from '@/component/question/progress-bar';
+import GradientBox from '@/component/common/GradientBox';
+import Answer from '@/component/question/answer';
+import { QUESTION_DATA } from '@/component/question/data';
 
-const QUESTION_END_CNT = 10;
+
+const QUESTION_END_CNT = QUESTION_DATA.length;
+
+const questions = QUESTION_DATA;
+
+type AnswerType = { id: number; answer: string };
 
 function Question() {
   const router = useRouter();
 
-  const [answers, setAnswers] = useState<string[]>([]);
+  const [answers, setAnswers] = useState<AnswerType[]>([]);
+
+  const [answerColorStatus, setAnswerColorStatus] = useState('1');
   const questionIndex = answers.length;
 
-  const handleBackButtonClick = () => {};
+  const currentQuestion = questions[questionIndex];
+  console.log('currentQuestion: ', currentQuestion);
 
-  const handleAnswerClick = (flag: 'YES' | 'NO') => {
+  const handleAnswerClick = (answer: string) => {
+    console.log('answer: ', answer);
     if (questionIndex === QUESTION_END_CNT - 1) {
-      //TODO: test end
-      const resultID: number = 1;
-      router.push(`/result/${resultID}`);
-    }
+      const lastAnswers = [
+        ...answers,
+        {
+          id: currentQuestion.id,
+          answer,
+        },
+      ];
 
-    setAnswers([...answers, flag]);
+      localStorage.setItem('astronauts-answers', JSON.stringify(lastAnswers));
+      router.push(`/user`);
+      // //TODO: test end
+      // const resultID: number = 1;
+      // router.push(`/result/${resultID}`);
+    }
+    setAnswers([
+      ...answers,
+      {
+        id: currentQuestion.id,
+        answer,
+      },
+    ]);
   };
+
+
+  const handleAnswerChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setAnswerColorStatus(value);
+  };
+
+  if (currentQuestion === undefined) return <></>;
 
   return (
     <Wrapper>
       <div>
         <Image
-          src="/we-are-The Astronauts.png"
-          width={230}
-          height={52}
+          src="/images/we_are_the_astronauts.png"
+          width={255}
+          height={75}
           alt="we-are-The Astronauts"
         />
       </div>
       <ProgressBar percent={questionIndex * 10} />
       <div>
-        <div>
-          <Image src="/space-image.png" alt="space" width={244} height={244} />
-        </div>
-        <QuestionWrapper>
-          <p> Q1. 나는 우주에 인간 외에</p>
-          <p> 다른 지적 생명체가 존재한다고 생각한다.</p>
-        </QuestionWrapper>
+        <ImageBox>
+          <Image
+            src={
+              currentQuestion.type === 'color'
+                ? getColorImageUrl(answerColorStatus)
+                : '/images/romi.png'
+            }
+            alt="space image"
+            width={250}
+            height={191}
+            placeholder="blur"
+            blurDataURL={'/images/blur.webp'}
+            priority
+          />
+        </ImageBox>
+        <GradientBox title={`Q${questionIndex + 1}`}>
+          <QuestionInnerBox>
+            {currentQuestion.question.map((q, index) => (
+              <p key={index + q}>{q}</p>
+            ))}
+          </QuestionInnerBox>
+        </GradientBox>
       </div>
-      <ButtonWrapper>
-        <AButton content="> YES" onClick={() => handleAnswerClick('YES')} />
-      </ButtonWrapper>
-      <ButtonWrapper>
-        <AButton content="> NO" onClick={() => handleAnswerClick('NO')} />
-      </ButtonWrapper>
-      <CircleButton onClick={handleBackButtonClick}>
-        <Image
-          src={'/back-arrow.png'}
-          width={27}
-          height={23}
-          alt="back-button"
-        />
-      </CircleButton>
+      <Answer
+        type={currentQuestion.type}
+        answer={currentQuestion.answer}
+        handleAnswerClick={handleAnswerClick}
+        answerColorStatus={answerColorStatus}
+        handleAnswerChange={handleAnswerChange}
+      />
     </Wrapper>
   );
 }
 
+const getColorImageUrl = (value: string) => {
+  if (value === '1') return '/images/romi_blue.png';
+  if (value === '2') return '/images/romi_purple.png';
+  if (value === '3') return '/images/romi_yellow.png';
+  return '/images/romi.png';
+};
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -74,12 +120,18 @@ const Wrapper = styled.div`
   gap: 20px;
 `;
 
-const QuestionWrapper = styled(AText)`
-  color: ${(props) => props.theme.colors.sub2};
+const ImageBox = styled.div`
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
-const ButtonWrapper = styled.div`
-  width: 200px;
+const QuestionInnerBox = styled.div`
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  width: 330px;
 `;
 
 export default withLayout(
