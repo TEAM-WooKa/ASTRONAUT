@@ -1,6 +1,7 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 import styled from 'styled-components';
 import star from '@/assets/images/Star2.png';
+import { GradientButtonStyled } from '@/assets/styles/gradient';
 type HandleAnswerClickType = (answer: string) => void;
 export default function Color({
   handleAnswerClick,
@@ -12,16 +13,21 @@ export default function Color({
   handleAnswerChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }) {
   return (
-    <InputWrapper>
-      <input
-        type="range"
-        max={3}
-        step={1}
-        min={1}
-        value={answerColorStatus}
-        onChange={handleAnswerChange}
-      />
-    </InputWrapper>
+    <>
+      <InputWrapper>
+        <input
+          type="range"
+          max={3}
+          step={1}
+          min={1}
+          value={answerColorStatus}
+          onChange={handleAnswerChange}
+        />
+      </InputWrapper>
+      <GradientButton onClick={() => handleAnswerClick(answerColorStatus)}>
+        <span>Submit</span>
+      </GradientButton>
+    </>
   );
 }
 
@@ -56,5 +62,20 @@ const InputWrapper = styled.div`
       background-image: url(${star.src});
       cursor: pointer;
     }
+  }
+`;
+
+const GradientButton = styled(GradientButtonStyled)`
+  font-family: 'Space-Rave';
+
+  font-size: 32px;
+  border-radius: 40px;
+  padding: 2px;
+  width: 180px;
+
+  span {
+    position: relative;
+    left: -3px;
+    bottom: 1px;
   }
 `;

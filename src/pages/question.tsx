@@ -2,127 +2,42 @@ import { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import AText from '@/component/common/AText';
-
 import withLayout from '@/component/hoc/withLayout';
 import ProgressBar from '@/component/question/progress-bar';
-import { GradientButtonStyled } from '@/assets/styles/gradient';
 import GradientBox from '@/component/common/GradientBox';
 import Answer from '@/component/question/answer';
-
-interface QuestionType {
-  id: number;
-  type: 'button-2' | 'color' | 'button-4';
-  question: string[];
-  answer?: string[];
-}
-const QUESTION_DATA: QuestionType[] = [
-  {
-    id: 1,
-    type: 'button-2',
-    question: [
-      '우주에 인간 외에 ',
-      '다른 지적 생명체가 존재한다고 생각하시나요?',
-    ],
-  },
-  {
-    id: 2,
-    type: 'button-2',
-    question: [
-      '우주에 인간 외에 ',
-      '다른 지적 생명체가 존재한다고 생각하시나요?',
-    ],
-  },
-  {
-    id: 4,
-    type: 'button-4',
-    question: [
-      '애완 동물을 기르시나요? ',
-      '혹은 길렀던/기르고 싶은 동물이 있나요? ',
-    ],
-    answer: ['고양이', '강아지', '새', '없음'],
-  },
-  {
-    id: 3,
-    type: 'color',
-    question: [
-      '좋아하는 색상을 알려주세요! ',
-      '(별을 슬라이드하여 색을 선택할 수 있습니다.)',
-    ],
-  },
-
-  {
-    id: 5,
-    type: 'button-2',
-    question: [
-      '우주에 인간 외에 ',
-      '다른 지적 생명체가 존재한다고 생각하시나요?',
-    ],
-  },
-  {
-    id: 6,
-    type: 'color',
-    question: [
-      '좋아하는 색상을 알려주세요! ',
-      '(별을 슬라이드하여 색을 선택할 수 있습니다.)',
-    ],
-  },
-  {
-    id: 7,
-    type: 'button-4',
-    question: [
-      '애완 동물을 기르시나요? ',
-      '혹은 길렀던/기르고 싶은 동물이 있나요? ',
-    ],
-    answer: ['고양이', '강아지', '새', '없음'],
-  },
-  {
-    id: 8,
-    type: 'button-2',
-    question: [
-      '우주에 인간 외에 ',
-      '다른 지적 생명체가 존재한다고 생각하시나요?',
-    ],
-  },
-  {
-    id: 9,
-    type: 'color',
-    question: [
-      '좋아하는 색상을 알려주세요!',
-      '(별을 슬라이드하여 색을 선택할 수 있습니다.)',
-    ],
-  },
-  {
-    id: 10,
-    type: 'button-2',
-    question: [
-      '우주에 인간 외에 ',
-      '다른 지적 생명체가 존재한다고 생각하시나요?',
-    ],
-  },
-];
+import { QUESTION_DATA } from '@/component/question/data';
 
 const QUESTION_END_CNT = QUESTION_DATA.length;
 
 const questions = QUESTION_DATA;
+
+type AnswerType = { id: number; answer: string };
+
 function Question() {
   const router = useRouter();
 
-  const [answers, setAnswers] = useState<string[]>(['1', '2', '3']);
+  const [answers, setAnswers] = useState<AnswerType[]>([]);
+
   const [answerColorStatus, setAnswerColorStatus] = useState('1');
   const questionIndex = answers.length;
 
   const currentQuestion = questions[questionIndex];
 
-  const handleAnswerClick = (flag: string) => {
-    console.log('flag: ', flag);
+  const handleAnswerClick = (answer: string) => {
+    console.log('answer: ', answer);
     if (questionIndex === QUESTION_END_CNT - 1) {
       //TODO: test end
       const resultID: number = 1;
       router.push(`/result/${resultID}`);
     }
-
-    setAnswers([...answers, flag]);
+    setAnswers([
+      ...answers,
+      {
+        id: currentQuestion.id,
+        answer,
+      },
+    ]);
   };
 
   const handleAnswerChange = (e: ChangeEvent<HTMLInputElement>) => {
