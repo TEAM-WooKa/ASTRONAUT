@@ -8,6 +8,7 @@ import GradientBox from '@/component/common/GradientBox';
 import Answer from '@/component/question/answer';
 import { QUESTION_DATA } from '@/component/question/data';
 
+
 const QUESTION_END_CNT = QUESTION_DATA.length;
 
 const questions = QUESTION_DATA;
@@ -50,6 +51,7 @@ function Question() {
       },
     ]);
   };
+
 
   const handleAnswerChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
