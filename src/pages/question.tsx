@@ -23,10 +23,19 @@ function Question() {
   const questionIndex = answers.length;
 
   const currentQuestion = questions[questionIndex];
+  console.log('currentQuestion: ', currentQuestion);
 
   const handleAnswerClick = (answer: string) => {
     console.log('answer: ', answer);
     if (questionIndex === QUESTION_END_CNT - 1) {
+      console.log('answers: ', [
+        ...answers,
+        {
+          id: currentQuestion.id,
+          answer,
+        },
+      ]);
+
       //TODO: test end
       const resultID: number = 1;
       router.push(`/result/${resultID}`);
@@ -44,6 +53,8 @@ function Question() {
     const { value } = e.target;
     setAnswerColorStatus(value);
   };
+
+  if (currentQuestion === undefined) return <></>;
 
   return (
     <Wrapper>

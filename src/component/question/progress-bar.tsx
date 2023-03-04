@@ -13,9 +13,6 @@ function ProgressBar({ percent }: ProgressBarProps) {
         <Comet move={move}>
           <Image src={'/Star2.png'} width="51" height={51} alt="comet" />
         </Comet>
-        {/* <Planet>
-          <Image src={'/Planet-9.png'} width="45" height={45} alt="comet" />
-        </Planet> */}
       </Bar>
     </Wrapper>
   );
@@ -45,6 +42,7 @@ const Bar = styled.div<{ move: number }>`
     top: 0;
     left: 0;
     content: '';
+    /* TODO : 진행바 색 배꾸기 */
     background: linear-gradient(
       193deg,
       rgba(254, 172, 94, 1) 0%,
