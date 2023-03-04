@@ -13,84 +13,113 @@ import Answer from '@/component/question/answer';
 interface QuestionType {
   id: number;
   type: 'button-2' | 'color' | 'button-4';
-  question: string;
+  question: string[];
   answer?: string[];
 }
-const QUESTION_END_CNT = 10;
 const QUESTION_DATA: QuestionType[] = [
   {
     id: 1,
     type: 'button-2',
-    question: '우주에 인간 외에 다른 지적 생명체가 존재한다고 생각하시나요?',
+    question: [
+      '우주에 인간 외에 ',
+      '다른 지적 생명체가 존재한다고 생각하시나요?',
+    ],
   },
   {
     id: 2,
     type: 'button-2',
-    question: '우주에 인간 외에 다른 지적 생명체가 존재한다고 생각하시나요?',
-  },
-  {
-    id: 3,
-    type: 'color',
-    question:
-      '좋아하는 색상을 알려주세요! (별을 슬라이드하여 색을 선택할 수 있습니다.)',
+    question: [
+      '우주에 인간 외에 ',
+      '다른 지적 생명체가 존재한다고 생각하시나요?',
+    ],
   },
   {
     id: 4,
     type: 'button-4',
-    question: '애완 동물을 기르시나요? 혹은 길렀던/기르고 싶은 동물이 있나요? ',
+    question: [
+      '애완 동물을 기르시나요? ',
+      '혹은 길렀던/기르고 싶은 동물이 있나요? ',
+    ],
     answer: ['고양이', '강아지', '새', '없음'],
   },
   {
+    id: 3,
+    type: 'color',
+    question: [
+      '좋아하는 색상을 알려주세요! ',
+      '(별을 슬라이드하여 색을 선택할 수 있습니다.)',
+    ],
+  },
+
+  {
     id: 5,
     type: 'button-2',
-    question: '우주에 인간 외에 다른 지적 생명체가 존재한다고 생각하시나요?',
+    question: [
+      '우주에 인간 외에 ',
+      '다른 지적 생명체가 존재한다고 생각하시나요?',
+    ],
   },
   {
     id: 6,
     type: 'color',
-    question:
-      '좋아하는 색상을 알려주세요! (별을 슬라이드하여 색을 선택할 수 있습니다.)',
+    question: [
+      '좋아하는 색상을 알려주세요! ',
+      '(별을 슬라이드하여 색을 선택할 수 있습니다.)',
+    ],
   },
   {
     id: 7,
     type: 'button-4',
-    question: '애완 동물을 기르시나요? 혹은 길렀던/기르고 싶은 동물이 있나요? ',
+    question: [
+      '애완 동물을 기르시나요? ',
+      '혹은 길렀던/기르고 싶은 동물이 있나요? ',
+    ],
     answer: ['고양이', '강아지', '새', '없음'],
   },
   {
     id: 8,
     type: 'button-2',
-    question: '우주에 인간 외에 다른 지적 생명체가 존재한다고 생각하시나요?',
+    question: [
+      '우주에 인간 외에 ',
+      '다른 지적 생명체가 존재한다고 생각하시나요?',
+    ],
   },
   {
     id: 9,
     type: 'color',
-    question:
-      '좋아하는 색상을 알려주세요! (별을 슬라이드하여 색을 선택할 수 있습니다.)',
+    question: [
+      '좋아하는 색상을 알려주세요!',
+      '(별을 슬라이드하여 색을 선택할 수 있습니다.)',
+    ],
   },
   {
     id: 10,
     type: 'button-2',
-    question: '우주에 인간 외에 다른 지적 생명체가 존재한다고 생각하시나요?',
+    question: [
+      '우주에 인간 외에 ',
+      '다른 지적 생명체가 존재한다고 생각하시나요?',
+    ],
   },
 ];
+
+const QUESTION_END_CNT = QUESTION_DATA.length;
 
 const questions = QUESTION_DATA;
 function Question() {
   const router = useRouter();
 
-  const [answers, setAnswers] = useState<string[]>([]);
+  const [answers, setAnswers] = useState<string[]>(['1', '2']);
   const questionIndex = answers.length;
 
   const handleAnswerClick = (flag: string) => {
     console.log('flag: ', flag);
-    // if (questionIndex === QUESTION_END_CNT - 1) {
-    //   //TODO: test end
-    //   const resultID: number = 1;
-    //   router.push(`/result/${resultID}`);
-    // }
+    if (questionIndex === QUESTION_END_CNT - 1) {
+      //TODO: test end
+      const resultID: number = 1;
+      router.push(`/result/${resultID}`);
+    }
 
-    // setAnswers([...answers, flag]);
+    setAnswers([...answers, flag]);
   };
 
   return (
@@ -116,10 +145,11 @@ function Question() {
             priority
           />
         </ImageBox>
-        <GradientBox title="Q1">
+        <GradientBox title={`Q${questionIndex + 1}`}>
           <QuestionInnerBox>
-            <p>우주에 인간 외에 </p>
-            <p>다른 지적 생명체가 존재한다고 생각하시나요?</p>
+            {questions[questionIndex].question.map((q, index) => (
+              <p key={index + q}>{q}</p>
+            ))}
           </QuestionInnerBox>
         </GradientBox>
       </div>
