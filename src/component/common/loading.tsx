@@ -1,16 +1,18 @@
 import LoadingBarSVG from '@/component/image/loading-bar-svg';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 function Loading() {
-  const [value, setValue] = useState(0);
+  const router = useRouter();
 
+  const value = useRef(0);
   const handleTime = () => {
-    setValue((value) => value + 1);
+    value.current += 1;
 
-    if (value >= 100) {
-      console.log('stop');
+    if (value.current >= 20) {
+      router.push('/result/1');
     }
   };
 
