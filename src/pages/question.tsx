@@ -8,6 +8,7 @@ import withLayout from '@/component/hoc/withLayout';
 import ProgressBar from '@/component/question/progress-bar';
 import { GradientButtonStyled } from '@/assets/styles/gradient';
 import GradientBox from '@/component/common/GradientBox';
+import Answer from '@/component/question/answer';
 
 interface QuestionType {
   id: number;
@@ -16,12 +17,11 @@ interface QuestionType {
   answer?: string[];
 }
 const QUESTION_END_CNT = 10;
-const QUESTION_DATA = [
+const QUESTION_DATA: QuestionType[] = [
   {
     id: 1,
-    type: 'button-4',
-    question: '애완 동물을 기르시나요? 혹은 길렀던/기르고 싶은 동물이 있나요? ',
-    answer: ['고양이', '강아지', '새', '없음'],
+    type: 'button-2',
+    question: '우주에 인간 외에 다른 지적 생명체가 존재한다고 생각하시나요?',
   },
   {
     id: 2,
@@ -75,22 +75,22 @@ const QUESTION_DATA = [
   },
 ];
 
+const questions = QUESTION_DATA;
 function Question() {
   const router = useRouter();
 
   const [answers, setAnswers] = useState<string[]>([]);
   const questionIndex = answers.length;
 
-  const handleBackButtonClick = () => {};
-
   const handleAnswerClick = (flag: string) => {
-    if (questionIndex === QUESTION_END_CNT - 1) {
-      //TODO: test end
-      const resultID: number = 1;
-      router.push(`/result/${resultID}`);
-    }
+    console.log('flag: ', flag);
+    // if (questionIndex === QUESTION_END_CNT - 1) {
+    //   //TODO: test end
+    //   const resultID: number = 1;
+    //   router.push(`/result/${resultID}`);
+    // }
 
-    setAnswers([...answers, flag]);
+    // setAnswers([...answers, flag]);
   };
 
   return (
@@ -123,26 +123,11 @@ function Question() {
           </QuestionInnerBox>
         </GradientBox>
       </div>
-
-      <ButtonWrapper>
-        <GradientButton onClick={() => handleAnswerClick('YES')}>
-          <span>YES</span>
-        </GradientButton>
-      </ButtonWrapper>
-      <ButtonWrapper>
-        <GradientButton onClick={() => handleAnswerClick('NO')}>
-          <span>NO</span>
-        </GradientButton>
-      </ButtonWrapper>
-
-      {/* <CircleButton onClick={handleBackButtonClick}>
-        <Image
-          src={'/back-arrow.png'}
-          width={20}
-          height={24}
-          alt="back-button"
-        />
-      </CircleButton> */}
+      <Answer
+        type={questions[questionIndex].type}
+        answer={questions[questionIndex].answer}
+        handleAnswerClick={handleAnswerClick}
+      />
     </Wrapper>
   );
 }
@@ -153,10 +138,6 @@ const Wrapper = styled.div`
   align-items: center;
 
   gap: 20px;
-`;
-
-const ButtonWrapper = styled.div`
-  width: 120px;
 `;
 
 const ImageBox = styled.div`
@@ -181,21 +162,6 @@ const QuestionInnerBox = styled.div`
   font-size: 16px;
   font-weight: 600;
   width: 330px;
-`;
-
-const GradientButton = styled(GradientButtonStyled)`
-  font-family: 'Space-Rave';
-
-  font-size: 32px;
-  border-radius: 40px;
-  padding: 2px;
-  width: 126px;
-
-  span {
-    position: relative;
-    left: -3px;
-    bottom: 1px;
-  }
 `;
 
 export default withLayout(
