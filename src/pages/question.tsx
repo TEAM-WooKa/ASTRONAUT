@@ -1,33 +1,60 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import AText from '@/component/common/AText';
-
 import withLayout from '@/component/hoc/withLayout';
 import ProgressBar from '@/component/question/progress-bar';
-import { GradientButtonStyled } from '@/assets/styles/gradient';
 import GradientBox from '@/component/common/GradientBox';
+import Answer from '@/component/question/answer';
+import { QUESTION_DATA } from '@/component/question/data';
 
-const QUESTION_END_CNT = 10;
+const QUESTION_END_CNT = QUESTION_DATA.length;
+
+const questions = QUESTION_DATA;
+
+type AnswerType = { id: number; answer: string };
 
 function Question() {
   const router = useRouter();
 
-  const [answers, setAnswers] = useState<string[]>([]);
+  const [answers, setAnswers] = useState<AnswerType[]>([]);
+
+  const [answerColorStatus, setAnswerColorStatus] = useState('1');
   const questionIndex = answers.length;
 
-  const handleBackButtonClick = () => {};
+  const currentQuestion = questions[questionIndex];
+  console.log('currentQuestion: ', currentQuestion);
 
-  const handleAnswerClick = (flag: 'YES' | 'NO') => {
+  const handleAnswerClick = (answer: string) => {
+    console.log('answer: ', answer);
     if (questionIndex === QUESTION_END_CNT - 1) {
+      console.log('answers: ', [
+        ...answers,
+        {
+          id: currentQuestion.id,
+          answer,
+        },
+      ]);
+
       //TODO: test end
       const resultID: number = 1;
       router.push(`/result/${resultID}`);
     }
-
-    setAnswers([...answers, flag]);
+    setAnswers([
+      ...answers,
+      {
+        id: currentQuestion.id,
+        answer,
+      },
+    ]);
   };
+
+  const handleAnswerChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setAnswerColorStatus(value);
+  };
+
+  if (currentQuestion === undefined) return <></>;
 
   return (
     <Wrapper>
@@ -43,7 +70,11 @@ function Question() {
       <div>
         <ImageBox>
           <Image
-            src="/images/romi.png"
+            src={
+              currentQuestion.type === 'color'
+                ? getColorImageUrl(answerColorStatus)
+                : '/images/romi.png'
+            }
             alt="space image"
             width={250}
             height={191}
@@ -52,47 +83,37 @@ function Question() {
             priority
           />
         </ImageBox>
-        <GradientBox title="Q1">
-          <InnerGradientBox>
-            <p>우주에 인간 외에 </p>
-            <p>다른 지적 생명체가 존재한다고 생각하시나요?</p>
-          </InnerGradientBox>
+        <GradientBox title={`Q${questionIndex + 1}`}>
+          <QuestionInnerBox>
+            {currentQuestion.question.map((q, index) => (
+              <p key={index + q}>{q}</p>
+            ))}
+          </QuestionInnerBox>
         </GradientBox>
       </div>
-
-      <ButtonWrapper>
-        <GradientButton onClick={() => handleAnswerClick('YES')}>
-          <span>YES</span>
-        </GradientButton>
-      </ButtonWrapper>
-      <ButtonWrapper>
-        <GradientButton onClick={() => handleAnswerClick('NO')}>
-          <span>NO</span>
-        </GradientButton>
-      </ButtonWrapper>
-
-      <CircleButton onClick={handleBackButtonClick}>
-        <Image
-          src={'/back-arrow.png'}
-          width={20}
-          height={24}
-          alt="back-button"
-        />
-      </CircleButton>
+      <Answer
+        type={currentQuestion.type}
+        answer={currentQuestion.answer}
+        handleAnswerClick={handleAnswerClick}
+        answerColorStatus={answerColorStatus}
+        handleAnswerChange={handleAnswerChange}
+      />
     </Wrapper>
   );
 }
 
+const getColorImageUrl = (value: string) => {
+  if (value === '1') return '/images/romi_blue.png';
+  if (value === '2') return '/images/romi_purple.png';
+  if (value === '3') return '/images/romi_yellow.png';
+  return '/images/romi.png';
+};
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 
   gap: 20px;
-`;
-
-const ButtonWrapper = styled.div`
-  width: 120px;
 `;
 
 const ImageBox = styled.div`
@@ -112,26 +133,11 @@ const CircleButton = styled.button`
   left: 12px;
 `;
 
-const InnerGradientBox = styled.div`
+const QuestionInnerBox = styled.div`
   padding: 20px;
   font-size: 16px;
   font-weight: 600;
   width: 330px;
-`;
-
-const GradientButton = styled(GradientButtonStyled)`
-  font-family: 'Space-Rave';
-
-  font-size: 32px;
-  border-radius: 40px;
-  padding: 2px;
-  width: 126px;
-
-  span {
-    position: relative;
-    left: -3px;
-    bottom: 1px;
-  }
 `;
 
 export default withLayout(
