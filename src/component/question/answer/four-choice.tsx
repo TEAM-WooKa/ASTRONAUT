@@ -39,6 +39,10 @@ const GradientButton = styled(GradientButtonStyled)`
   width: 126px;
 `;
 
+const ButtonWrapper = styled.div`
+  width: 120px;
+`;
+
 const Text = styled.span<{ isHangul: boolean }>`
   position: relative;
 
@@ -56,8 +60,4 @@ const Text = styled.span<{ isHangul: boolean }>`
           left: -3px;
           bottom: 1px;
         `}
-`;
-
-const ButtonWrapper = styled.div`
-  width: 120px;
 `;

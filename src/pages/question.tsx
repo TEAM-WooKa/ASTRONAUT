@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -108,8 +108,11 @@ const questions = QUESTION_DATA;
 function Question() {
   const router = useRouter();
 
-  const [answers, setAnswers] = useState<string[]>(['1', '2']);
+  const [answers, setAnswers] = useState<string[]>(['1', '2', '3']);
+  const [answerColorStatus, setAnswerColorStatus] = useState('1');
   const questionIndex = answers.length;
+
+  const currentQuestion = questions[questionIndex];
 
   const handleAnswerClick = (flag: string) => {
     console.log('flag: ', flag);
@@ -120,6 +123,11 @@ function Question() {
     }
 
     setAnswers([...answers, flag]);
+  };
+
+  const handleAnswerChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setAnswerColorStatus(value);
   };
 
   return (
@@ -136,7 +144,11 @@ function Question() {
       <div>
         <ImageBox>
           <Image
-            src="/images/romi.png"
+            src={
+              currentQuestion.type === 'color'
+                ? getColorImageUrl(answerColorStatus)
+                : '/images/romi.png'
+            }
             alt="space image"
             width={250}
             height={191}
@@ -147,21 +159,29 @@ function Question() {
         </ImageBox>
         <GradientBox title={`Q${questionIndex + 1}`}>
           <QuestionInnerBox>
-            {questions[questionIndex].question.map((q, index) => (
+            {currentQuestion.question.map((q, index) => (
               <p key={index + q}>{q}</p>
             ))}
           </QuestionInnerBox>
         </GradientBox>
       </div>
       <Answer
-        type={questions[questionIndex].type}
-        answer={questions[questionIndex].answer}
+        type={currentQuestion.type}
+        answer={currentQuestion.answer}
         handleAnswerClick={handleAnswerClick}
+        answerColorStatus={answerColorStatus}
+        handleAnswerChange={handleAnswerChange}
       />
     </Wrapper>
   );
 }
 
+const getColorImageUrl = (value: string) => {
+  if (value === '1') return '/images/romi_blue.png';
+  if (value === '2') return '/images/romi_purple.png';
+  if (value === '3') return '/images/romi_yellow.png';
+  return '/images/romi.png';
+};
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
