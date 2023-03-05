@@ -4,13 +4,14 @@ import ShareIcon from '@/assets/icons/ShareIcon';
 import AText from '@/component/common/AText';
 import GradientBorderBox from '@/component/common/GradientBorderBox';
 import withLayout from '@/component/hoc/withLayout';
-import Image from 'next/image';
+// import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useRef } from 'react';
 import styled from 'styled-components';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
 import IDCard from '@/component/result/IDCard';
+import { toBlob } from 'html-to-image';
 
 const DUMMY = [
   ' 당신은 ㅇㅇ한 별 출신일지도??',
@@ -19,21 +20,69 @@ const DUMMY = [
 
 function Result() {
   const cardRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  // function handleDownload() {
+  //   const canvas = canvasRef.current;
+  //   if (!canvas) return;
+
+  //   const ctx = canvas.getContext('2d');
+  //   if (!ctx) return;
+
+  //   // Set the canvas size to a higher resolution than the DOM element
+  //   const domElement = document.getElementById('dom-element');
+  //   if (!domElement) return;
+
+  //   const scaleFactor = 2;
+  //   canvas.width = domElement.offsetWidth * scaleFactor;
+  //   canvas.height = domElement.offsetHeight * scaleFactor;
+  //   ctx.scale(scaleFactor, scaleFactor);
+
+  //   // Render the DOM element on the canvas
+  //   ctx.drawImage(domElement as CanvasImageSource, 0, 0);
+
+  //   // Convert the canvas to a Blob object
+  //   canvas.toBlob((blob) => {
+  //     // Create a download link and trigger a click on it
+  //     const link = document.createElement('a');
+  //     link.download = 'image.png';
+  //     link.href = URL.createObjectURL(blob);
+  //     link.click();
+  //   }, 'image/png');
+  // }
+
+  const handleDownloadImage = async () => {
+    if (!cardRef.current) return;
+
+    try {
+      await toBlob(cardRef.current).then((blob) => {
+        const link = document.createElement('a');
+        link.download = 'image.png';
+        if (!blob) return;
+
+        link.href = URL.createObjectURL(blob);
+
+        link.click();
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const onDownloadBtn = () => {
-    const card = cardRef.current;
-    if (card === null) return;
+    handleDownloadImage();
+    // const card = cardRef.current;
+    // if (card === null) return;
 
-    console.log('card: ', card);
-    domtoimage.toBlob(card).then((blob) => {
-      saveAs(blob, 'card.png');
-    });
+    // console.log('card: ', card);
+    // domtoimage.toBlob(card).then((blob) => {
+    //   saveAs(blob, 'card.png');
+    // });
   };
 
   return (
     <>
       <h1>
-        <Image
+        <img
           src={'/images/logos/logo-aics.png'}
           width={236}
           height={62}
@@ -41,7 +90,7 @@ function Result() {
         />
       </h1>
       <IDCard cardRef={cardRef} />
-
+      <canvas ref={canvasRef} style={{ display: 'none' }} />
       <ShareWrapper>
         <span onClick={onDownloadBtn}>
           <DownloadIcon />
@@ -49,7 +98,7 @@ function Result() {
         <ShareIcon />
         <ReplayIcon />
       </ShareWrapper>
-      <Image
+      <img
         src={'/images/logos/logo-result.png'}
         width={122}
         height={39}
