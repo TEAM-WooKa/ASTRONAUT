@@ -21,6 +21,7 @@ const DUMMY = [
 function Result() {
   const cardRef = useRef(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const router = useRouter();
 
   // function handleDownload() {
   //   const canvas = canvasRef.current;
@@ -53,7 +54,14 @@ function Result() {
 
   const handleDownloadImage = async () => {
     if (!cardRef.current) return;
-
+    if (/KAKAOTALK/i.test(window.navigator.userAgent)) {
+      // Open the link in a new window
+      alert('카카오톡에서는 다운로드가 지원되지 않습니다.');
+      window.open(router.asPath, '_blank');
+    } else {
+      // Open the link in the current window
+      router.push(router.asPath);
+    }
     try {
       toPng(cardRef.current)
         .then((dataUrl) => {
