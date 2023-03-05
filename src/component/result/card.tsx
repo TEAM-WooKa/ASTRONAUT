@@ -5,8 +5,8 @@ const name = '이름';
 const birth = '2000.00.00';
 const hobby = '취미';
 
-function IDCardPage() {
-  return <IDCard name={name} birth={birth} hobby={hobby} />;
+function IDCardPage({ cardRef }: { cardRef: any }) {
+  return <IDCard name={name} birth={birth} hobby={hobby} cardRef={cardRef} />;
 }
 
 export default IDCardPage;

@@ -11,34 +11,20 @@ interface IDCardProps {
   name: string;
   birth: string;
   hobby: string;
+  cardRef: any;
 }
 
-export default function IDCard({ name, birth, hobby }: IDCardProps) {
+export default function IDCard({ name, birth, hobby, cardRef }: IDCardProps) {
   const [isRotate, setIsRotate] = useState<boolean>(false);
-  const cardRef = useRef(null);
+  // const cardRef = useRef(null);
   // TODO : url에 데이터가 있다는 것을 가정하고, 데이터를 가져와서 뿌려준다.
   const onClick = () => {
-    // setIsRotate(!isRotate);
-    onDownloadBtn();
-  };
-
-  const onDownloadBtn = () => {
-    // const node = document.querySelector('.front');
-    // console.log('node: ', node);
-    // if (node === null) return;
-
-    const card = cardRef.current;
-    if (card === null) return;
-
-    console.log('card: ', card);
-    domtoimage.toBlob(card).then((blob) => {
-      saveAs(blob, 'card.png');
-    });
+    setIsRotate(!isRotate);
   };
 
   return (
     <Card onClick={onClick} className={isRotate ? 'rotate' : ''}>
-      <FrontWrapper ref={cardRef} className="front">
+      <FrontWrapper ref={!isRotate ? cardRef : null} className="front">
         <Front
           name={'name'}
           birth={''}
@@ -47,7 +33,7 @@ export default function IDCard({ name, birth, hobby }: IDCardProps) {
           goal={''}
         />
       </FrontWrapper>
-      <BackWrapper className="back">
+      <BackWrapper ref={isRotate ? cardRef : null} className="back">
         <InnerFace>
           <Back />
         </InnerFace>
