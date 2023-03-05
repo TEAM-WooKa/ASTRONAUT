@@ -7,7 +7,7 @@ import ProgressBar from '@/component/question/progress-bar';
 import GradientBox from '@/component/common/GradientBox';
 import Answer from '@/component/question/answer';
 import { QUESTION_DATA } from '@/component/question/data';
-
+import { setStorage } from '@/utils/storage';
 
 const QUESTION_END_CNT = QUESTION_DATA.length;
 
@@ -37,7 +37,7 @@ function Question() {
         },
       ];
 
-      localStorage.setItem('astronauts-answers', JSON.stringify(lastAnswers));
+      setStorage('astronauts-answers', JSON.stringify(lastAnswers));
       router.push(`/user`);
       // //TODO: test end
       // const resultID: number = 1;
@@ -51,7 +51,6 @@ function Question() {
       },
     ]);
   };
-
 
   const handleAnswerChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;

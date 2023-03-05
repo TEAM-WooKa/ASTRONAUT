@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { GradientButtonStyled } from '@/assets/styles/gradient';
 import { useRouter } from 'next/router';
 import { ChangeEvent, useState } from 'react';
+import { setStorage } from '@/utils/storage';
 
 function UserPage() {
   const router = useRouter();
@@ -32,7 +33,8 @@ function UserPage() {
       birth: input.birth,
       image: imgFile,
     };
-    window.localStorage.setItem('user', JSON.stringify(userData));
+
+    setStorage.setItem('user', JSON.stringify(userData));
 
     // TODO : result 계산
     router.push('/loading');
