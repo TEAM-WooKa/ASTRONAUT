@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { GradientButtonStyled } from '@/assets/styles/gradient';
 import { useRouter } from 'next/router';
 import { ChangeEvent, useState } from 'react';
+import { setStorage } from '@/utils/storage';
 
 function UserPage() {
   const router = useRouter();
@@ -13,6 +14,7 @@ function UserPage() {
     birth: '',
   });
   const [image, setImage] = useState<File | null>(null);
+  const [imgFile, setImgFile] = useState('');
 
   const handleNextPage = () => {
     // ? name, birth, image가 모두 존재해야 다음 페이지로 넘어감
@@ -26,6 +28,13 @@ function UserPage() {
     //? 3. localstorage에 저장된 image url을 서버에 전송
     //? 4. 서버에서 받은 result id를 localstorage에 저장
     //? 5. localstorage에 저장된 result id를 이용해 result 페이지로 이동
+    const userData = {
+      name: input.name,
+      birth: input.birth,
+      image: imgFile,
+    };
+
+    setStorage('user', JSON.stringify(userData));
 
     // TODO : result 계산
     router.push('/loading');
@@ -34,7 +43,16 @@ function UserPage() {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === 'file') {
       if (e.target.files) {
-        console.log(e.target.files[0]);
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+          if (reader.result) {
+            const imgFile = reader.result as string;
+            setImgFile(imgFile);
+          }
+        };
+        // TODO: 없애기
         setImage(e.target.files[0]);
       }
     } else {

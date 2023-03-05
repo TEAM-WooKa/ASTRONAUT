@@ -18,7 +18,6 @@ const DUMMY = [
 ];
 
 function Result() {
-  const router = useRouter();
   const cardRef = useRef(null);
 
   const onDownloadBtn = () => {

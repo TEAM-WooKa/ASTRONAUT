@@ -1,18 +1,32 @@
 import CardBottom from '@/component/result/IDCard/card-bottom';
 import CardMiddle from '@/component/result/IDCard/card-middle';
 import CardTop from '@/component/result/IDCard/card-top';
+import { getStorage } from '@/utils/storage';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
+const getImagedata = () => {
+  const data = getStorage('user');
+  if (data === null) return null;
+
+  const { image } = JSON.parse(data);
+  if (image) {
+    return image;
+  }
+  return null;
+};
+
 export default function Front({}) {
   const router = useRouter();
+  const image = getImagedata();
   const { name, birth, whatILike, goal } = router.query;
 
   return (
     <InnerFace>
       <CardTop />
       <CardMiddle
-        image="/Weverse_albums_OMG_C_HAERIN_2_1677318532 1.png"
+        // TODO : 이미지 없을경우 기본 이미지로
+        image={image ?? '/Weverse_albums_OMG_C_HAERIN_2_1677318532 1.png'}
         subImage="/romi.png"
       >
         <FrontTextWrapper>
