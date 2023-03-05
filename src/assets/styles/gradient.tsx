@@ -10,6 +10,7 @@ export const Gradient1 = styled.div`
   );
 `;
 
+// NOTE: sub, white 박스로 분리 필요
 export const GradientBoxStyled = styled.div`
   border: 3px solid transparent;
   background-image: linear-gradient(
