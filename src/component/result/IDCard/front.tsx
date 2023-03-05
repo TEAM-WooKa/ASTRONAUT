@@ -1,23 +1,13 @@
 import CardBottom from '@/component/result/IDCard/card-bottom';
 import CardMiddle from '@/component/result/IDCard/card-middle';
 import CardTop from '@/component/result/IDCard/card-top';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
-interface IDCardProps {
-  name: string;
-  birth: string;
-  liningIn: string;
-  whatILike: string;
-  goal: string;
-}
+export default function Front({}) {
+  const router = useRouter();
+  const { name, birth, whatILike, goal } = router.query;
 
-export default function Front({
-  name,
-  birth,
-  liningIn,
-  whatILike,
-  goal,
-}: IDCardProps) {
   return (
     <InnerFace>
       <CardTop />
@@ -27,19 +17,21 @@ export default function Front({
       >
         <FrontTextWrapper>
           <div>
-            <span>NAME :</span> <span>{name}</span>
+            <span>NAME :</span> <span>{name ?? '데이터가 없습니다'}</span>
           </div>
           <div>
-            <span>BIRTH DATE :</span> <span>{birth}</span>
+            <span>BIRTH DATE :</span>
+            <span>{birth ?? '데이터가 없습니다'}</span>
           </div>
           <div>
-            <span>LINING IN :</span> <span>{liningIn}</span>
+            <span>LINING IN :</span> <span>{'지구별'}</span>
           </div>
           <div>
-            <span>WAHT I LIKE :</span> <span>{whatILike}</span>
+            <span>WAHT I LIKE :</span>
+            <span>{whatILike ?? '데이터가 없습니다'}</span>
           </div>
           <div>
-            <span>GOAL :</span> <span>{goal}</span>
+            <span>GOAL :</span> <span>{goal ?? '데이터가 없습니다'}</span>
           </div>
         </FrontTextWrapper>
       </CardMiddle>

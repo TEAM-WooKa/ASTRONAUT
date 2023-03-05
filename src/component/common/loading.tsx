@@ -9,15 +9,9 @@ function Loading() {
     <Wrapper>
       <RotateWrapper>
         <LoadingBarSVG />
-        {/* <Star> */}
         <Comet>
           <Image src="/Star2.png" alt="star" width={51} height={51} />
         </Comet>
-        {/* </Star> */}
-        {/* 
-        <Comet>
-          <Image src="/Comet.png" alt="comet" width={45} height={45} />
-        </Comet> */}
       </RotateWrapper>
     </Wrapper>
   );
