@@ -1,4 +1,5 @@
 import { GradientBoxStyled } from '@/assets/styles/gradient';
+import Front from '@/component/result/IDCard/front';
 import Image from 'next/image';
 import { useState } from 'react';
 import styled from 'styled-components';
@@ -17,56 +18,15 @@ function IDCard({ name, birth, hobby }: IDCardProps) {
 
   return (
     <Card onClick={onClick} className={isRotate ? 'rotate' : ''}>
-      <Front className="front">
-        <InnerFace>
-          <TopWrapper>
-            <h1>astronaut id card </h1>
-            <span>NO. 00000001</span>
-          </TopWrapper>
-          <MiddleWrapper>
-            <FrontImageWrapper>
-              <RomiImageWrapper>
-                <Image
-                  src="/images/romi.png"
-                  width="60"
-                  height="48"
-                  alt="romi"
-                />
-              </RomiImageWrapper>
-              <Image
-                src="/Weverse_albums_OMG_C_HAERIN_2_1677318532 1.png"
-                width="90"
-                height="120"
-                alt="romi"
-              />
-            </FrontImageWrapper>
-            <TextWrapper>
-              <div>
-                <span>NAME :</span> <span>{name}</span>
-              </div>
-              <div>
-                <span>BIRTH DATE :</span> <span>{birth}</span>
-              </div>
-              <div>
-                <span>LINING IN :</span> <span>{hobby}</span>
-              </div>
-              <div>
-                <span>WAHT I LIKE :</span> <span>{hobby}</span>
-              </div>
-              <div>
-                <span>GOAL :</span> <span>{hobby}</span>
-              </div>
-            </TextWrapper>
-          </MiddleWrapper>
-          <BottomWrapper>
-            <Tag>FROM : Yellow_Lumy</Tag>
-            <Desc>
-              <p>이 카드를 소지한 사람은 별에서 온 우주인임을 증명합니다.</p>
-              <p> This card certifies the bearer as a astronaut.</p>
-            </Desc>
-          </BottomWrapper>
-        </InnerFace>
-      </Front>
+      <FrontWrapper className="front">
+        <Front
+          name={'name'}
+          birth={''}
+          liningIn={''}
+          whatILike={''}
+          goal={''}
+        />
+      </FrontWrapper>
       <Back className="back">
         <InnerFace>back</InnerFace>
       </Back>
@@ -118,7 +78,7 @@ const Face = styled(GradientBoxStyled)`
   transition: all 2s ease;
 `;
 
-const Front = styled(Face)`
+const FrontWrapper = styled(Face)`
   z-index: 1;
 `;
 const Back = styled(Face)`
