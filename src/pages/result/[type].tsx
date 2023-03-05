@@ -20,11 +20,12 @@ function Result() {
   const handleIDCardMakeClick = () => {
     router.push('/result/card');
   };
+
   return (
     <>
       <h1>
         <Image
-          src={'/images/id_card_service.png'}
+          src={'/images/logos/logo-aics.png'}
           width={236}
           height={62}
           alt="result"
@@ -37,17 +38,14 @@ function Result() {
         <ShareIcon />
         <ReplayIcon />
       </ShareWrapper>
+      <Image
+        src={'/images/logos/logo-result.png'}
+        width={122}
+        height={39}
+        alt="result"
+      />
       <GradientBorderBox>
         <Content>
-          {/* <AstronautImage>
-            <div>우주인 이미지</div>
-          </AstronautImage> */}
-
-          {/* <ButtonWrapper>
-            <Button>&gt; 공유하기</Button>
-            <Button onClick={handleIDCardMakeClick}>&gt; ID 카드 만들기</Button>
-          </ButtonWrapper> */}
-
           <TextWrapper>
             {DUMMY.map((text) => (
               <div key={text}>{text}</div>
@@ -63,7 +61,7 @@ function Result() {
 
 const ShareWrapper = styled.div`
   display: flex;
-  margin: 35px 0;
+  margin: 35px 0 20px;
   gap: 75px;
   justify-content: center;
 `;
@@ -75,7 +73,7 @@ const Content = styled.div`
   gap: 20px;
   display: flex;
   flex-direction: column;
-  margin: 20px 0;
+  margin: 10px 0;
 `;
 
 const TextWrapper = styled(AText)`
@@ -84,40 +82,6 @@ const TextWrapper = styled(AText)`
 
   color: ${(props) => props.theme.colors.bg};
   text-align: left;
-`;
-
-const AstronautImage = styled.div`
-  position: relative;
-  width: 100%;
-  border-radius: 16px;
-
-  &::after {
-    display: block;
-    content: '';
-    padding-bottom: 100%;
-  }
-
-  * {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-`;
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  gap: 5px;
-`;
-
-const Button = styled.div`
-  /* background-color: ${(props) => props.theme.colors.lightGrey}; */
-  padding: 20px;
-  border-radius: 20px;
-  flex: 1;
 `;
 
 export default withLayout(Result, '우주인 결과', '우주인 테스트 결과 페이지');

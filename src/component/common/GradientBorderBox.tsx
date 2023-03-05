@@ -29,7 +29,7 @@ const InnerWrapper = styled.div`
 `;
 
 const BgBox = styled(GradientBoxStyled)<{ borderRadius?: string }>`
-  opacity: 0.7;
+  opacity: 0.6;
 
   position: absolute;
   width: 100%;
