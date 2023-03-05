@@ -1,25 +1,44 @@
 import { GradientBoxStyled } from '@/assets/styles/gradient';
 import Back from '@/component/result/IDCard/back';
 import Front from '@/component/result/IDCard/front';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
+import domtoimage from 'dom-to-image';
+import { saveAs } from 'file-saver';
+import Image from 'next/image';
 
 interface IDCardProps {
   name: string;
   birth: string;
   hobby: string;
 }
-export default function IDCard({ name, birth, hobby }: IDCardProps) {
-  const [isRotate, setIsRotate] = useState<boolean>(true);
 
+export default function IDCard({ name, birth, hobby }: IDCardProps) {
+  const [isRotate, setIsRotate] = useState<boolean>(false);
+  const cardRef = useRef(null);
   // TODO : url에 데이터가 있다는 것을 가정하고, 데이터를 가져와서 뿌려준다.
   const onClick = () => {
-    setIsRotate(!isRotate);
+    // setIsRotate(!isRotate);
+    onDownloadBtn();
+  };
+
+  const onDownloadBtn = () => {
+    // const node = document.querySelector('.front');
+    // console.log('node: ', node);
+    // if (node === null) return;
+
+    const card = cardRef.current;
+    if (card === null) return;
+
+    console.log('card: ', card);
+    domtoimage.toBlob(card).then((blob) => {
+      saveAs(blob, 'card.png');
+    });
   };
 
   return (
     <Card onClick={onClick} className={isRotate ? 'rotate' : ''}>
-      <FrontWrapper className="front">
+      <FrontWrapper ref={cardRef} className="front">
         <Front
           name={'name'}
           birth={''}
@@ -39,6 +58,7 @@ export default function IDCard({ name, birth, hobby }: IDCardProps) {
 
 const Card = styled.div`
   max-width: 350px;
+  width: 350px;
   margin: 10px auto;
   height: 220px; //? 수정 필요? 220px 으로
   perspective: 600px;
