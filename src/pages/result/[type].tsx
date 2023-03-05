@@ -4,10 +4,13 @@ import ShareIcon from '@/assets/icons/ShareIcon';
 import AText from '@/component/common/AText';
 import GradientBorderBox from '@/component/common/GradientBorderBox';
 import withLayout from '@/component/hoc/withLayout';
-import Card from '@/component/result/card';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useRef } from 'react';
 import styled from 'styled-components';
+import domtoimage from 'dom-to-image';
+import { saveAs } from 'file-saver';
+import IDCard from '@/component/result/IDCard';
 
 const DUMMY = [
   ' 당신은 ㅇㅇ한 별 출신일지도??',
@@ -16,9 +19,16 @@ const DUMMY = [
 
 function Result() {
   const router = useRouter();
+  const cardRef = useRef(null);
 
-  const handleIDCardMakeClick = () => {
-    router.push('/result/card');
+  const onDownloadBtn = () => {
+    const card = cardRef.current;
+    if (card === null) return;
+
+    console.log('card: ', card);
+    domtoimage.toBlob(card).then((blob) => {
+      saveAs(blob, 'card.png');
+    });
   };
 
   return (
@@ -31,10 +41,12 @@ function Result() {
           alt="result"
         />
       </h1>
-      <Card />
+      <IDCard cardRef={cardRef} />
 
       <ShareWrapper>
-        <DownloadIcon />
+        <span onClick={onDownloadBtn}>
+          <DownloadIcon />
+        </span>
         <ShareIcon />
         <ReplayIcon />
       </ShareWrapper>

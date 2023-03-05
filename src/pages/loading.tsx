@@ -1,9 +1,52 @@
 import Loading from '@/component/common/loading';
 import withLayout from '@/component/hoc/withLayout';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
+// TODO: 더미 데이터를 지우고, localStorage에서 데이터를 가져와야 함.
+const getUserInputData = () => {
+  const data = localStorage.getItem('astronauts-answers');
+
+  // const user = localStorage.
+  const user = {
+    name: '수미',
+    birth: '2000-11-12',
+    whatILike: '음악 감상',
+    goal: '지구별 정복',
+  };
+
+  if (data === null) return '';
+  return user;
+};
+
 function LoadingPage() {
+  const router = useRouter();
+
+  const value = useRef(0);
+
+  const handleTime = () => {
+    value.current += 1;
+
+    if (value.current >= 30) {
+      const userData = getUserInputData();
+
+      router.push({
+        pathname: '/result/[type]',
+        query: { type: 1, ...userData },
+      });
+    }
+  };
+
+  useEffect(() => {
+    let timer = setInterval(() => {
+      handleTime();
+    }, 100);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <Wrapper>
       <MainText>Loading...</MainText>

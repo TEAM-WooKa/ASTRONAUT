@@ -5,38 +5,13 @@ import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 function Loading() {
-  const router = useRouter();
-
-  const value = useRef(0);
-  const handleTime = () => {
-    value.current += 1;
-
-    if (value.current >= 30) {
-      router.push('/result/1');
-    }
-  };
-
-  useEffect(() => {
-    let timer = setInterval(() => {
-      handleTime();
-    }, 100);
-
-    return () => clearInterval(timer);
-  }, []);
-
   return (
     <Wrapper>
       <RotateWrapper>
         <LoadingBarSVG />
-        {/* <Star> */}
         <Comet>
           <Image src="/Star2.png" alt="star" width={51} height={51} />
         </Comet>
-        {/* </Star> */}
-        {/* 
-        <Comet>
-          <Image src="/Comet.png" alt="comet" width={45} height={45} />
-        </Comet> */}
       </RotateWrapper>
     </Wrapper>
   );

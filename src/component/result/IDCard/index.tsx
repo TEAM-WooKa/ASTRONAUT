@@ -5,30 +5,22 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 interface IDCardProps {
-  name: string;
-  birth: string;
-  hobby: string;
+  cardRef: any;
 }
-export default function IDCard({ name, birth, hobby }: IDCardProps) {
-  const [isRotate, setIsRotate] = useState<boolean>(true);
 
-  // TODO : url에 데이터가 있다는 것을 가정하고, 데이터를 가져와서 뿌려준다.
+export default function IDCard({ cardRef }: IDCardProps) {
+  const [isRotate, setIsRotate] = useState<boolean>(false);
+
   const onClick = () => {
     setIsRotate(!isRotate);
   };
 
   return (
     <Card onClick={onClick} className={isRotate ? 'rotate' : ''}>
-      <FrontWrapper className="front">
-        <Front
-          name={'name'}
-          birth={''}
-          liningIn={''}
-          whatILike={''}
-          goal={''}
-        />
+      <FrontWrapper ref={!isRotate ? cardRef : null} className="front">
+        <Front />
       </FrontWrapper>
-      <BackWrapper className="back">
+      <BackWrapper ref={isRotate ? cardRef : null} className="back">
         <InnerFace>
           <Back />
         </InnerFace>
@@ -39,6 +31,7 @@ export default function IDCard({ name, birth, hobby }: IDCardProps) {
 
 const Card = styled.div`
   max-width: 350px;
+  width: 350px;
   margin: 10px auto;
   height: 220px; //? 수정 필요? 220px 으로
   perspective: 600px;
