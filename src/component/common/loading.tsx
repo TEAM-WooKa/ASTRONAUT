@@ -5,25 +5,6 @@ import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 function Loading() {
-  const router = useRouter();
-
-  const value = useRef(0);
-  const handleTime = () => {
-    value.current += 1;
-
-    if (value.current >= 30) {
-      router.push('/result/1');
-    }
-  };
-
-  useEffect(() => {
-    let timer = setInterval(() => {
-      handleTime();
-    }, 100);
-
-    return () => clearInterval(timer);
-  }, []);
-
   return (
     <Wrapper>
       <RotateWrapper>

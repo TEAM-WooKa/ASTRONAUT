@@ -1,11 +1,8 @@
 import { GradientBoxStyled } from '@/assets/styles/gradient';
 import Back from '@/component/result/IDCard/back';
 import Front from '@/component/result/IDCard/front';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
-import domtoimage from 'dom-to-image';
-import { saveAs } from 'file-saver';
-import Image from 'next/image';
 
 interface IDCardProps {
   name: string;
@@ -16,8 +13,6 @@ interface IDCardProps {
 
 export default function IDCard({ name, birth, hobby, cardRef }: IDCardProps) {
   const [isRotate, setIsRotate] = useState<boolean>(false);
-  // const cardRef = useRef(null);
-  // TODO : url에 데이터가 있다는 것을 가정하고, 데이터를 가져와서 뿌려준다.
   const onClick = () => {
     setIsRotate(!isRotate);
   };
