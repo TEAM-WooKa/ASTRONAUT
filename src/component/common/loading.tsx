@@ -11,7 +11,7 @@ function Loading() {
   const handleTime = () => {
     value.current += 1;
 
-    if (value.current >= 20) {
+    if (value.current >= 30) {
       router.push('/result/1');
     }
   };

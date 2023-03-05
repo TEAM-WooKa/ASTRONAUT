@@ -5,8 +5,7 @@ export const Gradient1 = styled.div`
   background: linear-gradient(
     193deg,
     rgba(254, 172, 94, 1) 0%,
-    rgba(199, 121, 208, 1) 50%,
-    rgba(75, 192, 200, 1) 100%
+    rgba(199, 121, 208, 1) 100%
   );
 `;
 

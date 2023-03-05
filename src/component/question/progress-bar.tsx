@@ -25,12 +25,8 @@ const Wrapper = styled.div`
 `;
 
 const Bar = styled.div<{ move: number }>`
-  background: linear-gradient(
-    84.8deg,
-    #feac5e 35.52%,
-    #c779d0 50.6%,
-    #4bc0c8 66.97%
-  );
+  background-color: #ffffff4c;
+  /* background: linear-gradient(101.66deg, #feac5e 27.22%, #c779d0 69.67%); */
   height: 6px;
   border-radius: 6px;
   width: 240px;
@@ -43,12 +39,7 @@ const Bar = styled.div<{ move: number }>`
     left: 0;
     content: '';
     /* TODO : 진행바 색 배꾸기 */
-    background: linear-gradient(
-      193deg,
-      rgba(254, 172, 94, 1) 0%,
-      rgba(199, 121, 208, 1) 50%,
-      rgba(75, 192, 200, 1) 100%
-    );
+    background: linear-gradient(101.66deg, #feac5e 27.22%, #c779d0 69.67%);
     width: ${(props) => `${props.move}px`};
     height: 6px;
 
