@@ -33,7 +33,13 @@ export default function Color({
 
 //? 참고 링크 : https://stickode.tistory.com/472
 const InputWrapper = styled.div`
-  background: ${(props) => props.theme.colors[1]};
+  background: linear-gradient(
+    253.86deg,
+    #feac5e 16.16%,
+    #c779d0 50.65%,
+    #4bc0c8 84.32%
+  );
+
   width: 322px;
   height: 68px;
 

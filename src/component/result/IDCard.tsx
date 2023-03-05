@@ -77,7 +77,7 @@ function IDCard({ name, birth, hobby }: IDCardProps) {
 const Card = styled.div`
   max-width: 350px;
   margin: 10px auto;
-  height: 230px; //? 수정 필요? 220px 으로
+  height: 220px; //? 수정 필요? 220px 으로
   perspective: 600px;
   position: relative;
   cursor: pointer;
@@ -141,9 +141,9 @@ const InnerFace = styled.div`
 const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 9px;
+  gap: 8px;
   align-items: flex-start;
-  font-family: 'esamanru OTF';
+  font-family: 'GongGothicMedium';
   font-style: normal;
   font-weight: 500;
   font-size: 10px;
@@ -159,7 +159,7 @@ const TextWrapper = styled.div`
 
   color: #343232;
   div {
-    border-bottom: 1px solid #343232;
+    border-bottom: 0.1px solid #343232;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -233,17 +233,20 @@ const BottomWrapper = styled.div`
 const Tag = styled.div`
   width: 115px;
   min-width: 115px;
-  font-family: 'esamanru OTF';
-  font-style: normal;
+  font-family: 'GongGothicMedium';
   font-weight: 700;
   font-size: 10px;
-  /* line-height: 20px; */
+
   /* 주색 2번 */
   color: #343232;
   line-height: 20px;
+
   /* 보조 컬러 2 */
   background: #f1f1f1;
   border-radius: 10px;
+
+  position: relative;
+  left: -5px;
 `;
 
 const Desc = styled.div`

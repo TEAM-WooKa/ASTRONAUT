@@ -20,7 +20,12 @@ function Home() {
     <Wrapper>
       <div>
         <MainLogoWrapper>
-          <Image src={'/images/title.png'} alt="logo" width={323} height={80} />
+          <Image
+            src={'/images/title.png'}
+            alt="logo"
+            width={350}
+            height={124}
+          />
         </MainLogoWrapper>
         <GradientBorderBox>
           <TextWrapper>
