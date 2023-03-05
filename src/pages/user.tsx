@@ -34,7 +34,7 @@ function UserPage() {
       image: imgFile,
     };
 
-    setStorage.setItem('user', JSON.stringify(userData));
+    setStorage('user', JSON.stringify(userData));
 
     // TODO : result 계산
     router.push('/loading');
