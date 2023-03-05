@@ -5,14 +5,12 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 interface IDCardProps {
-  name: string;
-  birth: string;
-  hobby: string;
   cardRef: any;
 }
 
-export default function IDCard({ name, birth, hobby, cardRef }: IDCardProps) {
+export default function IDCard({ cardRef }: IDCardProps) {
   const [isRotate, setIsRotate] = useState<boolean>(false);
+
   const onClick = () => {
     setIsRotate(!isRotate);
   };
@@ -20,13 +18,7 @@ export default function IDCard({ name, birth, hobby, cardRef }: IDCardProps) {
   return (
     <Card onClick={onClick} className={isRotate ? 'rotate' : ''}>
       <FrontWrapper ref={!isRotate ? cardRef : null} className="front">
-        <Front
-          name={'name'}
-          birth={''}
-          liningIn={''}
-          whatILike={''}
-          goal={''}
-        />
+        <Front />
       </FrontWrapper>
       <BackWrapper ref={isRotate ? cardRef : null} className="back">
         <InnerFace>
