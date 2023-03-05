@@ -1,17 +1,33 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import { FlexCenter } from '@/component/common/Flex';
 
 interface CardMiddleProps {
   children: React.ReactNode;
   image: string;
   subImage?: string;
+  type?: 'romi' | 'user';
 }
 
 export default function CardMiddle({
   children,
   subImage,
   image,
+  type = 'user',
 }: CardMiddleProps) {
+  if (type === 'romi') {
+    return (
+      <MiddleWrapper>
+        <RomiWrapper>
+          <RomiMainImageWrapper>
+            <Image src={image} width="90" height="68" alt="romi" />
+          </RomiMainImageWrapper>
+          <Tag>Yellow_Lumy</Tag>
+        </RomiWrapper>
+        <TextWrapper>{children}</TextWrapper>
+      </MiddleWrapper>
+    );
+  }
   return (
     <MiddleWrapper>
       <ImageWrapper>
@@ -20,7 +36,7 @@ export default function CardMiddle({
             <Image src={subImage} width="60" height="48" alt="romi" />
           </RomiImageWrapper>
         )}
-        <Image src={image} width="90" height="120" alt="romi" />
+        <Image src={image} width="90" height="120" alt="user" />
       </ImageWrapper>
       <TextWrapper>{children}</TextWrapper>
     </MiddleWrapper>
@@ -46,15 +62,39 @@ const ImageWrapper = styled.div`
   border-radius: 16px;
   min-width: 90px;
   position: relative;
-  image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
 `;
 
 const RomiImageWrapper = styled.div`
   position: absolute;
   bottom: -20px;
   right: -15px;
+`;
+
+const RomiWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+`;
+
+const RomiMainImageWrapper = styled(FlexCenter)`
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: ${(props) => props.theme.colors.sub2};
+`;
+
+const Tag = styled.div`
+  align-self: center;
+  font-family: 'GongGothicMedium';
+  font-weight: 700;
+  font-size: 10px;
+  width: fit-content;
+  padding: 0 5px;
+  /* 주색 2번 */
+  color: ${(props) => props.theme.colors.main2};
+  line-height: 20px;
+
+  /* 보조 컬러 2 */
+  background: ${(props) => props.theme.colors.sub2};
+  border-radius: 10px;
 `;
