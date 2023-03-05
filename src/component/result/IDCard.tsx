@@ -19,12 +19,52 @@ function IDCard({ name, birth, hobby }: IDCardProps) {
     <Card onClick={onClick} className={isRotate ? 'rotate' : ''}>
       <Front className="front">
         <InnerFace>
-          <Image src="/images/romi.png" width="140" height="107" alt="romi" />
-          <TextWrapper>
-            {/* <div>이름 : {name}</div>
-            <div>생년월일 : {birth}</div>
-            <div>취미 : {hobby}</div> */}
-          </TextWrapper>
+          <TopWrapper>
+            <h1>astronaut id card </h1>
+            <span>NO. 00000001</span>
+          </TopWrapper>
+          <MiddleWrapper>
+            <FrontImageWrapper>
+              <RomiImageWrapper>
+                <Image
+                  src="/images/romi.png"
+                  width="60"
+                  height="48"
+                  alt="romi"
+                />
+              </RomiImageWrapper>
+              <Image
+                src="/Weverse_albums_OMG_C_HAERIN_2_1677318532 1.png"
+                width="90"
+                height="120"
+                alt="romi"
+              />
+            </FrontImageWrapper>
+            <TextWrapper>
+              <div>
+                <span>NAME :</span> <span>{name}</span>
+              </div>
+              <div>
+                <span>BIRTH DATE :</span> <span>{birth}</span>
+              </div>
+              <div>
+                <span>LINING IN :</span> <span>{hobby}</span>
+              </div>
+              <div>
+                <span>WAHT I LIKE :</span> <span>{hobby}</span>
+              </div>
+              <div>
+                <span>GOAL :</span> <span>{hobby}</span>
+              </div>
+            </TextWrapper>
+          </MiddleWrapper>
+          <BottomWrapper>
+            <Tag>FROM : Yellow_Lumy</Tag>
+            <Desc>
+              <p>이 카드를 소지한 사람은 별에서 온 우주인임을 증명합니다.</p>
+              <p> This card certifies the bearer as a astronaut.</p>
+            </Desc>
+          </BottomWrapper>
         </InnerFace>
       </Front>
       <Back className="back">
@@ -37,7 +77,7 @@ function IDCard({ name, birth, hobby }: IDCardProps) {
 const Card = styled.div`
   max-width: 350px;
   margin: 10px auto;
-  height: 220px;
+  height: 230px; //? 수정 필요? 220px 으로
   perspective: 600px;
   position: relative;
   cursor: pointer;
@@ -59,6 +99,14 @@ const Card = styled.div`
 const Face = styled(GradientBoxStyled)`
   border-radius: 16px;
 
+  background-image: linear-gradient(#fff, #fff),
+    linear-gradient(
+      193deg,
+      rgba(254, 172, 94, 1) 0%,
+      rgba(199, 121, 208, 1) 50%,
+      rgba(75, 192, 200, 1) 100%
+    );
+
   gap: 30px;
   padding: 1px;
 
@@ -77,17 +125,144 @@ const Back = styled(Face)`
   z-index: 0;
 `;
 
+const MiddleWrapper = styled.div`
+  display: flex;
+  gap: 20px;
+`;
 const InnerFace = styled.div`
-  padding: 20px;
+  padding: 11px 18px;
 
   display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex-wrap: wrap;
 `;
 
 const TextWrapper = styled.div`
-  text-align: left;
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 9px;
+  align-items: flex-start;
+  font-family: 'esamanru OTF';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  padding: 12px 10px;
+  /* identical to box height, or 120% */
+  flex: 1;
+  /* 보조 컬러 2 */
+
+  background: #f1f1f1;
+  border-radius: 16px;
+  /* 주색 2번 */
+
+  color: #343232;
+  div {
+    border-bottom: 1px solid #343232;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
 `;
+
+const TopWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+
+  h1 {
+    font-family: 'Space Rave';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 26px;
+    /* identical to box height, or 108% */
+    min-width: 228px;
+    background: linear-gradient(
+      198.52deg,
+      rgba(254, 172, 94, 0.9) 4.12%,
+      rgba(199, 121, 208, 0.9) 87.46%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+
+  span {
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 10px;
+    /* 주색 2번 */
+
+    color: #343232;
+    opacity: 0.8;
+
+    position: relative;
+    top: -3px;
+  }
+`;
+
+const FrontImageWrapper = styled.div`
+  width: 90px;
+  height: 120px;
+  border-radius: 16px;
+  min-width: 90px;
+  position: relative;
+  image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+const RomiImageWrapper = styled.div`
+  position: absolute;
+  bottom: -20px;
+  right: -15px;
+`;
+
+const BottomWrapper = styled.div`
+  width: 100%;
+  display: flex;
+`;
+
+const Tag = styled.div`
+  width: 115px;
+  min-width: 115px;
+  font-family: 'esamanru OTF';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  /* line-height: 20px; */
+  /* 주색 2번 */
+  color: #343232;
+  line-height: 20px;
+  /* 보조 컬러 2 */
+  background: #f1f1f1;
+  border-radius: 10px;
+`;
+
+const Desc = styled.div`
+  /* width: 120%; */
+  font-weight: 300;
+  font-size: 8px;
+  line-height: 10px;
+  transform: translate(-8%, -0%) scale(0.75);
+  display: inline-block;
+  text-align: right;
+  color: #343232;
+  opacity: 0.8;
+  width: fit-content;
+  p {
+    width: fit-content;
+    text-overflow: ellipsis;
+    white-space: pre;
+    float: right;
+  }
+`;
+
 export default IDCard;

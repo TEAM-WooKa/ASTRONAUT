@@ -9,7 +9,7 @@ function DownloadIcon() {
     >
       <path
         d="M27.8666 20.99L18.6882 29.5355M18.6882 29.5355L9.50967 20.99M18.6882 29.5355L18.6882 2M2 33.8464H35.2639"
-        stroke="#F1F1F1"
+        stroke="#D082BE"
         strokeWidth="3.5"
         strokeLinecap="square"
       />
