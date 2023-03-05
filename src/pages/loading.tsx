@@ -1,5 +1,6 @@
 import Loading from '@/component/common/loading';
 import withLayout from '@/component/hoc/withLayout';
+import { getStorage } from '@/utils/storage';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useRef, useEffect } from 'react';
@@ -7,8 +8,8 @@ import styled from 'styled-components';
 
 // TODO: 더미 데이터를 지우고, localStorage에서 데이터를 가져와야 함.
 const getUserInputData = () => {
-  const data = localStorage.getItem('astronauts-answers');
-  const user = localStorage.getItem('user');
+  const data = getStorage('astronauts-answers');
+  const user = getStorage('user');
 
   if (user === null || data === null) return;
 
