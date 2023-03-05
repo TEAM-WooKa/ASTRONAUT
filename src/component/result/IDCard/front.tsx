@@ -23,7 +23,7 @@ export default function Front({
       <CardTop />
       <CardMiddle
         image="/Weverse_albums_OMG_C_HAERIN_2_1677318532 1.png"
-        subImage="/images/romi.png"
+        subImage="/romi.png"
       >
         <FrontTextWrapper>
           <div>

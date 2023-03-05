@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import { FlexCenter } from '@/component/common/Flex';
 
+import RomiYellow from '@/assets/images/romi.jpg';
+
 interface CardMiddleProps {
   children: React.ReactNode;
   image: string;
@@ -20,7 +22,7 @@ export default function CardMiddle({
       <MiddleWrapper>
         <RomiWrapper>
           <RomiMainImageWrapper>
-            <Image src={image} width="90" height="68" alt="romi" />
+            <img src={image} width="90" height="68" alt="romi" />
           </RomiMainImageWrapper>
           <Tag>Yellow_Lumy</Tag>
         </RomiWrapper>
@@ -33,7 +35,7 @@ export default function CardMiddle({
       <ImageWrapper>
         {subImage && (
           <RomiImageWrapper>
-            <Image src={subImage} width="60" height="48" alt="romi" />
+            <img src={subImage} width="60" height="48" alt="romi" />
           </RomiImageWrapper>
         )}
         <Image src={image} width="90" height="120" alt="user" />
