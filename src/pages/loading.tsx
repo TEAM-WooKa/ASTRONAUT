@@ -8,17 +8,20 @@ import styled from 'styled-components';
 // TODO: 더미 데이터를 지우고, localStorage에서 데이터를 가져와야 함.
 const getUserInputData = () => {
   const data = localStorage.getItem('astronauts-answers');
+  const user = localStorage.getItem('user');
 
-  // const user = localStorage.
-  const user = {
-    name: '수미',
-    birth: '2000-11-12',
+  if (user === null || data === null) return;
+
+  const { name, birth } = JSON.parse(user);
+
+  const total = {
+    name,
+    birth,
     whatILike: '음악 감상',
     goal: '지구별 정복',
   };
 
-  if (data === null) return '';
-  return user;
+  return total;
 };
 
 function LoadingPage() {
