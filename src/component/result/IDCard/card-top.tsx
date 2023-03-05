@@ -10,6 +10,7 @@ export default function CardTop() {
     </>
   );
 }
+
 const TopWrapper = styled.div`
   width: 100%;
   display: flex;

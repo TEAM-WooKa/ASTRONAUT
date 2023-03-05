@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
-export default function CardBottom() {
+interface CardBottomProps {
+  isBack?: boolean;
+}
+export default function CardBottom({ isBack = false }: CardBottomProps) {
   return (
     <BottomWrapper>
-      <Tag>FROM : Yellow_Lumy</Tag>
+      {<Tag isBack={isBack}>FROM : Yellow_Lumy</Tag>}
       <Desc>
         <p>이 카드를 소지한 사람은 별에서 온 우주인임을 증명합니다.</p>
         <p> This card certifies the bearer as a astronaut.</p>
@@ -17,24 +20,25 @@ const BottomWrapper = styled.div`
   display: flex;
 `;
 
-const Tag = styled.div`
+const Tag = styled.div<{ isBack: boolean }>`
   width: 115px;
   min-width: 115px;
   font-family: 'GongGothicMedium';
   font-weight: 700;
   font-size: 10px;
 
-  /* 주색 2번 */
-  color: #343232;
+  color: ${(props) => props.theme.colors.main2};
   line-height: 20px;
 
-  /* 보조 컬러 2 */
-  background: #f1f1f1;
+  background: ${(props) => props.theme.colors.sub2};
   border-radius: 10px;
 
   position: relative;
   left: -5px;
+
+  visibility: ${(props) => (props.isBack ? 'hidden' : 'visible')};
 `;
+
 const Desc = styled.div`
   /* width: 120%; */
   font-weight: 300;
