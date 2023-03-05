@@ -11,7 +11,7 @@ import styled from 'styled-components';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
 import IDCard from '@/component/result/IDCard';
-import { toBlob } from 'html-to-image';
+import { toPng } from 'html-to-image';
 
 const DUMMY = [
   ' 당신은 ㅇㅇ한 별 출신일지도??',
@@ -55,15 +55,27 @@ function Result() {
     if (!cardRef.current) return;
 
     try {
-      await toBlob(cardRef.current).then((blob) => {
-        const link = document.createElement('a');
-        link.download = 'image.png';
-        if (!blob) return;
+      toPng(cardRef.current)
+        .then((dataUrl) => {
+          // Create a download link and trigger a click on it
+          const link = document.createElement('a');
+          link.download = 'image.png';
+          link.href = dataUrl;
+          link.click();
+        })
+        .catch((error) => {
+          console.error('Failed to generate PNG image:', error);
+        });
 
-        link.href = URL.createObjectURL(blob);
+      // await toBlob(cardRef.current).then((blob) => {
+      //   const link = document.createElement('a');
+      //   link.download = 'image.png';
+      //   if (!blob) return;
 
-        link.click();
-      });
+      //   link.href = URL.createObjectURL(blob);
+
+      //   link.click();
+      // });
     } catch (error) {
       console.log(error);
     }
