@@ -7,6 +7,24 @@ import { useRouter } from 'next/router';
 import { ChangeEvent, useState } from 'react';
 import { setStorage } from '@/utils/storage';
 
+function convertBase64ToUrl(base64: string): string {
+  const blob = base64toBlob(base64); // Base64 데이터를 Blob으로 변환
+  const imageUrl = URL.createObjectURL(blob); // Blob 데이터를 이미지 URL로 변환
+
+  return imageUrl;
+}
+
+function base64toBlob(base64: string): Blob {
+  const binary = atob(base64.split(',')[1]);
+  const array = [];
+
+  for (let i = 0; i < binary.length; i++) {
+    array.push(binary.charCodeAt(i));
+  }
+
+  return new Blob([new Uint8Array(array)], { type: 'image/png' }); // Blob 타입을 지정해줘야 함
+}
+
 function UserPage() {
   const router = useRouter();
   const [input, setInput] = useState({
@@ -14,7 +32,7 @@ function UserPage() {
     birth: '',
   });
   const [image, setImage] = useState<File | null>(null);
-  const [imgFile, setImgFile] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
 
   const handleNextPage = () => {
     // ? name, birth, image가 모두 존재해야 다음 페이지로 넘어감
@@ -31,7 +49,7 @@ function UserPage() {
     const userData = {
       name: input.name,
       birth: input.birth,
-      image: imgFile,
+      image: imageUrl,
     };
 
     setStorage('user', JSON.stringify(userData));
@@ -40,20 +58,26 @@ function UserPage() {
     router.push('/loading');
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === 'file') {
       if (e.target.files) {
         const file = e.target.files[0];
+        setImage(file);
+        console.log('file: ', file);
+
         const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-          if (reader.result) {
-            const imgFile = reader.result as string;
-            setImgFile(imgFile);
-          }
+
+        reader.onload = async (event) => {
+          if (!event.target) return;
+          const base64 = event.target.result as string;
+          const img = document.createElement('img');
+          img.src = base64;
+
+          const newImageUrl = convertBase64ToUrl(base64); // 이미지 URL로 변환
+          setImageUrl(newImageUrl);
         };
-        // TODO: 없애기
-        setImage(e.target.files[0]);
+
+        reader.readAsDataURL(file);
       }
     } else {
       const { name, value } = e.target;
@@ -77,6 +101,7 @@ function UserPage() {
       <WarnMessage>
         개인 정보를 저장하거나 다른 목적으로 사용하지 않습니다.
       </WarnMessage>
+      <img src={imageUrl} />
       <GradientButton onClick={handleNextPage}>&gt; print</GradientButton>
     </Wrapper>
   );
