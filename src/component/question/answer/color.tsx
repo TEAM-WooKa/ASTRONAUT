@@ -57,6 +57,8 @@ const InputWrapper = styled.div`
       width: 51px; /* 슬라이더 핸들 길이 */
       height: 51px; /* 슬라이더 핸들 높이 */
       background-image: url(${star.src});
+      background-color: transparent;
+      box-shadow: none;
       cursor: pointer;
     }
 
@@ -66,6 +68,8 @@ const InputWrapper = styled.div`
       width: 51px;
       height: 51px; /* 슬라이더 핸들 높이 */
       background-image: url(${star.src});
+      background-color: transparent;
+      box-shadow: none;
       cursor: pointer;
     }
   }

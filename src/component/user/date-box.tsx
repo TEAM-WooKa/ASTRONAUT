@@ -42,7 +42,7 @@ const DateInputWrapper = styled.div`
   position: relative;
 
   /* Gray/02 */
-  border: 1px solid #e8e8e8;
+  border: 1px solid ${(props) => props.theme.colors.gray2};
   border-radius: 8px;
 
   height: 40px;

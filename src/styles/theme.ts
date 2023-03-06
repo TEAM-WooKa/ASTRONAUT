@@ -8,6 +8,8 @@ const colors = {
   sub3: '#FDA400',
   lightGrey: '#D9D9D9',
 
+  gray2: '#e8e8e8',
+
   1: 'linear-gradient(198.52deg, #FEAC5E 4.12%, #C779D0 46.97%, #4BC0C8 87.46%);',
   2: 'linear-gradient(160.18deg, #833AB4 12.29%, #FD1D1D 44.59%, #FCB045 78.25%);',
   3: '#D082BE',
