@@ -49,10 +49,10 @@ const Card = styled.div`
   perspective: 600px;
   position: relative;
   cursor: pointer;
-
   .front,
   .back {
     transition: all 0.5s ease-in-out;
+    backface-visibility: hidden;
   }
   .front {
     z-index: 1;

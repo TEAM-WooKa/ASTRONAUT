@@ -52,6 +52,26 @@ const downloadImage = (ref: MutableRefObject<HTMLElement | null>) => {
   }
 };
 
+export const getImageUrl = (
+  ref: MutableRefObject<HTMLElement | null>,
+): string | null => {
+  if (!ref.current) return null;
+
+  try {
+    toPng(ref.current)
+      .then((dataUrl) => {
+        return dataUrl;
+      })
+      .catch((error) => {
+        console.error('Failed to generate PNG image:', error);
+      });
+  } catch (error) {
+    console.log(error);
+  } finally {
+    return null;
+  }
+};
+
 function Result({ cardData }: { cardData: CardDataType }) {
   const cardRef = useRef(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
