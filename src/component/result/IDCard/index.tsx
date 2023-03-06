@@ -17,7 +17,11 @@ export default function IDCard({ cardRef }: IDCardProps) {
 
   return (
     <Card onClick={onClick} className={isRotate ? 'rotate' : ''}>
-      <FrontWrapper ref={!isRotate ? cardRef : null} className="front">
+      <FrontWrapper
+        ref={!isRotate ? cardRef : null}
+        className="front"
+        id="dom-element"
+      >
         <Front />
       </FrontWrapper>
       <BackWrapper ref={isRotate ? cardRef : null} className="back">
