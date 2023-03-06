@@ -12,14 +12,23 @@ import IDCard, { CardDataType } from '@/component/result/IDCard';
 import { toPng } from 'html-to-image';
 import { GetServerSidePropsContext } from 'next';
 import { checkKakao } from '@/utils/device';
+import Content from '@/component/result/content';
+import { getStorage } from '@/utils/storage';
 
-const DUMMY = [
-  ' 당신은 ㅇㅇ한 별 출신일지도??',
-  'ㅇㅇ하고 ㅇㅇ한 사람, 가끔은 ㅇㅇ한  공상에 빠져 시간 가는 줄 모른적 있지  않나요? ',
-];
+const getImagedata = () => {
+  const data = getStorage('user');
+  if (data === null) return null;
+
+  const { image } = JSON.parse(data);
+  if (image) {
+    return image;
+  }
+  return null;
+};
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { name, birth, whatILike, goal } = context.query;
+  const image = getImagedata();
 
   return {
     props: {
@@ -28,6 +37,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         birth: birth ?? '데이터가 없습니다',
         whatILike: whatILike ?? '데이터가 없습니다',
         goal: goal ?? '데이터가 없습니다',
+        image: image ?? null,
       },
     },
   };
@@ -74,7 +84,6 @@ export const getImageUrl = (
 
 function Result({ cardData }: { cardData: CardDataType }) {
   const cardRef = useRef(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const handleDownloadImage = async () => {
     if (checkKakao()) return;
@@ -96,7 +105,6 @@ function Result({ cardData }: { cardData: CardDataType }) {
         />
       </h1>
       <IDCard cardRef={cardRef} cardData={cardData} />
-      <canvas ref={canvasRef} style={{ display: 'none' }} />
       <ShareWrapper>
         <span onClick={onDownloadBtn}>
           <DownloadIcon />
@@ -104,23 +112,7 @@ function Result({ cardData }: { cardData: CardDataType }) {
         <ShareIcon />
         <ReplayIcon />
       </ShareWrapper>
-      <img
-        src={'/images/logos/logo-result.png'}
-        width={122}
-        height={39}
-        alt="result"
-      />
-      <GradientBorderBox>
-        <Content>
-          <TextWrapper>
-            {DUMMY.map((text) => (
-              <div key={text}>{text}</div>
-            ))}
-          </TextWrapper>
-          <TextWrapper>친구별 : ㅇㅇ별 </TextWrapper>
-          <TextWrapper>라이벌 : ㅇㅇ별 </TextWrapper>
-        </Content>
-      </GradientBorderBox>
+      <Content />
     </>
   );
 }
@@ -130,24 +122,6 @@ const ShareWrapper = styled.div`
   margin: 35px 0 20px;
   gap: 75px;
   justify-content: center;
-`;
-
-const Content = styled.div`
-  border-radius: 16px;
-  width: 100%;
-  padding: 20px;
-  gap: 20px;
-  display: flex;
-  flex-direction: column;
-  margin: 10px 0;
-`;
-
-const TextWrapper = styled(AText)`
-  font-size: 18px;
-  font-weight: 600;
-
-  color: ${(props) => props.theme.colors.bg};
-  text-align: left;
 `;
 
 export default withLayout(Result, '우주인 결과', '우주인 테스트 결과 페이지');

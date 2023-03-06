@@ -9,6 +9,7 @@ export interface CardDataType {
   birth: string;
   whatILike: string;
   goal: string;
+  image: string;
 }
 
 interface IDCardProps {
@@ -42,7 +43,6 @@ export default function IDCard({ cardRef, cardData }: IDCardProps) {
 }
 
 const Card = styled.div`
-  max-width: 350px;
   width: 350px;
   margin: 10px auto;
   height: 220px; //? 수정 필요? 220px 으로
@@ -84,9 +84,6 @@ const Face = styled(GradientBoxStyled)`
       rgba(199, 121, 208, 1) 50%,
       rgba(75, 192, 200, 1) 100%
     );
-
-  gap: 30px;
-  padding: 1px;
 
   position: absolute;
   top: 0;

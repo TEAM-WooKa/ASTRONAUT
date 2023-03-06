@@ -6,30 +6,18 @@ import { getStorage } from '@/utils/storage';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
-const getImagedata = () => {
-  const data = getStorage('user');
-  if (data === null) return null;
-
-  const { image } = JSON.parse(data);
-  if (image) {
-    return image;
-  }
-  return null;
-};
-
-export default function Front({ name, birth, whatILike, goal }: CardDataType) {
-  const router = useRouter();
-  const image = getImagedata();
-  // const { name, birth, whatILike, goal } = router.query;
-
+interface FrontProps extends CardDataType {}
+export default function Front({
+  name,
+  birth,
+  whatILike,
+  goal,
+  image,
+}: FrontProps) {
   return (
     <InnerFace>
       <CardTop />
-      <CardMiddle
-        // TODO : 이미지 없을경우 기본 이미지로
-        image={image ?? '/Weverse_albums_OMG_C_HAERIN_2_1677318532 1.png'}
-        subImage="/romi.png"
-      >
+      <CardMiddle image={image}>
         <FrontTextWrapper>
           <div>
             <span>NAME :</span> <span>{name ?? '데이터가 없습니다'}</span>
@@ -51,7 +39,7 @@ export default function Front({ name, birth, whatILike, goal }: CardDataType) {
         </FrontTextWrapper>
       </CardMiddle>
 
-      <CardBottom />
+      <CardBottom star={image ? 'Yello_Lomi' : undefined} />
     </InnerFace>
   );
 }

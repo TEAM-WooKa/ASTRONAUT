@@ -111,6 +111,7 @@ const getColorImageUrl = (value: string) => {
   if (value === '3') return '/images/romi_yellow.png';
   return '/images/romi.png';
 };
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
