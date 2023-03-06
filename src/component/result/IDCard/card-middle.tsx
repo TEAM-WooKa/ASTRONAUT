@@ -35,10 +35,10 @@ export default function CardMiddle({
       <ImageWrapper>
         {subImage && (
           <RomiImageWrapper>
-            <img src={subImage} width="60" height="48" alt="romi" />
+            <img src={subImage} width="60" height="48" alt="image" />
           </RomiImageWrapper>
         )}
-        <Image src={image} width="90" height="120" alt="user" />
+        <img src={image} width="90" height="120" alt="user" />
       </ImageWrapper>
       <TextWrapper>{children}</TextWrapper>
     </MiddleWrapper>
