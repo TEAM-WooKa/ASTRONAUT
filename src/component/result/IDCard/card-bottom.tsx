@@ -21,8 +21,8 @@ const BottomWrapper = styled.div`
 `;
 
 const Tag = styled.div<{ isBack: boolean }>`
-  width: 115px;
-  min-width: 115px;
+  width: 123px;
+  min-width: 123px;
   font-family: 'GongGothicMedium';
   font-weight: 700;
   font-size: 10px;

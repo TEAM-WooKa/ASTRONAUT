@@ -8,8 +8,6 @@ import withLayout from '@/component/hoc/withLayout';
 import { useRouter } from 'next/router';
 import { useRef } from 'react';
 import styled from 'styled-components';
-import domtoimage from 'dom-to-image';
-import { saveAs } from 'file-saver';
 import IDCard from '@/component/result/IDCard';
 import { toPng } from 'html-to-image';
 
@@ -54,14 +52,19 @@ function Result() {
 
   const handleDownloadImage = async () => {
     if (!cardRef.current) return;
+    console.log('window.navigator.userAgent: ', window.navigator.userAgent);
+
     if (/KAKAOTALK/i.test(window.navigator.userAgent)) {
       // Open the link in a new window
       alert('카카오톡에서는 다운로드가 지원되지 않습니다.');
       window.open(router.asPath, '_blank');
+      return;
     } else {
       // Open the link in the current window
       router.push(router.asPath);
     }
+
+    console.log('cardRef.current: ', cardRef.current);
     try {
       toPng(cardRef.current)
         .then((dataUrl) => {
