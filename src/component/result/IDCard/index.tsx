@@ -4,11 +4,19 @@ import Front from '@/component/result/IDCard/front';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-interface IDCardProps {
-  cardRef: any;
+export interface CardDataType {
+  name: string;
+  birth: string;
+  whatILike: string;
+  goal: string;
 }
 
-export default function IDCard({ cardRef }: IDCardProps) {
+interface IDCardProps {
+  cardRef: any;
+  cardData: CardDataType;
+}
+
+export default function IDCard({ cardRef, cardData }: IDCardProps) {
   const [isRotate, setIsRotate] = useState<boolean>(false);
 
   const onClick = () => {
@@ -22,7 +30,7 @@ export default function IDCard({ cardRef }: IDCardProps) {
         className="front"
         id="dom-element"
       >
-        <Front />
+        <Front {...cardData} />
       </FrontWrapper>
       <BackWrapper ref={isRotate ? cardRef : null} className="back">
         <InnerFace>

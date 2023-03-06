@@ -1,3 +1,4 @@
+import { CardDataType } from '@/component/result/IDCard';
 import CardBottom from '@/component/result/IDCard/card-bottom';
 import CardMiddle from '@/component/result/IDCard/card-middle';
 import CardTop from '@/component/result/IDCard/card-top';
@@ -16,10 +17,10 @@ const getImagedata = () => {
   return null;
 };
 
-export default function Front({}) {
+export default function Front({ name, birth, whatILike, goal }: CardDataType) {
   const router = useRouter();
   const image = getImagedata();
-  const { name, birth, whatILike, goal } = router.query;
+  // const { name, birth, whatILike, goal } = router.query;
 
   return (
     <InnerFace>

@@ -6,100 +6,63 @@ import GradientBorderBox from '@/component/common/GradientBorderBox';
 import withLayout from '@/component/hoc/withLayout';
 // import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useRef } from 'react';
+import { MutableRefObject, useRef } from 'react';
 import styled from 'styled-components';
-import IDCard from '@/component/result/IDCard';
+import IDCard, { CardDataType } from '@/component/result/IDCard';
 import { toPng } from 'html-to-image';
+import { GetServerSidePropsContext } from 'next';
+import { checkKakao } from '@/utils/device';
 
 const DUMMY = [
   ' 당신은 ㅇㅇ한 별 출신일지도??',
   'ㅇㅇ하고 ㅇㅇ한 사람, 가끔은 ㅇㅇ한  공상에 빠져 시간 가는 줄 모른적 있지  않나요? ',
 ];
 
-function Result() {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const { name, birth, whatILike, goal } = context.query;
+
+  return {
+    props: {
+      cardData: {
+        name: name ?? '데이터가 없습니다',
+        birth: birth ?? '데이터가 없습니다',
+        whatILike: whatILike ?? '데이터가 없습니다',
+        goal: goal ?? '데이터가 없습니다',
+      },
+    },
+  };
+}
+
+const downloadImage = (ref: MutableRefObject<HTMLElement | null>) => {
+  if (!ref.current) return;
+
+  try {
+    toPng(ref.current)
+      .then((dataUrl) => {
+        const link = document.createElement('a');
+        link.download = 'image.png';
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch((error) => {
+        console.error('Failed to generate PNG image:', error);
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+function Result({ cardData }: { cardData: CardDataType }) {
   const cardRef = useRef(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const router = useRouter();
-
-  // function handleDownload() {
-  //   const canvas = canvasRef.current;
-  //   if (!canvas) return;
-
-  //   const ctx = canvas.getContext('2d');
-  //   if (!ctx) return;
-
-  //   // Set the canvas size to a higher resolution than the DOM element
-  //   const domElement = document.getElementById('dom-element');
-  //   if (!domElement) return;
-
-  //   const scaleFactor = 2;
-  //   canvas.width = domElement.offsetWidth * scaleFactor;
-  //   canvas.height = domElement.offsetHeight * scaleFactor;
-  //   ctx.scale(scaleFactor, scaleFactor);
-
-  //   // Render the DOM element on the canvas
-  //   ctx.drawImage(domElement as CanvasImageSource, 0, 0);
-
-  //   // Convert the canvas to a Blob object
-  //   canvas.toBlob((blob) => {
-  //     // Create a download link and trigger a click on it
-  //     const link = document.createElement('a');
-  //     link.download = 'image.png';
-  //     link.href = URL.createObjectURL(blob);
-  //     link.click();
-  //   }, 'image/png');
-  // }
 
   const handleDownloadImage = async () => {
-    if (!cardRef.current) return;
-    console.log('window.navigator.userAgent: ', window.navigator.userAgent);
+    if (checkKakao()) return;
 
-    if (/KAKAOTALK/i.test(window.navigator.userAgent)) {
-      // Open the link in a new window
-      alert('카카오톡에서는 다운로드가 지원되지 않습니다.');
-      window.open(router.asPath, '_blank');
-      return;
-    } else {
-      // Open the link in the current window
-      router.push(router.asPath);
-    }
-
-    console.log('cardRef.current: ', cardRef.current);
-    try {
-      toPng(cardRef.current)
-        .then((dataUrl) => {
-          // Create a download link and trigger a click on it
-          const link = document.createElement('a');
-          link.download = 'image.png';
-          link.href = dataUrl;
-          link.click();
-        })
-        .catch((error) => {
-          console.error('Failed to generate PNG image:', error);
-        });
-
-      // await toBlob(cardRef.current).then((blob) => {
-      //   const link = document.createElement('a');
-      //   link.download = 'image.png';
-      //   if (!blob) return;
-
-      //   link.href = URL.createObjectURL(blob);
-
-      //   link.click();
-      // });
-    } catch (error) {
-      console.log(error);
-    }
+    downloadImage(cardRef);
   };
   const onDownloadBtn = () => {
     handleDownloadImage();
-    // const card = cardRef.current;
-    // if (card === null) return;
-
-    // console.log('card: ', card);
-    // domtoimage.toBlob(card).then((blob) => {
-    //   saveAs(blob, 'card.png');
-    // });
   };
 
   return (
@@ -112,7 +75,7 @@ function Result() {
           alt="result"
         />
       </h1>
-      <IDCard cardRef={cardRef} />
+      <IDCard cardRef={cardRef} cardData={cardData} />
       <canvas ref={canvasRef} style={{ display: 'none' }} />
       <ShareWrapper>
         <span onClick={onDownloadBtn}>
