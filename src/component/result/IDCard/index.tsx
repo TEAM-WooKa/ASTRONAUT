@@ -1,20 +1,57 @@
 import { GradientBoxStyled } from '@/assets/styles/gradient';
 import Back from '@/component/result/IDCard/back';
 import Front from '@/component/result/IDCard/front';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Image from 'next/image';
+import { FlexCenter, FullCenter } from '@/component/core/Flex';
+
+export interface CardDataType {
+  name: string;
+  birth: string;
+  whatILike: string;
+  goal: string;
+  image: string;
+}
 
 interface IDCardProps {
   cardRef: any;
+  cardData: CardDataType;
 }
 
-export default function IDCard({ cardRef }: IDCardProps) {
+export default function IDCard({ cardRef, cardData }: IDCardProps) {
   const [isRotate, setIsRotate] = useState<boolean>(false);
-
+  const [isLoading, setIsLoading] = useState(true);
   const onClick = () => {
     setIsRotate(!isRotate);
   };
 
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 300);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
+  if (isLoading) {
+    return (
+      <Card>
+        <Face>
+          <FullCenter>
+            <Image
+              src="/images/pink-loading.svg"
+              width={50}
+              height={50}
+              alt="loading"
+            />
+          </FullCenter>
+        </Face>
+      </Card>
+    );
+  }
   return (
     <Card onClick={onClick} className={isRotate ? 'rotate' : ''}>
       <FrontWrapper
@@ -22,7 +59,7 @@ export default function IDCard({ cardRef }: IDCardProps) {
         className="front"
         id="dom-element"
       >
-        <Front />
+        <Front {...cardData} />
       </FrontWrapper>
       <BackWrapper ref={isRotate ? cardRef : null} className="back">
         <InnerFace>
@@ -34,17 +71,16 @@ export default function IDCard({ cardRef }: IDCardProps) {
 }
 
 const Card = styled.div`
-  max-width: 350px;
   width: 350px;
   margin: 10px auto;
   height: 220px; //? 수정 필요? 220px 으로
   perspective: 600px;
   position: relative;
   cursor: pointer;
-
   .front,
   .back {
     transition: all 0.5s ease-in-out;
+    backface-visibility: hidden;
   }
   .front {
     z-index: 1;
@@ -76,9 +112,6 @@ const Face = styled(GradientBoxStyled)`
       rgba(199, 121, 208, 1) 50%,
       rgba(75, 192, 200, 1) 100%
     );
-
-  gap: 30px;
-  padding: 1px;
 
   position: absolute;
   top: 0;
