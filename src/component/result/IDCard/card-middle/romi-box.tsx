@@ -1,4 +1,4 @@
-import { FlexCenter } from '@/component/common/Flex';
+import { FlexCenter } from '@/component/core/Flex';
 import styled from 'styled-components';
 
 export default function RomiBox() {

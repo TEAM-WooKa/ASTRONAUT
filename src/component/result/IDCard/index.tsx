@@ -1,8 +1,10 @@
 import { GradientBoxStyled } from '@/assets/styles/gradient';
 import Back from '@/component/result/IDCard/back';
 import Front from '@/component/result/IDCard/front';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Image from 'next/image';
+import { FlexCenter, FullCenter } from '@/component/core/Flex';
 
 export interface CardDataType {
   name: string;
@@ -19,11 +21,37 @@ interface IDCardProps {
 
 export default function IDCard({ cardRef, cardData }: IDCardProps) {
   const [isRotate, setIsRotate] = useState<boolean>(false);
-
+  const [isLoading, setIsLoading] = useState(true);
   const onClick = () => {
     setIsRotate(!isRotate);
   };
 
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 300);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
+  if (isLoading) {
+    return (
+      <Card>
+        <Face>
+          <FullCenter>
+            <Image
+              src="/images/pink-loading.svg"
+              width={50}
+              height={50}
+              alt="loading"
+            />
+          </FullCenter>
+        </Face>
+      </Card>
+    );
+  }
   return (
     <Card onClick={onClick} className={isRotate ? 'rotate' : ''}>
       <FrontWrapper

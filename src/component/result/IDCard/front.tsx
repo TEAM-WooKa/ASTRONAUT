@@ -4,6 +4,7 @@ import CardMiddle from '@/component/result/IDCard/card-middle';
 import CardTop from '@/component/result/IDCard/card-top';
 import { getStorage } from '@/utils/storage';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 interface FrontProps extends CardDataType {}
@@ -14,10 +15,20 @@ export default function Front({
   goal,
   image,
 }: FrontProps) {
+  const [imageError, setImageError] = useState(image ? false : true);
+
+  const handleImageError = () => {
+    setImageError(true);
+  };
+
   return (
     <InnerFace>
       <CardTop />
-      <CardMiddle image={image}>
+      <CardMiddle
+        image={image}
+        handleImageError={handleImageError}
+        imageError={imageError}
+      >
         <FrontTextWrapper>
           <div>
             <span>NAME :</span> <span>{name ?? '데이터가 없습니다'}</span>
@@ -39,7 +50,7 @@ export default function Front({
         </FrontTextWrapper>
       </CardMiddle>
 
-      <CardBottom star={image ? 'Yello_Lomi' : undefined} />
+      <CardBottom star={!imageError ? 'Yello_Lomi' : undefined} />
     </InnerFace>
   );
 }

@@ -6,15 +6,16 @@ import { useState } from 'react';
 interface CardMiddleProps {
   children: React.ReactNode;
   image?: string;
+  handleImageError?: () => void;
+  imageError?: boolean;
 }
 
-export default function CardMiddle({ children, image }: CardMiddleProps) {
-  const [imageError, setImageError] = useState(false);
-
-  const handleImageError = () => {
-    setImageError(true);
-  };
-
+export default function CardMiddle({
+  children,
+  image,
+  handleImageError,
+  imageError,
+}: CardMiddleProps) {
   if (imageError || !image) {
     return (
       <MiddleWrapper>

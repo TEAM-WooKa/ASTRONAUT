@@ -6,7 +6,7 @@ import GradientBorderBox from '@/component/common/GradientBorderBox';
 import withLayout from '@/component/hoc/withLayout';
 // import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { MutableRefObject, useRef } from 'react';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import IDCard, { CardDataType } from '@/component/result/IDCard';
 import { toPng } from 'html-to-image';
@@ -28,7 +28,6 @@ const getImagedata = () => {
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { name, birth, whatILike, goal } = context.query;
-  const image = getImagedata();
 
   return {
     props: {
@@ -37,7 +36,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         birth: birth ?? '데이터가 없습니다',
         whatILike: whatILike ?? '데이터가 없습니다',
         goal: goal ?? '데이터가 없습니다',
-        image: image ?? null,
+        image: null,
       },
     },
   };
@@ -84,15 +83,24 @@ export const getImageUrl = (
 
 function Result({ cardData }: { cardData: CardDataType }) {
   const cardRef = useRef(null);
-
+  const [image, setImage] = useState(cardData.image);
+  const [isLoading, setIsLoading] = useState(false);
   const handleDownloadImage = async () => {
     if (checkKakao()) return;
 
     downloadImage(cardRef);
   };
+
   const onDownloadBtn = () => {
     handleDownloadImage();
   };
+
+  useEffect(() => {
+    setIsLoading(true);
+    const image = getImagedata();
+    setImage(image);
+    setIsLoading(false);
+  }, []);
 
   return (
     <>
@@ -104,7 +112,8 @@ function Result({ cardData }: { cardData: CardDataType }) {
           alt="result"
         />
       </h1>
-      <IDCard cardRef={cardRef} cardData={cardData} />
+      {isLoading && <div>Loaingdd</div>}
+      <IDCard cardRef={cardRef} cardData={{ ...cardData, image }} />
       <ShareWrapper>
         <span onClick={onDownloadBtn}>
           <DownloadIcon />
