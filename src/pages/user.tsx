@@ -41,8 +41,7 @@ function UserPage() {
 
       return;
     }
-    //? 1. image를 서버에 업로드
-    //? 2. 서버에서 받은 image url을 localstorage에 저장
+    //? 1. image를 업로드, image url을 localstorage에 저장
     //? 3. localstorage에 저장된 image url을 서버에 전송
     //? 4. 서버에서 받은 result id를 localstorage에 저장
     //? 5. localstorage에 저장된 result id를 이용해 result 페이지로 이동
@@ -101,7 +100,6 @@ function UserPage() {
       <WarnMessage>
         개인 정보를 저장하거나 다른 목적으로 사용하지 않습니다.
       </WarnMessage>
-      <img src={imageUrl} />
       <GradientButton onClick={handleNextPage}>&gt; print</GradientButton>
     </Wrapper>
   );
