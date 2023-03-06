@@ -11,7 +11,7 @@ import styled from 'styled-components';
 import IDCard, { CardDataType } from '@/component/result/IDCard';
 import { toPng } from 'html-to-image';
 import { GetServerSidePropsContext } from 'next';
-import { checkKakao } from '@/utils/device';
+import { checkKakao, Mobile } from '@/utils/device';
 import Content from '@/component/result/content';
 import { getStorage } from '@/utils/storage';
 
@@ -51,6 +51,7 @@ const downloadImage = (ref: MutableRefObject<HTMLElement | null>) => {
         const link = document.createElement('a');
         link.download = 'image.png';
         link.href = dataUrl;
+        console.log('dataUrl: ', dataUrl);
         link.click();
       })
       .catch((error) => {
@@ -61,32 +62,48 @@ const downloadImage = (ref: MutableRefObject<HTMLElement | null>) => {
   }
 };
 
-export const getImageUrl = (
+export const getImageUrl = async (
   ref: MutableRefObject<HTMLElement | null>,
-): string | null => {
+) => {
   if (!ref.current) return null;
 
+  // NOTE: to png fmf
   try {
-    toPng(ref.current)
-      .then((dataUrl) => {
-        return dataUrl;
-      })
-      .catch((error) => {
-        console.error('Failed to generate PNG image:', error);
-      });
+    const dataUrl = await toPng(ref.current);
+
+    const res = await fetch(dataUrl);
+    const blob = await res.blob();
+    console.log('blob: ', blob);
+    // 로컬 스토리지에 Blob 저장
+    const imageUrl = URL.createObjectURL(blob); // Blob 데이터를 이미지 URL로 변환
+    return imageUrl;
   } catch (error) {
-    console.log(error);
-  } finally {
-    return null;
+    console.error('HTML to Image conversion failed', error);
   }
 };
 
 function Result({ cardData }: { cardData: CardDataType }) {
   const cardRef = useRef(null);
+  const router = useRouter();
   const [image, setImage] = useState(cardData.image);
   const [isLoading, setIsLoading] = useState(false);
+  const [testImg, setTestImg] = useState('');
+
   const handleDownloadImage = async () => {
-    if (checkKakao()) return;
+    if (checkKakao() || Mobile()) {
+      console.log('mobile');
+      const imageUrl = await getImageUrl(cardRef);
+      console.log('imageUrl: ', imageUrl);
+      if (imageUrl) {
+        localStorage.setItem('card-image', imageUrl);
+
+        router.push({
+          pathname: '/result/img',
+          query: { image: imageUrl },
+        });
+      }
+      return;
+    }
 
     downloadImage(cardRef);
   };
@@ -112,7 +129,7 @@ function Result({ cardData }: { cardData: CardDataType }) {
           alt="result"
         />
       </h1>
-      {isLoading && <div>Loaingdd</div>}
+      {testImg ? <img src={testImg} /> : null}
       <IDCard cardRef={cardRef} cardData={{ ...cardData, image }} />
       <ShareWrapper>
         <span onClick={onDownloadBtn}>
