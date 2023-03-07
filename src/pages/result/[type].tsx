@@ -87,6 +87,7 @@ function Result({ cardData, character }: ResultProps) {
         setIsLoading(false);
         return;
       }, 1000);
+      return;
     }
     await downloadImage(cardRef);
     setIsLoading(false);

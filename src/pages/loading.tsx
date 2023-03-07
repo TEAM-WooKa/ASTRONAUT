@@ -92,6 +92,7 @@ const MainText = styled.div`
   font-size: 28px;
   color: #fff;
 `;
+
 const LoadingWrapper = styled.div`
   width: fit-content;
   margin: 0 auto;
