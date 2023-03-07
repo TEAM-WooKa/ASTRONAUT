@@ -13,8 +13,8 @@ export default function FourChoice({
 }) {
   return (
     <Wrapper>
-      {answer.map((item, index) => (
-        <ButtonWrapper>
+      {answer.map((item) => (
+        <ButtonWrapper key={item}>
           <GradientButton onClick={() => handleAnswerClick(item)}>
             <Text isHangul={isHangulChar(item)}>{item}</Text>
           </GradientButton>

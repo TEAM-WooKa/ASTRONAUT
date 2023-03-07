@@ -8,6 +8,7 @@ import GradientBox from '@/component/common/GradientBox';
 import Answer from '@/component/question/answer';
 import { QUESTION_DATA } from '@/component/question/data';
 import { setStorage } from '@/utils/storage';
+import { mappingColorValue, getColorImageUrl } from '@/utils/answer';
 
 const QUESTION_END_CNT = QUESTION_DATA.length;
 
@@ -20,36 +21,37 @@ function Question() {
 
   const [answers, setAnswers] = useState<AnswerType[]>([]);
 
-  const [answerColorStatus, setAnswerColorStatus] = useState('1');
+  const [answerColorStatus, setAnswerColorStatus] = useState('3');
   const questionIndex = answers.length;
 
   const currentQuestion = questions[questionIndex];
-  console.log('currentQuestion: ', currentQuestion);
 
-  const handleAnswerClick = (answer: string) => {
-    console.log('answer: ', answer);
-    if (questionIndex === QUESTION_END_CNT - 1) {
-      const lastAnswers = [
-        ...answers,
-        {
-          id: currentQuestion.id,
-          answer,
-        },
-      ];
-
-      setStorage('astronauts-answers', JSON.stringify(lastAnswers));
-      router.push(`/user`);
-      // //TODO: test end
-      // const resultID: number = 1;
-      // router.push(`/result/${resultID}`);
+  const getNewAnswer = (answer: string) => {
+    if (currentQuestion.id === 2) {
+      const colorValue = answer as keyof typeof mappingColorValue;
+      answer = mappingColorValue[colorValue];
     }
-    setAnswers([
+
+    const newAnswer = [
       ...answers,
       {
         id: currentQuestion.id,
         answer,
       },
-    ]);
+    ];
+    console.log('newAnswer: ', newAnswer);
+
+    setAnswers(newAnswer);
+    return newAnswer;
+  };
+
+  const handleAnswerClick = (answer: string) => {
+    const newAnswer = getNewAnswer(answer);
+    if (questionIndex === QUESTION_END_CNT - 1) {
+      // TODO  : recoil 적용 생각중
+      setStorage('astronauts-answers', JSON.stringify(newAnswer));
+      router.push(`/user`);
+    }
   };
 
   const handleAnswerChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -73,11 +75,7 @@ function Question() {
       <div>
         <ImageBox>
           <Image
-            src={
-              currentQuestion.type === 'color'
-                ? getColorImageUrl(answerColorStatus)
-                : '/images/romi.png'
-            }
+            src={getColorImageUrl(answerColorStatus)}
             alt="space image"
             width={250}
             height={191}
@@ -104,13 +102,6 @@ function Question() {
     </Wrapper>
   );
 }
-
-const getColorImageUrl = (value: string) => {
-  if (value === '1') return '/images/romi_blue.png';
-  if (value === '2') return '/images/romi_purple.png';
-  if (value === '3') return '/images/romi_yellow.png';
-  return '/images/romi.png';
-};
 
 const Wrapper = styled.div`
   display: flex;

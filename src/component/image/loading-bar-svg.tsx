@@ -22,9 +22,9 @@ function LoadingBarSVG() {
           y2="82.6082"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#FEAC5E" />
-          <stop offset="0.514151" stop-color="#C779D0" />
-          <stop offset="1" stop-color="#4BC0C8" />
+          <stop stopColor="#FEAC5E" />
+          <stop offset="0.514151" stopColor="#C779D0" />
+          <stop offset="1" stopColor="#4BC0C8" />
         </linearGradient>
       </defs>
     </svg>

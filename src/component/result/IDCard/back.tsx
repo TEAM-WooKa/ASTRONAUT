@@ -2,13 +2,18 @@ import { FlexColumn } from '@/component/core/Flex';
 import CardBottom from '@/component/result/IDCard/card-bottom';
 import CardMiddle from '@/component/result/IDCard/card-middle';
 import CardTop from '@/component/result/IDCard/card-top';
+import { CharacterReturnType } from '@/utils/answer';
 import styled from 'styled-components';
 
-export default function Back() {
+export default function Back({
+  character,
+}: {
+  character: CharacterReturnType;
+}) {
   return (
     <>
       <CardTop />
-      <CardMiddle>
+      <CardMiddle character={character}>
         <FlexColumn gap="1">
           <TextWrapper>
             우주인님의 고향은 <b>루미</b>입니다
