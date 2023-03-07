@@ -43,10 +43,10 @@ export default function IDCard({ cardRef, cardData, character }: IDCardProps) {
       <Card>
         <Face>
           <FullCenter>
-            <Image
+            <img
               src="/images/pink-loading.svg"
-              width={50}
-              height={50}
+              width="50px"
+              height="50px"
               alt="loading"
             />
           </FullCenter>

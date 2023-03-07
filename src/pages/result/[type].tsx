@@ -66,28 +66,28 @@ function Result({ cardData, character }: ResultProps) {
   const cardRef = useRef(null);
   const router = useRouter();
   const [image, setImage] = useState(cardData.image);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleDownloadImage = async () => {
     setIsLoading(true);
 
     if (checkKakao() || Mobile()) {
-      console.log('mobile');
-      const imageUrl = await getImageUrl(cardRef);
-      console.log('imageUrl: ', imageUrl);
-      if (imageUrl) {
-        localStorage.setItem('card-image', imageUrl);
+      setTimeout(async () => {
+        const imageUrl = await getImageUrl(cardRef);
+        console.log('imageUrl: ', imageUrl);
+        if (imageUrl) {
+          localStorage.setItem('card-image', imageUrl);
 
-        router.push({
-          pathname: '/result/img',
-          query: { image: imageUrl },
-        });
-      }
+          router.push({
+            pathname: '/result/img',
+            query: { image: imageUrl },
+          });
+        }
 
-      setIsLoading(false);
-      return;
+        setIsLoading(false);
+        return;
+      }, 1000);
     }
-
     await downloadImage(cardRef);
     setIsLoading(false);
   };
@@ -99,6 +99,7 @@ function Result({ cardData, character }: ResultProps) {
   useEffect(() => {
     const image = getImagedata();
     setImage(image);
+    setIsLoading(false);
   }, []);
 
   return (

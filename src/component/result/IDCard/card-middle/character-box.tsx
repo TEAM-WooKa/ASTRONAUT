@@ -7,10 +7,22 @@ interface CharacterBoxProps {
 }
 
 export default function CharacterBox({ image, name }: CharacterBoxProps) {
+  const handleImageError = (
+    e: React.SyntheticEvent<HTMLImageElement, Event>,
+  ) => {
+    e.currentTarget.src = '/characters/lumi_yellow.png';
+  };
+
   return (
     <CharacterWrapper>
       <CharacterMainImageWrapper>
-        <img src={image} width="90" height="68" alt="character" />
+        <img
+          src={image}
+          width="90"
+          height="68"
+          alt="character"
+          onError={handleImageError}
+        />
       </CharacterMainImageWrapper>
       <Tag>{name}</Tag>
     </CharacterWrapper>
