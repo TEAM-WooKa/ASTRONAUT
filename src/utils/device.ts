@@ -9,7 +9,7 @@ export const checkKakao = () => {
   console.log('window.navigator.userAgent: ', window.navigator.userAgent);
   if (/KAKAOTALK/i.test(window.navigator.userAgent)) {
     // Open the link in a new window
-    alert('카카오톡에서는 다운로드가 지원되지 않습니다.');
+    // alert('카카오톡에서는 다운로드가 지원되지 않습니다.');
     // window.open(router.asPath, '_blank');
     return true;
   } else {
