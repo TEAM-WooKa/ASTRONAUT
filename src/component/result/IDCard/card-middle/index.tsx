@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import CharacterBox from '@/component/result/IDCard/card-middle/character-box';
 import { CharacterReturnType } from '@/utils/answer';
 import { ChangeEvent, SyntheticEvent } from 'react';
+import { checkChrome, checkSafari } from '@/utils/device';
 
 interface CardMiddleProps {
   children: React.ReactNode;
