@@ -1,10 +1,8 @@
 import DownloadIcon from '@/assets/icons/DownloadIcon';
 import ReplayIcon from '@/assets/icons/ReplayIcon';
 import ShareIcon from '@/assets/icons/ShareIcon';
-import AText from '@/component/common/AText';
 import GradientBorderBox from '@/component/common/GradientBorderBox';
 import withLayout from '@/component/hoc/withLayout';
-// import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
@@ -14,6 +12,12 @@ import { GetServerSidePropsContext } from 'next';
 import { checkKakao, Mobile } from '@/utils/device';
 import Content from '@/component/result/content';
 import { getStorage } from '@/utils/storage';
+import {
+  calcCharacter,
+  CharacterColorType,
+  CharacterType,
+} from '@/utils/answer';
+import { downloadImage, getImageUrl } from '@/utils/image';
 
 const getImagedata = () => {
   const data = getStorage('user');
@@ -27,7 +31,12 @@ const getImagedata = () => {
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const { name, birth, whatILike, goal } = context.query;
+  const { name, birth, whatILike, goal, color, char } = context.query;
+
+  const { name: characterName, image: characterImage } = calcCharacter({
+    color: color as CharacterColorType,
+    char: char as CharacterType,
+  });
 
   return {
     props: {
@@ -38,56 +47,27 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         goal: goal ?? '데이터가 없습니다',
         image: null,
       },
+      character: {
+        name: characterName ?? 'Yellow_Lomi',
+        image: characterImage ?? '/characters/lumi.png',
+      },
     },
   };
 }
 
-const downloadImage = (ref: MutableRefObject<HTMLElement | null>) => {
-  if (!ref.current) return;
+interface ResultProps {
+  cardData: CardDataType;
+  character: {
+    name: string;
+    image: string;
+  };
+}
 
-  try {
-    toPng(ref.current)
-      .then((dataUrl) => {
-        const link = document.createElement('a');
-        link.download = 'image.png';
-        link.href = dataUrl;
-        console.log('dataUrl: ', dataUrl);
-        link.click();
-      })
-      .catch((error) => {
-        console.error('Failed to generate PNG image:', error);
-      });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const getImageUrl = async (
-  ref: MutableRefObject<HTMLElement | null>,
-) => {
-  if (!ref.current) return null;
-
-  // NOTE: to png fmf
-  try {
-    const dataUrl = await toPng(ref.current);
-
-    const res = await fetch(dataUrl);
-    const blob = await res.blob();
-    console.log('blob: ', blob);
-    // 로컬 스토리지에 Blob 저장
-    const imageUrl = URL.createObjectURL(blob); // Blob 데이터를 이미지 URL로 변환
-    return imageUrl;
-  } catch (error) {
-    console.error('HTML to Image conversion failed', error);
-  }
-};
-
-function Result({ cardData }: { cardData: CardDataType }) {
+function Result({ cardData, character }: ResultProps) {
   const cardRef = useRef(null);
   const router = useRouter();
   const [image, setImage] = useState(cardData.image);
   const [isLoading, setIsLoading] = useState(false);
-  const [testImg, setTestImg] = useState('');
 
   const handleDownloadImage = async () => {
     if (checkKakao() || Mobile()) {
@@ -122,6 +102,7 @@ function Result({ cardData }: { cardData: CardDataType }) {
   return (
     <>
       <h1>
+        {/* TODO : logo 분리 */}
         <img
           src={'/images/logos/logo-aics.png'}
           width={236}
@@ -129,8 +110,11 @@ function Result({ cardData }: { cardData: CardDataType }) {
           alt="result"
         />
       </h1>
-      {testImg ? <img src={testImg} /> : null}
-      <IDCard cardRef={cardRef} cardData={{ ...cardData, image }} />
+      <IDCard
+        cardRef={cardRef}
+        cardData={{ ...cardData, image }}
+        character={character}
+      />
       <ShareWrapper>
         <span onClick={onDownloadBtn}>
           <DownloadIcon />

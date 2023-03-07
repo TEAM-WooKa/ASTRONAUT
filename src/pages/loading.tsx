@@ -1,21 +1,30 @@
 import Loading from '@/component/common/loading';
 import withLayout from '@/component/hoc/withLayout';
+import { mappingColorValue } from '@/utils/answer';
 import { getStorage } from '@/utils/storage';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
+const calcResult = (answers: { id: number; answer: string }[]) => {
+  const color = answers[1].answer;
+
+  return { color, char: 'lumi' };
+};
 // TODO: 더미 데이터를 지우고, localStorage에서 데이터를 가져와야 함.
 const getUserInputData = () => {
-  const data = getStorage('astronauts-answers');
+  const answers = getStorage('astronauts-answers');
   const user = getStorage('user');
 
-  if (user === null || data === null) return;
+  if (user === null || answers === null) return;
 
   const { name, birth } = JSON.parse(user);
 
+  const { color, char } = calcResult(JSON.parse(answers));
   const total = {
+    color,
+    char,
     name,
     birth,
     whatILike: '음악 감상',
@@ -32,10 +41,8 @@ function LoadingPage() {
 
   const handleTime = () => {
     value.current += 1;
-
     if (value.current >= 30) {
       const userData = getUserInputData();
-
       router.push({
         pathname: '/result/[type]',
         query: { type: 1, ...userData },

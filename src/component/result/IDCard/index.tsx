@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { FlexCenter, FullCenter } from '@/component/core/Flex';
+import { CharacterReturnType } from '@/utils/answer';
 
 export interface CardDataType {
   name: string;
@@ -17,9 +18,10 @@ export interface CardDataType {
 interface IDCardProps {
   cardRef: any;
   cardData: CardDataType;
+  character: CharacterReturnType;
 }
 
-export default function IDCard({ cardRef, cardData }: IDCardProps) {
+export default function IDCard({ cardRef, cardData, character }: IDCardProps) {
   const [isRotate, setIsRotate] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(true);
   const onClick = () => {
@@ -59,11 +61,11 @@ export default function IDCard({ cardRef, cardData }: IDCardProps) {
         className="front"
         id="dom-element"
       >
-        <Front {...cardData} />
+        <Front character={character} {...cardData} />
       </FrontWrapper>
       <BackWrapper ref={isRotate ? cardRef : null} className="back">
         <InnerFace>
-          <Back />
+          <Back character={character} />
         </InnerFace>
       </BackWrapper>
     </Card>

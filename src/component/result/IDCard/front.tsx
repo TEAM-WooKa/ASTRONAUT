@@ -2,18 +2,22 @@ import { CardDataType } from '@/component/result/IDCard';
 import CardBottom from '@/component/result/IDCard/card-bottom';
 import CardMiddle from '@/component/result/IDCard/card-middle';
 import CardTop from '@/component/result/IDCard/card-top';
+import { CharacterReturnType } from '@/utils/answer';
 import { getStorage } from '@/utils/storage';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-interface FrontProps extends CardDataType {}
+interface FrontProps extends CardDataType {
+  character: CharacterReturnType;
+}
 export default function Front({
   name,
   birth,
   whatILike,
   goal,
   image,
+  character,
 }: FrontProps) {
   const [imageError, setImageError] = useState(image ? false : true);
 
@@ -26,6 +30,7 @@ export default function Front({
       <CardTop />
       <CardMiddle
         image={image}
+        character={character}
         handleImageError={handleImageError}
         imageError={imageError}
       >
@@ -50,7 +55,7 @@ export default function Front({
         </FrontTextWrapper>
       </CardMiddle>
 
-      <CardBottom star={!imageError ? 'Yello_Lomi' : undefined} />
+      <CardBottom star={!imageError ? character.name : undefined} />
     </InnerFace>
   );
 }

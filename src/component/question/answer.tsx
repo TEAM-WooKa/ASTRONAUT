@@ -23,7 +23,6 @@ export default function Answer({
   handleAnswerChange,
   answerColorStatus,
 }: AnswerProps) {
-  console.log('answer: ', answer);
   if (type === 'button-2') {
     return <SecondChoice handleAnswerClick={handleAnswerClick} />;
   }

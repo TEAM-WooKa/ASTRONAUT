@@ -1,24 +1,29 @@
 import { FlexCenter } from '@/component/core/Flex';
 import styled from 'styled-components';
 
-export default function RomiBox() {
+interface CharacterBoxProps {
+  image: string;
+  name: string;
+}
+
+export default function CharacterBox({ image, name }: CharacterBoxProps) {
   return (
-    <RomiWrapper>
-      <RomiMainImageWrapper>
-        <img src="/images/romi.png" width="90" height="68" alt="romi" />
-      </RomiMainImageWrapper>
-      <Tag>Yellow_Lumy</Tag>
-    </RomiWrapper>
+    <CharacterWrapper>
+      <CharacterMainImageWrapper>
+        <img src={image} width="90" height="68" alt="character" />
+      </CharacterMainImageWrapper>
+      <Tag>{name}</Tag>
+    </CharacterWrapper>
   );
 }
 
-const RomiWrapper = styled.div`
+const CharacterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3px;
 `;
 
-const RomiMainImageWrapper = styled(FlexCenter)`
+const CharacterMainImageWrapper = styled(FlexCenter)`
   width: 90px;
   height: 90px;
   border-radius: 50%;

@@ -1,25 +1,32 @@
 import styled from 'styled-components';
-import RomiYellow from '@/assets/images/romi.jpg';
-import RomiBox from '@/component/result/IDCard/card-middle/romi-box';
-import { useState } from 'react';
+import CharacterBox from '@/component/result/IDCard/card-middle/character-box';
+import { CharacterReturnType } from '@/utils/answer';
 
 interface CardMiddleProps {
   children: React.ReactNode;
+  character: CharacterReturnType;
+
   image?: string;
   handleImageError?: () => void;
   imageError?: boolean;
 }
 
+// TODO : character context api 사용하기, props drilling 이 너무 김, context api 사용하면서 불필요한 props 삭제하기
+// 적용하면서 글쓰기
 export default function CardMiddle({
   children,
   image,
   handleImageError,
   imageError,
+  character,
 }: CardMiddleProps) {
   if (imageError || !image) {
     return (
       <MiddleWrapper>
-        <RomiBox />
+        <CharacterBox
+          name={character?.name ?? 'Lomi'}
+          image={character?.image ?? '/characters/lumi_yellow.png'}
+        />
         <TextWrapper>{children}</TextWrapper>
       </MiddleWrapper>
     );
@@ -28,11 +35,10 @@ export default function CardMiddle({
   return (
     <MiddleWrapper>
       <ImageWrapper>
-        {/* // romi image */}
         <RomiImageWrapper>
-          <img src="/images/romi.png" width="60" height="48" alt="image" />
+          <Img src="/characters/lumi.png" width="60" height="48" alt="image" />
         </RomiImageWrapper>
-        <img
+        <Img
           src={image}
           width="90"
           height="120"
@@ -44,6 +50,10 @@ export default function CardMiddle({
     </MiddleWrapper>
   );
 }
+
+const Img = styled.img`
+  object-fit: cover;
+`;
 
 const MiddleWrapper = styled.div`
   display: flex;

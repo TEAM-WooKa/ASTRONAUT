@@ -62,7 +62,6 @@ function UserPage() {
       if (e.target.files) {
         const file = e.target.files[0];
         setImage(file);
-        console.log('file: ', file);
 
         const reader = new FileReader();
 
@@ -81,7 +80,6 @@ function UserPage() {
     } else {
       const { name, value } = e.target;
 
-      console.log('value: ', value);
       setInput({ ...input, [name]: value });
     }
   };
