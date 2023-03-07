@@ -1,22 +1,19 @@
 import { toPng } from 'html-to-image';
 import { MutableRefObject } from 'react';
 
-export const downloadImage = (ref: MutableRefObject<HTMLElement | null>) => {
+export const downloadImage = async (
+  ref: MutableRefObject<HTMLElement | null>,
+) => {
   if (!ref.current) return;
 
   try {
-    toPng(ref.current)
-      .then((dataUrl) => {
-        const link = document.createElement('a');
-        link.download = 'image.png';
-        link.href = dataUrl;
-        link.click();
-      })
-      .catch((error) => {
-        console.error('Failed to generate PNG image:', error);
-      });
+    const dataUrl = await toPng(ref.current);
+    const link = document.createElement('a');
+    link.download = 'image.png';
+    link.href = dataUrl;
+    link.click();
   } catch (error) {
-    console.log(error);
+    console.error('Failed to generate PNG image:', error);
   }
 };
 
