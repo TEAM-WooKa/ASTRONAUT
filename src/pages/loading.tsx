@@ -45,10 +45,10 @@ function LoadingPage() {
     value.current += 1;
     if (value.current >= 30) {
       const userData = getUserInputData();
-      // router.push({
-      //   pathname: '/result/[type]',
-      //   query: { type: 1, ...userData },
-      // });
+      router.push({
+        pathname: '/result/[type]',
+        query: { type: 1, ...userData },
+      });
     }
   };
 

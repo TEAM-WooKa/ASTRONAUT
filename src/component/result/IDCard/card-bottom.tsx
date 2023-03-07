@@ -49,8 +49,9 @@ const Desc = styled.div<{ isScale: boolean }>`
   font-size: 8px;
   line-height: 10px;
 
-  ${(props) =>
-    props.isScale && { transform: 'translate(-8%, -0%) scale(0.75)' }}
+  transform: ${(props) =>
+    props.isScale ? 'translate(-8%, -0%) scale(0.75)' : ''};
+
   display: inline-block;
   text-align: right;
   color: #343232;

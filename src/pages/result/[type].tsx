@@ -29,30 +29,66 @@ const getImagedata = () => {
   return null;
 };
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const { name, birth, whatILike, goal, color, char } = context.query;
-
+type queryType = string | string[] | undefined;
+const getData = ({
+  name,
+  birth,
+  whatILike,
+  goal,
+  color,
+  char,
+}: {
+  name: queryType;
+  birth: queryType;
+  whatILike: queryType;
+  goal: queryType;
+  color: queryType;
+  char: queryType;
+}): ResultProps => {
   const { name: characterName, image: characterImage } = calcCharacter({
     color: color as CharacterColorType,
     char: char as CharacterType,
   });
 
   return {
-    props: {
-      cardData: {
-        name: name ?? '데이터가 없습니다',
-        birth: birth ?? '데이터가 없습니다',
-        whatILike: whatILike ?? '데이터가 없습니다',
-        goal: goal ?? '데이터가 없습니다',
-        image: null,
-      },
-      character: {
-        name: characterName ?? 'Yellow_Lomi',
-        image: characterImage ?? '/characters/lumi.png',
-      },
+    cardData: {
+      name: (name as string) ?? '데이터가 없습니다',
+      birth: (birth as string) ?? '데이터가 없습니다',
+      whatILike: (whatILike as string) ?? '데이터가 없습니다',
+      goal: (goal as string) ?? '데이터가 없습니다',
+      image: '',
+    },
+    character: {
+      name: characterName ?? 'Yellow_Lomi',
+      image: characterImage ?? '/characters/lumi.png',
     },
   };
-}
+};
+
+// export async function getServerSideProps(context: GetServerSidePropsContext) {
+//   const { name, birth, whatILike, goal, color, char } = context.query;
+
+//   const { name: characterName, image: characterImage } = calcCharacter({
+//     color: color as CharacterColorType,
+//     char: char as CharacterType,
+//   });
+
+//   return {
+//     props: {
+//       cardData: {
+//         name: name ?? '데이터가 없습니다',
+//         birth: birth ?? '데이터가 없습니다',
+//         whatILike: whatILike ?? '데이터가 없습니다',
+//         goal: goal ?? '데이터가 없습니다',
+//         image: null,
+//       },
+//       character: {
+//         name: characterName ?? 'Yellow_Lomi',
+//         image: characterImage ?? '/characters/lumi.png',
+//       },
+//     },
+//   };
+// }
 
 interface ResultProps {
   cardData: CardDataType;
@@ -62,9 +98,19 @@ interface ResultProps {
   };
 }
 
-function Result({ cardData, character }: ResultProps) {
-  const cardRef = useRef(null);
+function Result() {
   const router = useRouter();
+  const { name, birth, whatILike, goal, color, char } = router.query;
+  console.log('router.query: ', router.query);
+  const { cardData, character } = getData({
+    name,
+    birth,
+    whatILike,
+    goal,
+    color,
+    char,
+  });
+  const cardRef = useRef(null);
   const [image, setImage] = useState(cardData.image);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -72,7 +118,7 @@ function Result({ cardData, character }: ResultProps) {
     setIsLoading(true);
 
     if (checkKakao() || Mobile()) {
-      window.alert('모바일 환경에서는 다운로드가 원활하지 않을 수 있습니다. ')
+      window.alert('모바일 환경에서는 다운로드가 원활하지 않을 수 있습니다. ');
       setTimeout(async () => {
         const imageUrl = await getImageUrl(cardRef);
         console.log('imageUrl: ', imageUrl);
