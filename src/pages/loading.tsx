@@ -1,3 +1,4 @@
+import GradientBox from '@/component/common/GradientBox';
 import Loading from '@/component/common/loading';
 import withLayout from '@/component/hoc/withLayout';
 import { mappingColorValue } from '@/utils/answer';
@@ -43,10 +44,10 @@ function LoadingPage() {
     value.current += 1;
     if (value.current >= 30) {
       const userData = getUserInputData();
-      router.push({
-        pathname: '/result/[type]',
-        query: { type: 1, ...userData },
-      });
+      // router.push({
+      //   pathname: '/result/[type]',
+      //   query: { type: 1, ...userData },
+      // });
     }
   };
 
@@ -60,11 +61,20 @@ function LoadingPage() {
 
   return (
     <Wrapper>
-      <MainText>Loading...</MainText>
-      {/* <Image src="/LOADING.png" alt="loading..." width={140} height={26} /> */}
-      <LoadingWrapper>
-        <Loading />
-      </LoadingWrapper>
+      <InnerWrapper>
+        <MainText>Loading...</MainText>
+        {/* <Image src="/LOADING.png" alt="loading..." width={140} height={26} /> */}
+        <LoadingWrapper>
+          <Loading />
+        </LoadingWrapper>
+
+        <GradientBox>
+          <GradientBoxInner>
+            <p>이 ID카드를 지참하셔서</p>
+            <p>고향별로 향하는 우주선 탑승 시 제시해주세요!</p>
+          </GradientBoxInner>
+        </GradientBox>
+      </InnerWrapper>
     </Wrapper>
   );
 }
@@ -80,11 +90,29 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 65px;
   height: 100vh;
   width: 100vw;
   max-width: 475px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+`;
+const InnerWrapper = styled.div`
+  width: 350px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+`;
+const GradientBoxInner = styled.div`
+  padding: 10px 0 17px;
+  text-align: center;
+
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+
+  color: ${({ theme }) => theme.colors.bg};
 `;
 
 const MainText = styled.div`
@@ -92,6 +120,7 @@ const MainText = styled.div`
   font-size: 28px;
   color: #fff;
 `;
+
 const LoadingWrapper = styled.div`
   width: fit-content;
   margin: 0 auto;

@@ -5,7 +5,7 @@ import CardTop from '@/component/result/IDCard/card-top';
 import { CharacterReturnType } from '@/utils/answer';
 import { getStorage } from '@/utils/storage';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { ChangeEvent, SyntheticEvent, useState } from 'react';
 import styled from 'styled-components';
 
 interface FrontProps extends CardDataType {
@@ -21,7 +21,8 @@ export default function Front({
 }: FrontProps) {
   const [imageError, setImageError] = useState(image ? false : true);
 
-  const handleImageError = () => {
+  const handleImageError = (e: SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = '/character/lumi_yellow.png';
     setImageError(true);
   };
 

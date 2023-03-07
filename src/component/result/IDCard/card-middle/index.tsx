@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 import CharacterBox from '@/component/result/IDCard/card-middle/character-box';
 import { CharacterReturnType } from '@/utils/answer';
+import { ChangeEvent, SyntheticEvent } from 'react';
+import { checkChrome, checkSafari } from '@/utils/device';
 
 interface CardMiddleProps {
   children: React.ReactNode;
   character: CharacterReturnType;
 
   image?: string;
-  handleImageError?: () => void;
+  handleImageError?: (e: SyntheticEvent<HTMLImageElement, Event>) => void;
   imageError?: boolean;
 }
 
@@ -36,9 +38,9 @@ export default function CardMiddle({
     <MiddleWrapper>
       <ImageWrapper>
         <RomiImageWrapper>
-          <Img src="/characters/lumi.png" width="60" height="48" alt="image" />
+          <img src="/characters/lumi.png" width="60" height="48" alt="image" />
         </RomiImageWrapper>
-        <Img
+        <img
           src={image}
           width="90"
           height="120"

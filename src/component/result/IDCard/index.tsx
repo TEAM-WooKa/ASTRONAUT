@@ -38,24 +38,21 @@ export default function IDCard({ cardRef, cardData, character }: IDCardProps) {
     };
   }, []);
 
-  if (isLoading) {
-    return (
-      <Card>
-        <Face>
-          <FullCenter>
-            <Image
-              src="/images/pink-loading.svg"
-              width={50}
-              height={50}
-              alt="loading"
-            />
-          </FullCenter>
-        </Face>
-      </Card>
-    );
-  }
   return (
     <Card onClick={onClick} className={isRotate ? 'rotate' : ''}>
+      {isLoading && (
+        <Face>
+          <LoadingWrapper>
+            <img
+              src="/images/pink-loading.svg"
+              width="50px"
+              height="50px"
+              alt="loading"
+            />
+          </LoadingWrapper>
+        </Face>
+      )}
+
       <FrontWrapper
         ref={!isRotate ? cardRef : null}
         className="front"
@@ -71,6 +68,13 @@ export default function IDCard({ cardRef, cardData, character }: IDCardProps) {
     </Card>
   );
 }
+
+const LoadingWrapper = styled(FullCenter)`
+  position: absolute;
+  background-color: #3c3c3c34;
+  z-index: 10;
+  border-radius: 13px;
+`;
 
 const Card = styled.div`
   width: 350px;

@@ -18,3 +18,10 @@ export const checkKakao = () => {
     return false;
   }
 };
+
+export const checkSafari = () => {
+  return /Safari/i.test(navigator.userAgent);
+};
+export const checkChrome = () => {
+  return /Chrome/i.test(navigator.userAgent);
+};

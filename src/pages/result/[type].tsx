@@ -1,13 +1,11 @@
 import DownloadIcon from '@/assets/icons/DownloadIcon';
 import ReplayIcon from '@/assets/icons/ReplayIcon';
 import ShareIcon from '@/assets/icons/ShareIcon';
-import GradientBorderBox from '@/component/common/GradientBorderBox';
 import withLayout from '@/component/hoc/withLayout';
 import { useRouter } from 'next/router';
-import { MutableRefObject, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import IDCard, { CardDataType } from '@/component/result/IDCard';
-import { toPng } from 'html-to-image';
 import { GetServerSidePropsContext } from 'next';
 import { checkKakao, Mobile } from '@/utils/device';
 import Content from '@/component/result/content';
@@ -18,6 +16,7 @@ import {
   CharacterType,
 } from '@/utils/answer';
 import { downloadImage, getImageUrl } from '@/utils/image';
+import Image from 'next/image';
 
 const getImagedata = () => {
   const data = getStorage('user');
@@ -67,25 +66,31 @@ function Result({ cardData, character }: ResultProps) {
   const cardRef = useRef(null);
   const router = useRouter();
   const [image, setImage] = useState(cardData.image);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleDownloadImage = async () => {
-    if (checkKakao() || Mobile()) {
-      console.log('mobile');
-      const imageUrl = await getImageUrl(cardRef);
-      console.log('imageUrl: ', imageUrl);
-      if (imageUrl) {
-        localStorage.setItem('card-image', imageUrl);
+    setIsLoading(true);
 
-        router.push({
-          pathname: '/result/img',
-          query: { image: imageUrl },
-        });
-      }
+    if (checkKakao() || Mobile()) {
+      setTimeout(async () => {
+        const imageUrl = await getImageUrl(cardRef);
+        console.log('imageUrl: ', imageUrl);
+        if (imageUrl) {
+          localStorage.setItem('card-image', imageUrl);
+
+          router.push({
+            pathname: '/result/img',
+            query: { image: imageUrl },
+          });
+        }
+
+        setIsLoading(false);
+        return;
+      }, 1000);
       return;
     }
-
-    downloadImage(cardRef);
+    await downloadImage(cardRef);
+    setIsLoading(false);
   };
 
   const onDownloadBtn = () => {
@@ -93,7 +98,6 @@ function Result({ cardData, character }: ResultProps) {
   };
 
   useEffect(() => {
-    setIsLoading(true);
     const image = getImagedata();
     setImage(image);
     setIsLoading(false);
@@ -117,7 +121,16 @@ function Result({ cardData, character }: ResultProps) {
       />
       <ShareWrapper>
         <span onClick={onDownloadBtn}>
-          <DownloadIcon />
+          {isLoading ? (
+            <Image
+              src="/images/pink-loading.svg"
+              alt="loading"
+              width={38}
+              height={38}
+            />
+          ) : (
+            <DownloadIcon />
+          )}
         </span>
         <ShareIcon />
         <ReplayIcon />
