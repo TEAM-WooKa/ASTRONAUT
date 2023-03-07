@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useRef, useEffect } from 'react';
 import styled from 'styled-components';
+import LoadingSvg from '@/assets/images/loading.svg';
 
 const calcResult = (answers: { id: number; answer: string }[]) => {
   const color = answers[1].answer;
@@ -44,10 +45,10 @@ function LoadingPage() {
     value.current += 1;
     if (value.current >= 30) {
       const userData = getUserInputData();
-      router.push({
-        pathname: '/result/[type]',
-        query: { type: 1, ...userData },
-      });
+      // router.push({
+      //   pathname: '/result/[type]',
+      //   query: { type: 1, ...userData },
+      // });
     }
   };
 
@@ -62,8 +63,15 @@ function LoadingPage() {
   return (
     <Wrapper>
       <InnerWrapper>
-        <MainText>Loading...</MainText>
-        {/* <Image src="/LOADING.png" alt="loading..." width={140} height={26} /> */}
+        <MainText>
+          <Image
+            src="/images/loading.svg"
+            alt="loading..."
+            width={155}
+            height={43}
+          />
+        </MainText>
+
         <LoadingWrapper>
           <Loading />
         </LoadingWrapper>
@@ -119,6 +127,15 @@ const MainText = styled.div`
   font-family: 'Space Rave';
   font-size: 28px;
   color: #fff;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 26px;
+  /* identical to box height, or 93% */
+
+  /* 보조 컬러 2 */
+
+  color: #f1f1f1;
 `;
 
 const LoadingWrapper = styled.div`
