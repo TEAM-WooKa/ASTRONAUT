@@ -1,4 +1,5 @@
 import { checkChrome } from '@/utils/device';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 interface CardBottomProps {
@@ -6,7 +7,11 @@ interface CardBottomProps {
   star?: string;
 }
 export default function CardBottom({ star }: CardBottomProps) {
-  const isChrome = checkChrome();
+  const [isChrome, setIsChrome] = useState(false);
+
+  useEffect(() => {
+    setIsChrome(/Chrome/i.test(window.navigator.userAgent));
+  }, []);
 
   return (
     <BottomWrapper>

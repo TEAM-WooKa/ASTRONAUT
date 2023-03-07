@@ -1,47 +1,27 @@
-import styled from 'styled-components';
-import CharacterBox from '@/component/result/IDCard/card-middle/character-box';
 import { CharacterReturnType } from '@/utils/answer';
-import { ChangeEvent, SyntheticEvent } from 'react';
-import { checkChrome, checkSafari } from '@/utils/device';
-
+import image from 'next/image';
+import { SyntheticEvent } from 'react';
+import styled from 'styled-components';
 interface CardMiddleProps {
   children: React.ReactNode;
   character: CharacterReturnType;
 
   image?: string;
   handleImageError?: (e: SyntheticEvent<HTMLImageElement, Event>) => void;
-  imageError?: boolean;
 }
 
-// TODO : character context api 사용하기, props drilling 이 너무 김, context api 사용하면서 불필요한 props 삭제하기
-// 적용하면서 글쓰기
-export default function CardMiddle({
-  children,
+export default function UserMiddle({
   image,
   handleImageError,
-  imageError,
-  character,
+  children,
 }: CardMiddleProps) {
-  // NOTE : 난 도저히 여기에서 image가 undefind가 되는 이유를 알수 없다.
-  if (imageError || !image) {
-    return (
-      <MiddleWrapper>
-        <CharacterBox
-          name={character?.name ?? 'Lomi'}
-          image={character?.image ?? '/characters/lumi_yellow.png'}
-        />
-        <TextWrapper>{children}</TextWrapper>
-      </MiddleWrapper>
-    );
-  }
-
   return (
     <MiddleWrapper>
-      {/* <ImageWrapper>
+      <ImageWrapper>
         <RomiImageWrapper>
-          <img src="/characters/lumi.png" width="60" height="48" alt="image" />
+          <Img src="/characters/lumi.png" width="60" height="48" alt="image" />
         </RomiImageWrapper>
-        <img
+        <Img
           src={image}
           width="90"
           height="120"
@@ -49,7 +29,7 @@ export default function CardMiddle({
           onError={handleImageError}
         />
       </ImageWrapper>
-      <TextWrapper>{children}</TextWrapper> */}
+      <TextWrapper>{children}</TextWrapper>
     </MiddleWrapper>
   );
 }

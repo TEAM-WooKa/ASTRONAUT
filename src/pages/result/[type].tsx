@@ -101,7 +101,6 @@ interface ResultProps {
 function Result() {
   const router = useRouter();
   const { name, birth, whatILike, goal, color, char } = router.query;
-  console.log('router.query: ', router.query);
   const { cardData, character } = getData({
     name,
     birth,
