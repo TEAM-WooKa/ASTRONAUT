@@ -17,6 +17,7 @@ import {
 } from '@/utils/answer';
 import { downloadImage, getImageUrl } from '@/utils/image';
 import Image from 'next/image';
+import IconBox from '@/component/result/icon-box';
 
 const getImagedata = () => {
   const data = getStorage('user');
@@ -164,32 +165,10 @@ function Result() {
         cardData={{ ...cardData, image }}
         character={character}
       />
-      <ShareWrapper>
-        <span onClick={onDownloadBtn}>
-          {isLoading ? (
-            <Image
-              src="/images/pink-loading.svg"
-              alt="loading"
-              width={38}
-              height={38}
-            />
-          ) : (
-            <DownloadIcon />
-          )}
-        </span>
-        <ShareIcon />
-        <ReplayIcon />
-      </ShareWrapper>
+      <IconBox isLoading={isLoading} onDownloadBtn={onDownloadBtn} />
       <Content />
     </>
   );
 }
-
-const ShareWrapper = styled.div`
-  display: flex;
-  margin: 35px 0 20px;
-  gap: 75px;
-  justify-content: center;
-`;
 
 export default withLayout(Result, '우주인 결과', '우주인 테스트 결과 페이지');
