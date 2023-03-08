@@ -1,7 +1,6 @@
 import DownloadIcon from '@/assets/icons/DownloadIcon';
 import ReplayIcon from '@/assets/icons/ReplayIcon';
 import ShareIcon from '@/assets/icons/ShareIcon';
-import { clip } from '@/utils/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
@@ -14,8 +13,9 @@ interface IconBoxProps {
 export default function IconBox({ isLoading, onDownloadBtn }: IconBoxProps) {
   const router = useRouter();
 
-  const onShareClick = () => {
-    clip();
+  const onShareClick = async () => {
+    await navigator.clipboard.writeText(window.location.href);
+    alert('클립보드에 복사되었습니다.');
   };
 
   return (
