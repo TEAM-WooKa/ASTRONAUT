@@ -15,7 +15,11 @@ export default function FourChoice({
   return (
     <Wrapper>
       {answer.map((item) => (
-        <AnswerButton content={item} onClick={() => handleAnswerClick(item)} />
+        <AnswerButton
+          key={item}
+          content={item}
+          onClick={() => handleAnswerClick(item)}
+        />
       ))}
     </Wrapper>
   );

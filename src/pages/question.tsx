@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -6,7 +6,7 @@ import withLayout from '@/component/hoc/withLayout';
 import ProgressBar from '@/component/question/progress-bar';
 import GradientBox from '@/component/common/GradientBox';
 import Answer from '@/component/question/answer';
-import { QUESTION_DATA } from '@/component/question/data';
+import { QUESTION_DATA, subQuestion2 } from '@/component/question/data';
 import { setStorage } from '@/utils/storage';
 import { mappingColorValue, getColorImageUrl } from '@/utils/answer';
 
@@ -24,14 +24,41 @@ function Question() {
   const [answerColorStatus, setAnswerColorStatus] = useState('3');
   const questionIndex = answers.length;
 
-  const currentQuestion = questions[questionIndex];
+  const currentQuestion = useMemo(() => {
+    if (questions[questionIndex]?.type === 'sub') {
+      // id 2
+      const prevAnswer = answers[questionIndex - 1].answer;
+      const prevAnswerIdx = [
+        '일기장',
+        '좋아하는 책',
+        '꽃이 담긴 화분',
+        '카메라',
+      ].indexOf(prevAnswer);
+      return subQuestion2[prevAnswerIdx];
+    }
+    return questions[questionIndex];
+  }, [questionIndex]);
 
   const getNewAnswer = (answer: string) => {
-    if (currentQuestion.id === 2) {
+    if (currentQuestion.id === 3) {
       const colorValue = answer as keyof typeof mappingColorValue;
       answer = mappingColorValue[colorValue];
     }
-
+    if (currentQuestion.id === 4 && answer === 'NO') {
+      const newAnswer = [
+        ...answers,
+        {
+          id: 4,
+          answer,
+        },
+        {
+          id: 5,
+          answer,
+        },
+      ];
+      setAnswers(newAnswer);
+      return newAnswer;
+    }
     const newAnswer = [
       ...answers,
       {
@@ -47,6 +74,7 @@ function Question() {
 
   const handleAnswerClick = (answer: string) => {
     const newAnswer = getNewAnswer(answer);
+
     if (questionIndex === QUESTION_END_CNT - 1) {
       // TODO  : recoil 적용 생각중
       setStorage('astronauts-answers', JSON.stringify(newAnswer));

@@ -1,19 +1,17 @@
+export type QuestionCategory = 'button-2' | 'color' | 'button-4' | 'sub';
 export interface QuestionType {
   id: number;
-  type: 'button-2' | 'color' | 'button-4' | 'sub';
+  type: QuestionCategory;
   question: string[];
   answer?: string[];
   character: string;
 }
 
-interface SubQuestionType extends QuestionType {
-  subId: number;
-}
+interface SubQuestionType extends QuestionType {}
 
-export const Question2: SubQuestionType[] = [
+export const subQuestion2: SubQuestionType[] = [
   {
     id: 2,
-    subId: 1,
     type: 'button-4',
     question: ['일기에 어떤 내용을 기록하나요?'],
     answer: ['일상', '다짐', '행복한 기억', '중요한 약속'],
@@ -21,7 +19,6 @@ export const Question2: SubQuestionType[] = [
   },
   {
     id: 2,
-    subId: 2,
     type: 'button-4',
     question: ['어떤 장르의 책을 가져가고 싶나요?'],
     answer: ['소설', '과학책', '전공책', '미술책'],
@@ -29,7 +26,6 @@ export const Question2: SubQuestionType[] = [
   },
   {
     id: 2,
-    subId: 3,
     type: 'button-4',
     question: ['그 꽃은 어떤 꽃인가요?'],
     answer: ['장미', '허브', '프리지아', '이름모를 꽃'],
@@ -37,7 +33,6 @@ export const Question2: SubQuestionType[] = [
   },
   {
     id: 2,
-    subId: 4,
     type: 'button-2',
     question: ['카메라로 어떤 것 찍고 싶으세요?'],
     answer: ['인물', '풍경', '정물', '꽃'],
@@ -67,7 +62,8 @@ export const QUESTION_DATA: QuestionType[] = [
     id: 3,
     type: 'color',
     question: [
-      '우주선 밖으로 행성이 보이네요! 무슨 색인가요?',
+      '우주선 밖으로 행성이 보이네요! ',
+      '무슨 색인가요?',
       '(별을 슬라이드하여 색을 선택할 수 있습니다.)',
     ],
     character: 'lumy', // 필요없음
@@ -76,7 +72,8 @@ export const QUESTION_DATA: QuestionType[] = [
     id: 4,
     type: 'button-2',
     question: [
-      '우주인님은 우주에 인간을 제외한 지적 생명체가 있다고 생각하시나요?',
+      '우주인님은 우주에 인간을 제외한 ',
+      '지적 생명체가 있다고 생각하시나요?',
     ],
     character: 'yellow_lanny',
   },
