@@ -166,7 +166,6 @@ const QuestionInnerBox = styled.div`
 
 const getQuestionCharacterImage = (question: QuestionType) => {
   const imageURL = `/problem/${question.color}_${question.character}.png`;
-  console.log('imageURL: ', imageURL);
   const { width, height } = getCharacterImageSize(question.character);
 
   return (
