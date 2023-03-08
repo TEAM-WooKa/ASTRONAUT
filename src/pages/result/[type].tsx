@@ -131,7 +131,6 @@ function Result() {
         }
 
         setIsLoading(false);
-        return;
       }, 1000);
       return;
     }

@@ -23,20 +23,10 @@ interface IDCardProps {
 
 export default function IDCard({ cardRef, cardData, character }: IDCardProps) {
   const [isRotate, setIsRotate] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const onClick = () => {
     setIsRotate(!isRotate);
   };
-
-  useEffect(() => {
-    let timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 300);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
 
   return (
     <Card onClick={onClick} className={isRotate ? 'rotate' : ''}>
