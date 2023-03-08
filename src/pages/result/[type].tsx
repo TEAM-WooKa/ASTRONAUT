@@ -120,7 +120,6 @@ function Result() {
       window.alert('모바일 환경에서는 다운로드가 원활하지 않을 수 있습니다. ');
       setTimeout(async () => {
         const imageUrl = await getImageUrl(cardRef);
-        console.log('imageUrl: ', imageUrl);
         if (imageUrl) {
           localStorage.setItem('card-image', imageUrl);
 

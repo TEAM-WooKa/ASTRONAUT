@@ -2,18 +2,16 @@ import { GradientButtonStyled } from '@/assets/styles/gradient';
 import Color from '@/component/question/answer/color';
 import FourChoice from '@/component/question/answer/four-choice';
 import SecondChoice from '@/component/question/answer/second-choice';
+import { QuestionCategory } from '@/component/question/data';
 import { ChangeEvent } from 'react';
-import styled from 'styled-components';
-
-type HandleAnswerClickType = (answer: string) => void;
 
 interface AnswerProps {
-  type: 'button-2' | 'color' | 'button-4';
+  type: QuestionCategory;
   answer?: string[];
   answerColorStatus: string;
   handleAnswerChange: (e: ChangeEvent<HTMLInputElement>) => void;
 
-  handleAnswerClick: HandleAnswerClickType;
+  handleAnswerClick: (answer: string) => void;
 }
 
 export default function Answer({
@@ -40,5 +38,6 @@ export default function Answer({
       />
     );
   }
+
   return <div>Answer</div>;
 }

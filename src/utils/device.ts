@@ -8,7 +8,6 @@ export function Mobile() {
 export const checkKakao = () => {
   if (typeof window === 'undefined') return false;
   console.log('window.navigator.userAgent: ', window.navigator.userAgent);
-  console.log();
   if (/KAKAOTALK/i.test(window.navigator.userAgent)) {
     // Open the link in a new window
     // alert('카카오톡에서는 다운로드가 지원되지 않습니다.');
