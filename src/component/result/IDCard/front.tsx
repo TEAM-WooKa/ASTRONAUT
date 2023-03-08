@@ -1,60 +1,98 @@
+import { CardDataType } from '@/component/result/IDCard';
 import CardBottom from '@/component/result/IDCard/card-bottom';
 import CardMiddle from '@/component/result/IDCard/card-middle';
+import UserMiddle from '@/component/result/IDCard/card-middle/user-middle';
 import CardTop from '@/component/result/IDCard/card-top';
+import { CharacterReturnType } from '@/utils/answer';
 import { getStorage } from '@/utils/storage';
 import { useRouter } from 'next/router';
+import { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const getImagedata = () => {
-  const data = getStorage('user');
-  if (data === null) return null;
+interface FrontProps extends CardDataType {
+  character: CharacterReturnType;
+}
+export default function Front({
+  name,
+  birth,
+  whatILike,
+  goal,
+  image,
+  character,
+}: FrontProps) {
+  const [imageError, setImageError] = useState(false);
 
-  const { image } = JSON.parse(data);
-  if (image) {
-    return image;
-  }
-  return null;
-};
+  const handleImageError = (e: SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = '/character/lumi_yellow.png';
+    setImageError(true);
+  };
 
-export default function Front({}) {
-  const router = useRouter();
-  const image = getImagedata();
-  const { name, birth, whatILike, goal } = router.query;
+  useEffect(() => {
+    setImageError(image ? false : true);
+  }, [image]);
 
   return (
     <InnerFace>
       <CardTop />
-      <CardMiddle
-        // TODO : 이미지 없을경우 기본 이미지로
-        image={image ?? '/Weverse_albums_OMG_C_HAERIN_2_1677318532 1.png'}
-        subImage="/romi.png"
-      >
-        <FrontTextWrapper>
-          <div>
-            <span>NAME :</span> <span>{name ?? '데이터가 없습니다'}</span>
-          </div>
-          <div>
-            <span>BIRTH DATE :</span>
-            <span>{birth ?? '데이터가 없습니다'}</span>
-          </div>
-          <div>
-            <span>LINING IN :</span> <span>{'지구별'}</span>
-          </div>
-          <div>
-            <span>WAHT I LIKE :</span>
-            <span>{whatILike ?? '데이터가 없습니다'}</span>
-          </div>
-          <div>
-            <span>GOAL :</span> <span>{goal ?? '데이터가 없습니다'}</span>
-          </div>
-        </FrontTextWrapper>
-      </CardMiddle>
+      {image || !imageError ? (
+        <UserMiddle image={image} character={character}>
+          <MiddleInner
+            name={name}
+            birth={birth}
+            whatILike={whatILike}
+            goal={goal}
+          />
+        </UserMiddle>
+      ) : (
+        <CardMiddle
+          image={image}
+          character={character}
+          handleImageError={handleImageError}
+          imageError={imageError}
+        >
+          <MiddleInner
+            name={name}
+            birth={birth}
+            whatILike={whatILike}
+            goal={goal}
+          />
+        </CardMiddle>
+      )}
 
-      <CardBottom />
+      <CardBottom star={!imageError ? character.name : undefined} />
     </InnerFace>
   );
 }
 
+interface MiddleInnerProps {
+  name?: string;
+  birth?: string;
+  whatILike?: string;
+  goal?: string;
+}
+function MiddleInner({ name, birth, whatILike, goal }: MiddleInnerProps) {
+  return (
+    <FrontTextWrapper>
+      <div>
+        <span>NAME :</span> <span>{name ?? '데이터가 없습니다'}</span>
+      </div>
+      <div>
+        <span>BIRTH DATE :</span>
+        <span>{birth ?? '데이터가 없습니다'}</span>
+      </div>
+      <div>
+        <span>LINING IN :</span> <span>{'지구별'}</span>
+      </div>
+      <div>
+        <span>WAHT I LIKE :</span>
+        <span>{whatILike ?? '데이터가 없습니다'}</span>
+      </div>
+      <div>
+        <span>GOAL :</span> <span>{goal ?? '데이터가 없습니다'}</span>
+      </div>
+    </FrontTextWrapper>
+  );
+}
 const InnerFace = styled.div`
   padding: 11px 18px;
 

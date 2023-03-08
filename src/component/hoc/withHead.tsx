@@ -10,7 +10,7 @@ function withHead(
     return (
       <>
         <Head>
-          <title>{title}</title>
+          <title>우주인 ID card</title>
           <meta name="description" content={description} />
         </Head>
 

@@ -1,13 +1,22 @@
+import { checkChrome } from '@/utils/device';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 interface CardBottomProps {
-  isBack?: boolean;
+  // isBack?: boolean;
+  star?: string;
 }
-export default function CardBottom({ isBack = false }: CardBottomProps) {
+export default function CardBottom({ star }: CardBottomProps) {
+  const [isChrome, setIsChrome] = useState(false);
+
+  useEffect(() => {
+    setIsChrome(/Chrome/i.test(window.navigator.userAgent));
+  }, []);
+
   return (
     <BottomWrapper>
-      {<Tag isBack={isBack}>FROM : Yellow_Lumy</Tag>}
-      <Desc>
+      <Tag isHidden={!star}>FROM : {star}</Tag>
+      <Desc isScale={isChrome}>
         <p>이 카드를 소지한 사람은 별에서 온 우주인임을 증명합니다.</p>
         <p> This card certifies the bearer as a astronaut.</p>
       </Desc>
@@ -20,9 +29,9 @@ const BottomWrapper = styled.div`
   display: flex;
 `;
 
-const Tag = styled.div<{ isBack: boolean }>`
-  width: 115px;
-  min-width: 115px;
+const Tag = styled.div<{ isHidden: boolean }>`
+  width: 123px;
+  min-width: 123px;
   font-family: 'GongGothicMedium';
   font-weight: 700;
   font-size: 10px;
@@ -36,15 +45,18 @@ const Tag = styled.div<{ isBack: boolean }>`
   position: relative;
   left: -5px;
 
-  visibility: ${(props) => (props.isBack ? 'hidden' : 'visible')};
+  visibility: ${(props) => (props.isHidden ? 'hidden' : 'visible')};
 `;
 
-const Desc = styled.div`
+const Desc = styled.div<{ isScale: boolean }>`
   /* width: 120%; */
   font-weight: 300;
   font-size: 8px;
   line-height: 10px;
-  transform: translate(-8%, -0%) scale(0.75);
+
+  transform: ${(props) =>
+    props.isScale ? 'translate(-8%, -0%) scale(0.75)' : ''};
+
   display: inline-block;
   text-align: right;
   color: #343232;

@@ -30,6 +30,7 @@ export const GradientBoxStyled = styled.div`
 export const GradientButtonStyled = styled.button`
   width: 100%;
   height: 70px;
+  color: ${(props) => props.theme.colors.main2};
 
   font-family: 'Space-Quest';
   font-style: italic;

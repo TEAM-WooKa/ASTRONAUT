@@ -1,46 +1,82 @@
 import { GradientBoxStyled } from '@/assets/styles/gradient';
 import Back from '@/component/result/IDCard/back';
 import Front from '@/component/result/IDCard/front';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Image from 'next/image';
+import { FlexCenter, FullCenter } from '@/component/core/Flex';
+import { CharacterReturnType } from '@/utils/answer';
+
+export interface CardDataType {
+  name: string;
+  birth: string;
+  whatILike: string;
+  goal: string;
+  image: string;
+}
 
 interface IDCardProps {
   cardRef: any;
+  cardData: CardDataType;
+  character: CharacterReturnType;
 }
 
-export default function IDCard({ cardRef }: IDCardProps) {
+export default function IDCard({ cardRef, cardData, character }: IDCardProps) {
   const [isRotate, setIsRotate] = useState<boolean>(false);
-
+  const [isLoading, setIsLoading] = useState(false);
   const onClick = () => {
     setIsRotate(!isRotate);
   };
 
   return (
     <Card onClick={onClick} className={isRotate ? 'rotate' : ''}>
-      <FrontWrapper ref={!isRotate ? cardRef : null} className="front">
-        <Front />
+      {isLoading && (
+        <Face>
+          <LoadingWrapper>
+            <img
+              src="/images/pink-loading.svg"
+              width="50px"
+              height="50px"
+              alt="loading"
+            />
+          </LoadingWrapper>
+        </Face>
+      )}
+
+      <FrontWrapper
+        ref={!isRotate ? cardRef : null}
+        className="front"
+        id="dom-element"
+      >
+        <Front character={character} {...cardData} />
       </FrontWrapper>
       <BackWrapper ref={isRotate ? cardRef : null} className="back">
         <InnerFace>
-          <Back />
+          <Back character={character} />
         </InnerFace>
       </BackWrapper>
     </Card>
   );
 }
 
+const LoadingWrapper = styled(FullCenter)`
+  position: absolute;
+  background-color: #3c3c3c34;
+  z-index: 10;
+  border-radius: 13px;
+`;
+
 const Card = styled.div`
-  max-width: 350px;
   width: 350px;
   margin: 10px auto;
   height: 220px; //? 수정 필요? 220px 으로
   perspective: 600px;
   position: relative;
   cursor: pointer;
-
   .front,
   .back {
     transition: all 0.5s ease-in-out;
+    backface-visibility: hidden;
   }
   .front {
     z-index: 1;
@@ -72,9 +108,6 @@ const Face = styled(GradientBoxStyled)`
       rgba(199, 121, 208, 1) 50%,
       rgba(75, 192, 200, 1) 100%
     );
-
-  gap: 30px;
-  padding: 1px;
 
   position: absolute;
   top: 0;

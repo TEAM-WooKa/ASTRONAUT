@@ -1,4 +1,5 @@
 import GradientBorderBox from '@/component/common/GradientBorderBox';
+import DateBox from '@/component/user/date-box';
 import { ChangeEvent } from 'react';
 import styled from 'styled-components';
 
@@ -26,18 +27,7 @@ export default function UserInputBox({
           onChange={onChange}
           value={name}
         />
-        <DateInputWrapper>
-          <label htmlFor="date">입력하기</label>
-
-          <DateInput
-            type="date"
-            id="date"
-            placeholder="지구별 생일을 알려주세요."
-            onChange={onChange}
-            value={birth}
-            name="birth"
-          />
-        </DateInputWrapper>
+        <DateBox birth={birth} onChange={onChange} />
         <FileInput>
           <FileInputLabel htmlFor="file" isSelected={isFileSelected}>
             {isFileSelected ? '사진이 등록되었습니다.' : '사진을 등록해주세요.'}
@@ -55,7 +45,12 @@ export default function UserInputBox({
     </GradientBorderBox>
   );
 }
+
 const Input = styled.input`
+  font-size: 16px;
+
+  width: 100%;
+
   height: 40px;
   padding: 11px 16px;
   /* Gray/01 */
@@ -67,26 +62,6 @@ const Input = styled.input`
 
   &::placeholder {
     color: #bdbdbd;
-    font-weight: bold;
-  }
-`;
-const DateInput = styled(Input)`
-  width: 100%;
-  /* NOTE: text color 변경 https://yoonsidae.tistory.com/80 */
-  &::-webkit-datetime-edit-text,
-  &::-webkit-datetime-edit-month-field,
-  &::-webkit-datetime-edit-day-field,
-  &::-webkit-datetime-edit-year-field {
-    color: #bdbdbd;
-  }
-
-  ::-webkit-calendar-picker-indicator {
-    color: rgba(0, 0, 0, 0); //숨긴다
-    opacity: 0;
-    width: 100px;
-    display: block;
-    position: relative;
-    border-width: thin;
   }
 `;
 
@@ -96,6 +71,7 @@ const FileInput = styled.div`
   border-radius: 8px;
   border: 1px solid #e8e8e8;
   height: 40px;
+  font-size: 16px;
 
   display: inline-flex;
 
@@ -143,16 +119,4 @@ const InputBoxInner = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-`;
-
-const DateInputWrapper = styled.div`
-  position: relative;
-  label {
-    color: ${(props) => props.theme.colors[3]};
-    padding: 11px 16px;
-
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
 `;
