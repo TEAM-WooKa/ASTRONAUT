@@ -6,7 +6,11 @@ import withLayout from '@/component/hoc/withLayout';
 import ProgressBar from '@/component/question/progress-bar';
 import GradientBox from '@/component/common/GradientBox';
 import Answer from '@/component/question/answer';
-import { QUESTION_DATA, subQuestion2 } from '@/component/question/data';
+import {
+  QuestionType,
+  QUESTION_DATA,
+  subQuestion2,
+} from '@/component/question/data';
 import { setStorage } from '@/utils/storage';
 import { mappingColorValue, getColorImageUrl } from '@/utils/answer';
 
@@ -38,9 +42,10 @@ function Question() {
     }
     return questions[questionIndex];
   }, [questionIndex]);
+  const isColorQuestion = currentQuestion?.id === 3;
 
   const getNewAnswer = (answer: string) => {
-    if (currentQuestion.id === 3) {
+    if (isColorQuestion) {
       const colorValue = answer as keyof typeof mappingColorValue;
       answer = mappingColorValue[colorValue];
     }
@@ -102,15 +107,19 @@ function Question() {
       <ProgressBar percent={questionIndex * 10} />
       <div>
         <ImageBox>
-          <Image
-            src={getColorImageUrl(answerColorStatus)}
-            alt="space image"
-            width={250}
-            height={191}
-            placeholder="blur"
-            blurDataURL={'/images/blur.webp'}
-            priority
-          />
+          {isColorQuestion ? (
+            <Image
+              src={getColorImageUrl(answerColorStatus)}
+              alt="character image"
+              width={250}
+              height={191}
+              placeholder="blur"
+              blurDataURL={'/images/blur.webp'}
+              priority
+            />
+          ) : (
+            getQuestionCharacterImage(currentQuestion)
+          )}
         </ImageBox>
         <GradientBox title={`Q${questionIndex + 1}`}>
           <QuestionInnerBox>
@@ -155,6 +164,53 @@ const QuestionInnerBox = styled.div`
   color: ${(props) => props.theme.colors.bg};
 `;
 
+const getQuestionCharacterImage = (question: QuestionType) => {
+  const imageURL = `/problem/${question.color}_${question.character}.png`;
+  console.log('imageURL: ', imageURL);
+  const { width, height } = getCharacterImageSize(question.character);
+
+  return (
+    <Image
+      src={imageURL}
+      alt="character image"
+      width={width}
+      height={height}
+      placeholder="blur"
+      blurDataURL={'/images/blur.webp'}
+      priority
+    />
+  );
+};
+
+const getCharacterImageSize = (
+  character: string,
+): {
+  width: number;
+  height: number;
+} => {
+  switch (character) {
+    case 'lumy':
+      return {
+        width: 258,
+        height: 191,
+      };
+    case 'lanny':
+      return {
+        width: 269,
+        height: 191,
+      };
+    case 'dake': //TODO :크기 맞는지 확인
+      return {
+        width: 167,
+        height: 191,
+      };
+    default:
+      return {
+        width: 258,
+        height: 191,
+      };
+  }
+};
 export default withLayout(
   Question,
   '우주인 테스트',
