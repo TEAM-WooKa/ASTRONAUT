@@ -1,6 +1,7 @@
 import { GradientButtonStyled } from '@/assets/styles/gradient';
 import Color from '@/component/question/answer/color';
 import FourChoice from '@/component/question/answer/four-choice';
+import FourLong from '@/component/question/answer/fout-long';
 import SecondChoice from '@/component/question/answer/second-choice';
 import { QuestionCategory } from '@/component/question/data';
 import { ChangeEvent } from 'react';
@@ -29,6 +30,12 @@ export default function Answer({
       <FourChoice handleAnswerClick={handleAnswerClick} answer={answer ?? []} />
     );
   }
+  if (type === 'long-4') {
+    return (
+      <FourLong handleAnswerClick={handleAnswerClick} answer={answer ?? []} />
+    );
+  }
+
   if (type === 'color') {
     return (
       <Color

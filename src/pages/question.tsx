@@ -10,6 +10,7 @@ import {
   QuestionType,
   QUESTION_DATA,
   subQuestion2,
+  subQuestion5,
 } from '@/component/question/data';
 import { setStorage } from '@/utils/storage';
 import { mappingColorValue, getColorImageUrl } from '@/utils/answer';
@@ -29,19 +30,28 @@ function Question() {
   const questionIndex = answers.length;
 
   const currentQuestion = useMemo(() => {
-    if (questions[questionIndex]?.type === 'sub') {
+    const thisQuestion = questions[questionIndex];
+    if (thisQuestion?.type === 'sub') {
       // id 2
-      const prevAnswer = answers[questionIndex - 1].answer;
-      const prevAnswerIdx = [
-        '일기장',
-        '좋아하는 책',
-        '꽃이 담긴 화분',
-        '카메라',
-      ].indexOf(prevAnswer);
-      return subQuestion2[prevAnswerIdx];
+      if (thisQuestion.id === 2) {
+        const prevAnswer = answers[questionIndex - 1].answer;
+        const prevAnswerIdx = [
+          '일기장',
+          '좋아하는 책',
+          '꽃이 담긴 화분',
+          '카메라',
+        ].indexOf(prevAnswer);
+        return subQuestion2[prevAnswerIdx];
+      }
+      if (thisQuestion.id === 5) {
+        const prevAnswer = answers[questionIndex - 1].answer;
+        const prevAnswerIdx = ['YES', 'NO'].indexOf(prevAnswer);
+        return subQuestion5[prevAnswerIdx];
+      }
     }
-    return questions[questionIndex];
+    return thisQuestion;
   }, [questionIndex]);
+
   const isColorQuestion = currentQuestion?.id === 3;
 
   const getNewAnswer = (answer: string) => {
@@ -49,21 +59,21 @@ function Question() {
       const colorValue = answer as keyof typeof mappingColorValue;
       answer = mappingColorValue[colorValue];
     }
-    if (currentQuestion.id === 4 && answer === 'NO') {
-      const newAnswer = [
-        ...answers,
-        {
-          id: 4,
-          answer,
-        },
-        {
-          id: 5,
-          answer,
-        },
-      ];
-      setAnswers(newAnswer);
-      return newAnswer;
-    }
+    // if (currentQuestion.id === 4 && answer === 'NO') {
+    //   const newAnswer = [
+    //     ...answers,
+    //     {
+    //       id: 4,
+    //       answer,
+    //     },
+    //     {
+    //       id: 5,
+    //       answer,
+    //     },
+    //   ];
+    //   setAnswers(newAnswer);
+    //   return newAnswer;
+    // }
     const newAnswer = [
       ...answers,
       {

@@ -1,18 +1,93 @@
 import GradientBox from '@/component/common/GradientBox';
 import Loading from '@/component/common/loading';
 import withLayout from '@/component/hoc/withLayout';
+import {
+  QUESTION_DATA,
+  subQuestion2,
+  subQuestion5,
+} from '@/component/question/data';
 import { getStorage } from '@/utils/storage';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
+const getCharacter = (answers: { id: number; answer: string }[]) => {
+  // TODO : answer index 받아오기
+  let total = 0;
+  for (let i = 0; i < answers.length - 1; i++) {
+    if (answers[i].id == 3) {
+      if (answers[i].answer === '1') {
+        total += 4;
+      } else if (answers[i].answer === '2') {
+        total += 2;
+      } else {
+        total += 1;
+      }
+      continue;
+    }
+    if (answers[i].id === 2) {
+      const prevAnswer = answers[i - 1].answer;
+      const prevAnswerIdx = [
+        '일기장',
+        '좋아하는 책',
+        '꽃이 담긴 화분',
+        '카메라',
+      ].indexOf(prevAnswer);
+      const answerList = subQuestion2[prevAnswerIdx]?.answer;
+      const answerIdx = answerList?.indexOf(answers[i].answer) ?? 0;
+
+      total += answerIdx + 1;
+      continue;
+    }
+    if (answers[i].id === 5) {
+      const prevAnswer = answers[i - 1].answer;
+      const prevAnswerIdx = ['YES', 'NO'].indexOf(prevAnswer);
+
+      const answerList = subQuestion5[prevAnswerIdx]?.answer;
+      const answerIdx = answerList?.indexOf(answers[i].answer) ?? 0;
+      console.log('answerIdx: ', answers[i].id, answerIdx);
+      total += answerIdx + 1;
+
+      continue;
+    }
+    const answerList = QUESTION_DATA[i].answer ?? ['YES', 'NO'];
+    const answerIdx = answerList?.indexOf(answers[i].answer) ?? 0;
+    total += answerIdx + 1;
+  }
+
+  const lastAnswerIdx = answers.length - 1;
+  const answerList = QUESTION_DATA[lastAnswerIdx].answer;
+  const answerIdx = answerList?.indexOf(answers[lastAnswerIdx].answer) ?? 0;
+
+  if (total < 8 || total >= 30) {
+    return answerIdx === 0 || answerIdx === 1
+      ? { char: 'dake', color: 'cheese' }
+      : { char: 'dake', color: 'black' };
+  }
+  if (answerIdx === 0 || answerIdx === 1) {
+    return { char: 'lanny', color: getTotalColor(total) };
+  } else {
+    return { char: 'lumi', color: getTotalColor(total) };
+  }
+};
+
+const getTotalColor = (total: number) => {
+  if (total <= 14) {
+    return 'yellow';
+  }
+  if (total <= 20) {
+    return 'green';
+  }
+  return 'purple';
+};
+
 const calcResult = (answers: { id: number; answer: string }[]) => {
-  const color = answers[2].answer;
   const whatILike = answers[5].answer;
   const goal = answers[7].answer;
-
-  return { color, char: 'lumi', whatILike, goal };
+  console.log('answers: ', answers);
+  const { color, char } = getCharacter(answers);
+  return { color, char, whatILike, goal };
 };
 
 // TODO: 더미 데이터를 지우고, localStorage에서 데이터를 가져와야 함.

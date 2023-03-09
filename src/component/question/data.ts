@@ -1,4 +1,9 @@
-export type QuestionCategory = 'button-2' | 'color' | 'button-4' | 'sub';
+export type QuestionCategory =
+  | 'button-2'
+  | 'color'
+  | 'button-4'
+  | 'sub'
+  | 'long-4';
 export interface QuestionType {
   id: number;
   type: QuestionCategory;
@@ -25,7 +30,7 @@ export const subQuestion2: SubQuestionType[] = [
     id: 2,
     type: 'button-4',
     question: ['어떤 장르의 책을 가져가고 싶나요?'],
-    answer: ['소설', '과학책', '전공책', '미술책'],
+    answer: ['소설', '과학책', '미술책', '전공책'],
     character: 'lanny',
     color: 'purple',
   },
@@ -33,7 +38,7 @@ export const subQuestion2: SubQuestionType[] = [
     id: 2,
     type: 'button-4',
     question: ['그 꽃은 어떤 꽃인가요?'],
-    answer: ['장미', '허브', '프리지아', '이름모를 꽃'],
+    answer: ['장미', '허브', '수국', '이름모를 꽃'],
     character: 'lanny',
     color: 'green',
   },
@@ -41,9 +46,33 @@ export const subQuestion2: SubQuestionType[] = [
     id: 2,
     type: 'button-2',
     question: ['카메라로 어떤 것 찍고 싶으세요?'],
-    answer: ['인물', '풍경', '정물', '꽃'],
+    answer: ['인물', '풍경', '정물', '음식'],
     character: 'lanny',
     color: 'yellow',
+  },
+];
+
+export const subQuestion5: SubQuestionType[] = [
+  {
+    id: 5,
+    type: 'long-4',
+    question: ['그 지적 생명체는 어떤 모습일까요?'],
+    answer: [
+      '인간의 모습을 닮았나?!',
+      '동물의 모습같아! ',
+      '한번도 본 적 없는 외형이야!',
+      '엄청 무섭게 생겼어!',
+    ],
+    character: 'dake',
+    color: 'black',
+  },
+  {
+    id: 5,
+    type: 'button-4',
+    question: ['그렇다면 좋아하는 영화 장르를 알려주세요!'],
+    answer: ['SF영화', '로맨스', '액션', '코미디'],
+    character: 'lanny',
+    color: 'purple',
   },
 ];
 
@@ -56,7 +85,7 @@ export const QUESTION_DATA: QuestionType[] = [
       '지구별의 물건 중 단 하나만 가져갈 수 있어요! ',
       '어떤 것을 가져가시겠어요?',
     ],
-    answer: ['일기장', '좋아하는 책', '꽃이 담긴 화분', '카메라'],
+    answer: ['다이어리', '좋아하는 책', '꽃이 담긴 화분', '카메라'],
     character: 'lanny',
     color: 'green',
   },
@@ -90,16 +119,10 @@ export const QUESTION_DATA: QuestionType[] = [
   },
   {
     id: 5,
-    type: 'button-4',
-    question: ['그 지적 생명체는 어떤 모습일까요?'],
-    answer: [
-      '인간의 모습',
-      '동물의 모습',
-      '본적 없는 외형',
-      '무섭게 생겼을지도!',
-    ],
-    character: 'dake',
-    color: 'black',
+    type: 'sub',
+    question: [''],
+    character: 'lanny',
+    color: 'green',
   },
   {
     id: 6,
@@ -123,13 +146,13 @@ export const QUESTION_DATA: QuestionType[] = [
 
   {
     id: 8,
-    type: 'button-4',
+    type: 'long-4',
     question: ['지구별에서 이루고 싶은 목표를 알려주세요! '],
     answer: [
-      '지구별 정복',
-      '지구별 대스타',
-      '지구별 자선사업가',
-      '지구별의 비밀 밝히기',
+      '지구별 정복하고야 말겠어!',
+      '빌보드 차트 1위! 지구별 대스타! ',
+      '지구별 방위대가 되어 지구를 지켜야지!',
+      '지구별의 비밀 밝히기!',
     ],
     character: 'lumy',
     color: 'yellow',
@@ -144,9 +167,14 @@ export const QUESTION_DATA: QuestionType[] = [
   },
   {
     id: 10,
-    type: 'button-4',
+    type: 'long-4',
     question: ['고향별에 도착하면 가장 먼저 무엇을 하고 싶으신가요?'],
-    answer: ['사진찍기', '산책', '친구에게 편지쓰기', '그리운 사람 찾기'],
+    answer: [
+      '궁금한것 투성이! 우선 주변을 둘러보자!',
+      '고향별에서 새로운 친구를 사귈래!',
+      '일단 방에서 쉬면서 생각하자!',
+      '지구별에 남은 친구에게 편지쓰기',
+    ],
     character: 'lumy',
     color: 'green',
   },
