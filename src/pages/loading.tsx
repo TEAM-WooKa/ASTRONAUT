@@ -68,7 +68,7 @@ const getCharacter = (answers: { id: number; answer: string }[]) => {
   if (answerIdx === 0 || answerIdx === 1) {
     return { char: 'lanny', color: getTotalColor(total) };
   } else {
-    return { char: 'lumi', color: getTotalColor(total) };
+    return { char: 'lumy', color: getTotalColor(total) };
   }
 };
 
@@ -82,10 +82,21 @@ const getTotalColor = (total: number) => {
   return 'purple';
 };
 
+const getGoal = (goal: string) => {
+  const answerList = [
+    '지구별 정복하고야 말겠어!',
+    '빌보드 차트 1위! 지구별 대스타! ',
+    '지구별 방위대가 되어 지구를 지켜야지!',
+    '지구별의 비밀 밝히기!',
+  ];
+  const answerIdx = answerList.indexOf(goal);
+  return ['지구별 정복', '지구별 대스타', '지구별 방위대', '지구별 탐험기'][
+    answerIdx
+  ];
+};
 const calcResult = (answers: { id: number; answer: string }[]) => {
   const whatILike = answers[5].answer;
-  const goal = answers[7].answer;
-  console.log('answers: ', answers);
+  const goal = getGoal(answers[7].answer);
   const { color, char } = getCharacter(answers);
   return { color, char, whatILike, goal };
 };

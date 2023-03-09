@@ -16,7 +16,6 @@ import {
   CharacterType,
 } from '@/utils/answer';
 import { downloadImage, getImageUrl } from '@/utils/image';
-import Image from 'next/image';
 import IconBox from '@/component/result/icon-box';
 
 const getImagedata = () => {
@@ -60,8 +59,8 @@ const getData = ({
       image: '',
     },
     character: {
-      name: characterName ?? 'Yellow_Lomi',
-      image: characterImage ?? '/characters/lumi.png',
+      name: characterName ?? 'Yellow_Lumy',
+      image: characterImage ?? '/characters/lumy.png',
     },
   };
 };
@@ -110,6 +109,7 @@ function Result() {
     color,
     char,
   });
+  console.log('character: ', character);
   const cardRef = useRef(null);
   const [image, setImage] = useState(cardData.image);
   const [isLoading, setIsLoading] = useState(true);
