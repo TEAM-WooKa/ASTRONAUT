@@ -16,11 +16,11 @@ export const mappingColorValue = {
 };
 
 export const getColorImageUrl = (value: string) => {
-  if (value === mappingColorValue['blue']) return '/characters/lumi_blue.png';
+  if (value === mappingColorValue['blue']) return '/characters/blue_lumy.png';
   if (value === mappingColorValue['purple'])
-    return '/characters/lumi_purple.png';
+    return '/characters/purple_lumy.png';
   if (value === mappingColorValue['yellow'])
-    return '/characters/lumi_yellow.png';
+    return '/characters/yellow_lumy.png';
   return '/characters/lumi.png';
 };
 
@@ -34,7 +34,7 @@ export const calcCharacter = ({
   // TODO : 캐릭터 색상에 따라서 다른 이미지를 보여줘야함
   const data = {
     name: `${capitalize(color)}_${capitalize(char)}`,
-    image: `/characters/${char}_${color}.png`,
+    image: `/characters/${color}_${char}.png`,
   };
   return data;
 };

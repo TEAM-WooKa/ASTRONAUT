@@ -10,7 +10,7 @@ export default function CharacterBox({ image, name }: CharacterBoxProps) {
   const handleImageError = (
     e: React.SyntheticEvent<HTMLImageElement, Event>,
   ) => {
-    e.currentTarget.src = '/characters/lumi_yellow.png';
+    e.currentTarget.src = '/characters/yellow_lumy.png';
   };
 
   return (

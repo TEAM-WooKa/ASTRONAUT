@@ -14,12 +14,13 @@ export default function UserMiddle({
   image,
   handleImageError,
   children,
+  character,
 }: CardMiddleProps) {
   return (
     <MiddleWrapper>
       <ImageWrapper>
         <RomiImageWrapper>
-          <Img src="/characters/lumi.png" width="60" height="48" alt="image" />
+          <Img src={character.image} width="60" height="48" alt="image" />
         </RomiImageWrapper>
         <Img
           src={image}

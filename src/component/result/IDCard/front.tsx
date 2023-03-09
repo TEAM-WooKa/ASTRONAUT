@@ -4,8 +4,6 @@ import CardMiddle from '@/component/result/IDCard/card-middle';
 import UserMiddle from '@/component/result/IDCard/card-middle/user-middle';
 import CardTop from '@/component/result/IDCard/card-top';
 import { CharacterReturnType } from '@/utils/answer';
-import { getStorage } from '@/utils/storage';
-import { useRouter } from 'next/router';
 import { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
@@ -23,7 +21,7 @@ export default function Front({
   const [imageError, setImageError] = useState(false);
 
   const handleImageError = (e: SyntheticEvent<HTMLImageElement, Event>) => {
-    e.currentTarget.src = '/character/lumi_yellow.png';
+    e.currentTarget.src = '/character/yellow_lumy.png';
     setImageError(true);
   };
 

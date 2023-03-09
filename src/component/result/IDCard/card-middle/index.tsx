@@ -28,30 +28,14 @@ export default function CardMiddle({
       <MiddleWrapper>
         <CharacterBox
           name={character?.name ?? 'Lomi'}
-          image={character?.image ?? '/characters/lumi_yellow.png'}
+          image={character?.image ?? '/characters/yellow_lumy.png'}
         />
         <TextWrapper>{children}</TextWrapper>
       </MiddleWrapper>
     );
   }
 
-  return (
-    <MiddleWrapper>
-      {/* <ImageWrapper>
-        <RomiImageWrapper>
-          <img src="/characters/lumi.png" width="60" height="48" alt="image" />
-        </RomiImageWrapper>
-        <img
-          src={image}
-          width="90"
-          height="120"
-          alt="user"
-          onError={handleImageError}
-        />
-      </ImageWrapper>
-      <TextWrapper>{children}</TextWrapper> */}
-    </MiddleWrapper>
-  );
+  return <MiddleWrapper></MiddleWrapper>;
 }
 
 const Img = styled.img`
