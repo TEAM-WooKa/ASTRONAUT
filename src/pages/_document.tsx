@@ -52,12 +52,12 @@ class MyDocument extends Document {
           <meta name="og:url" content="https://astronaut-sumi.vercel.app/" />
           <meta
             name="og:image"
-            content="https://user-images.githubusercontent.com/49177223/223789248-9cafb888-e552-42c0-92f2-d383364c3026.png"
+            content="https://user-images.githubusercontent.com/49177223/224251439-1ea7a315-6c13-4121-9c6d-451512f78410.png"
           />
           <meta name="twitter:title" content="우주인 ID card" />
           {/* Icon Tag */}
-          <link rel="apple-touch-icon" href="/logos/favicon2.svg" />
-          <link rel="shortcut icon" href="/logos/favicon2.svg" />
+          <link rel="apple-touch-icon" href="/logos/favicon.ico" />
+          <link rel="shortcut icon" href="/logos/favicon.ico" />
         </Head>
         <body>
           <Main />
