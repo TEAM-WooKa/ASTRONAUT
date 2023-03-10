@@ -56,8 +56,8 @@ class MyDocument extends Document {
           />
           <meta name="twitter:title" content="우주인 ID card" />
           {/* Icon Tag */}
-          <link rel="apple-touch-icon" href="/logo.svg" />
-          <link rel="shortcut icon" href="/logo.svg" />
+          <link rel="apple-touch-icon" href="/logos/favicon2.svg" />
+          <link rel="shortcut icon" href="/logos/favicon2.svg" />
         </Head>
         <body>
           <Main />

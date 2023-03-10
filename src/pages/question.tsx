@@ -31,23 +31,20 @@ function Question() {
 
   const currentQuestion = useMemo(() => {
     const thisQuestion = questions[questionIndex];
-    if (thisQuestion?.type === 'sub') {
-      // id 2
-      if (thisQuestion.id === 2) {
-        const prevAnswer = answers[questionIndex - 1].answer;
-        const prevAnswerIdx = [
-          '일기장',
-          '좋아하는 책',
-          '꽃이 담긴 화분',
-          '카메라',
-        ].indexOf(prevAnswer);
-        return subQuestion2[prevAnswerIdx];
-      }
-      if (thisQuestion.id === 5) {
-        const prevAnswer = answers[questionIndex - 1].answer;
-        const prevAnswerIdx = ['YES', 'NO'].indexOf(prevAnswer);
-        return subQuestion5[prevAnswerIdx];
-      }
+    if (thisQuestion?.id === 2) {
+      const prevAnswer = answers[questionIndex - 1].answer;
+      const prevAnswerIdx = [
+        '다이어리',
+        '좋아하는 책',
+        '꽃이 담긴 화분',
+        '카메라',
+      ].indexOf(prevAnswer);
+      return subQuestion2[prevAnswerIdx];
+    }
+    if (thisQuestion?.id === 5) {
+      const prevAnswer = answers[questionIndex - 1].answer;
+      const prevAnswerIdx = ['YES', 'NO'].indexOf(prevAnswer);
+      return subQuestion5[prevAnswerIdx];
     }
     return thisQuestion;
   }, [questionIndex]);
@@ -176,6 +173,7 @@ const QuestionInnerBox = styled.div`
 
 const getQuestionCharacterImage = (question: QuestionType) => {
   const imageURL = `/problem/${question.color}_${question.character}.png`;
+  console.log('imageURL: ', imageURL);
   const { width, height } = getCharacterImageSize(question.character);
 
   return (
@@ -208,7 +206,7 @@ const getCharacterImageSize = (
         width: 269,
         height: 191,
       };
-    case 'dake': //TODO :크기 맞는지 확인
+    case 'cat': //TODO :크기 맞는지 확인
       return {
         width: 167,
         height: 191,

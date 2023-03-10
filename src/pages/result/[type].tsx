@@ -109,7 +109,6 @@ function Result() {
     color,
     char,
   });
-  console.log('character: ', character);
   const cardRef = useRef(null);
   const [image, setImage] = useState(cardData.image);
   const [isLoading, setIsLoading] = useState(true);
@@ -165,7 +164,7 @@ function Result() {
         character={character}
       />
       <IconBox isLoading={isLoading} onDownloadBtn={onDownloadBtn} />
-      <Content />
+      {/* <Content /> */}
     </>
   );
 }

@@ -42,7 +42,13 @@ const ButtonInner = styled(GradientButtonStyled)<{ isHangul: boolean }>`
 
   span {
     position: relative;
-    ${(props) =>
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 18px;
+
+    /* ${(props) =>
       props.isHangul
         ? css`
             font-family: 'Pretendard';
@@ -57,6 +63,6 @@ const ButtonInner = styled(GradientButtonStyled)<{ isHangul: boolean }>`
             font-size: 32px;
             left: -3px;
             bottom: 1px;
-          `}
+          `} */
   }
 `;

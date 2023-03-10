@@ -9,7 +9,7 @@ export interface QuestionType {
   type: QuestionCategory;
   question: string[];
   answer?: string[];
-  character: string;
+  character: 'lanny' | 'lumy' | 'cat';
   color: string;
 }
 
@@ -21,7 +21,7 @@ export const subQuestion2: SubQuestionType[] = [
   {
     id: 2,
     type: 'button-4',
-    question: ['일기에 어떤 내용을 기록하나요?'],
+    question: ['다이어리에 어떤 내용을 기록하나요?'],
     answer: ['일상', '다짐', '행복한 기억', '중요한 약속'],
     character: 'lanny',
     color: 'yellow',
@@ -44,8 +44,8 @@ export const subQuestion2: SubQuestionType[] = [
   },
   {
     id: 2,
-    type: 'button-2',
-    question: ['카메라로 어떤 것 찍고 싶으세요?'],
+    type: 'button-4',
+    question: ['카메라로 어떤 것을 찍고 싶으세요?'],
     answer: ['인물', '풍경', '정물', '음식'],
     character: 'lanny',
     color: 'yellow',
@@ -63,8 +63,8 @@ export const subQuestion5: SubQuestionType[] = [
       '한번도 본 적 없는 외형이야!',
       '엄청 무섭게 생겼어!',
     ],
-    character: 'dake',
-    color: 'black',
+    character: 'cat',
+    color: 'da',
   },
   {
     id: 5,
@@ -140,8 +140,8 @@ export const QUESTION_DATA: QuestionType[] = [
       '혹은 길렀던/기르고 싶은 동물이 있나요?',
     ],
     answer: ['고양이', '강아지', '새', '없음'],
-    character: 'dake',
-    color: 'cheese',
+    character: 'cat',
+    color: 'chee',
   },
 
   {

@@ -9,7 +9,7 @@ import {
 import { getStorage } from '@/utils/storage';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useRef, useEffect } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 
 const getCharacter = (answers: { id: number; answer: string }[]) => {
@@ -29,7 +29,7 @@ const getCharacter = (answers: { id: number; answer: string }[]) => {
     if (answers[i].id === 2) {
       const prevAnswer = answers[i - 1].answer;
       const prevAnswerIdx = [
-        '일기장',
+        '다이어리',
         '좋아하는 책',
         '꽃이 담긴 화분',
         '카메라',
@@ -46,7 +46,6 @@ const getCharacter = (answers: { id: number; answer: string }[]) => {
 
       const answerList = subQuestion5[prevAnswerIdx]?.answer;
       const answerIdx = answerList?.indexOf(answers[i].answer) ?? 0;
-      console.log('answerIdx: ', answers[i].id, answerIdx);
       total += answerIdx + 1;
 
       continue;
@@ -62,8 +61,8 @@ const getCharacter = (answers: { id: number; answer: string }[]) => {
 
   if (total < 8 || total >= 30) {
     return answerIdx === 0 || answerIdx === 1
-      ? { char: 'dake', color: 'cheese' }
-      : { char: 'dake', color: 'black' };
+      ? { char: 'cat', color: 'chee' }
+      : { char: 'cat', color: 'da' };
   }
   if (answerIdx === 0 || answerIdx === 1) {
     return { char: 'lanny', color: getTotalColor(total) };

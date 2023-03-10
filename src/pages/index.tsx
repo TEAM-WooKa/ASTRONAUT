@@ -42,10 +42,10 @@ function Home() {
 
         <ImageWrapper>
           <Image
-            src={'/images/main_image.png'}
+            src={'/images/main_lanny.png'}
             alt="logo"
             width={216}
-            height={157}
+            height={154}
           />
         </ImageWrapper>
       </div>

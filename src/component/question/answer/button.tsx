@@ -27,7 +27,11 @@ const Wrapper = styled(GradientButtonStyled)<{ isHangul: boolean }>`
 
   span {
     position: relative;
-    ${(props) =>
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-size: 20px;
+    font-weight: bold;
+    /* ${(props) =>
       props.isHangul
         ? css`
             font-family: 'Pretendard';
@@ -41,6 +45,6 @@ const Wrapper = styled(GradientButtonStyled)<{ isHangul: boolean }>`
             font-size: 32px;
             left: -3px;
             bottom: 1px;
-          `}
+          `} */
   }
 `;
