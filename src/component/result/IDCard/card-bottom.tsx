@@ -30,8 +30,9 @@ const BottomWrapper = styled.div`
 `;
 
 const Tag = styled.div<{ isHidden: boolean }>`
-  width: 123px;
+  width: 100%;
   min-width: 123px;
+  max-width: 100%;
   font-family: 'GongGothicMedium';
   font-weight: 700;
   font-size: 10px;

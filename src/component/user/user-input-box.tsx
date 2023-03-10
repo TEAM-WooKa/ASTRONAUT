@@ -22,7 +22,7 @@ export default function UserInputBox({
       <InputBoxInner>
         <Input
           type="text"
-          placeholder="지구별 이름을 적어주세요."
+          placeholder="지구별에서의 이름을 알려주세요."
           name="name"
           onChange={onChange}
           value={name}

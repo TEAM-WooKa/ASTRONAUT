@@ -1,4 +1,6 @@
+import { GradientButtonStyled } from '@/assets/styles/gradient';
 import AnswerButton from '@/component/question/answer/button';
+import styled from 'styled-components';
 
 type HandleAnswerClickType = (answer: string) => void;
 
@@ -9,8 +11,34 @@ export default function SecondChoice({
 }) {
   return (
     <>
-      <AnswerButton content="YES" onClick={() => handleAnswerClick('YES')} />
-      <AnswerButton content="NO" onClick={() => handleAnswerClick('NO')} />
+      <ButtonWrapper>
+        <Wrapper onClick={() => handleAnswerClick('YES')}>
+          <span>YES</span>
+        </Wrapper>
+      </ButtonWrapper>
+      <ButtonWrapper>
+        <Wrapper onClick={() => handleAnswerClick('NO')}>
+          <span>NO</span>
+        </Wrapper>
+      </ButtonWrapper>
     </>
   );
 }
+
+const ButtonWrapper = styled.div`
+  width: 120px;
+`;
+
+const Wrapper = styled(GradientButtonStyled)`
+  border-radius: 40px;
+  padding: 2px;
+  width: 130px;
+
+  span {
+    font-family: 'Space-Rave';
+    font-style: italic;
+    font-size: 32px;
+    left: -3px;
+    bottom: 1px;
+  }
+`;
