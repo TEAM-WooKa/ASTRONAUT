@@ -30,9 +30,7 @@ const GREEN_LUMY = (
     <TextWrapper>
       우주인님의 고향은 <b>루미</b>입니다
     </TextWrapper>
-    <TextWrapper>
-      루미는 별이 태어나는 성간운으로 별이 탄생하는 성간운입니다.
-    </TextWrapper>
+    <TextWrapper>루미는 별이 탄생하는 성간운입니다.</TextWrapper>
     <TextWrapper>
       이상과 현실 사이를 넘나들면 멋지게 조율하는 우주인님은 루미에서 오셨네요!
     </TextWrapper>
@@ -43,9 +41,7 @@ const PURPLE_LUMY = (
     <TextWrapper>
       우주인님의 고향은 <b>루미</b>입니다
     </TextWrapper>
-    <TextWrapper>
-      루미는 별이 태어나는 성간운으로 별이 탄생하는 성간운입니다.
-    </TextWrapper>
+    <TextWrapper>루미는 별이 탄생하는 성간운입니다.</TextWrapper>
     <TextWrapper>
       혼자만의 시간에서도 영감을 찾아내고, 풍부한 상상력으로 창의적인 아이디어를
       내는 우주인님은 루미에서 오셨어요!
@@ -58,9 +54,7 @@ const YELLOW_LUMY = (
     <TextWrapper>
       우주인님의 고향은 <b>루미</b>입니다
     </TextWrapper>
-    <TextWrapper>
-      루미는 별이 태어나는 성간운으로 별이 탄생하는 성간운입니다.
-    </TextWrapper>
+    <TextWrapper>루미는 별이 탄생하는 성간운입니다.</TextWrapper>
     <TextWrapper>
       현실적, 체계적이지만 낭만적인 모습도 있는 우주인님은 루미에서 오셨네요
     </TextWrapper>
