@@ -13,7 +13,7 @@ import {
   CHEE_CAT,
   DA_CAT,
 } from '@/utils/character';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 export default function Back({
@@ -21,39 +21,67 @@ export default function Back({
 }: {
   character: CharacterReturnType;
 }) {
+  const [isChrome, setIsChrome] = useState(false);
+
+  useEffect(() => {
+    setIsChrome(/Chrome/i.test(window.navigator.userAgent));
+  }, []);
+
   return (
     <>
       <CardTop />
       <CardMiddle character={character}>
         <FlexColumn gap="1">{characterContents[character.name]}</FlexColumn>
       </CardMiddle>
-      <CardBottom />
+      <BottomWrapper>
+        <TagWrapper></TagWrapper>
+        <Desc isScale={isChrome}>
+          <p>
+            1. 이 카드의 소지자는 우주선 탑승 시 본 ID 카드를 제시해주시길
+            바랍니다.
+          </p>
+          <p>
+            2. 카드를 잃어버렸을 경우 우주인 아이디 카드 서비스를 통해 재발급
+            받을 수 있습니다.
+          </p>
+        </Desc>
+      </BottomWrapper>
     </>
   );
 }
 
-const TextWrapper = styled.p`
-  /* TODO : font core 만들기 */
-  font-family: 'Pretendard';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 10px;
-  line-height: 16px;
-  text-align: left;
-  color: ${({ theme }) => theme.colors.main2};
-  position: relative;
-  margin-left: 10px;
+const BottomWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  /* display: flex;
+  flex-direction: row-reverse; */
+`;
 
-  &::before {
-    content: '';
-    width: 2.5px;
-    height: 2.5px;
-    border-radius: 50%;
-    position: absolute;
-    left: -8px;
-    top: 7px;
-    display: inline-block;
-    background: ${({ theme }) => theme.colors.main2};
+const TagWrapper = styled.div`
+  width: 100%;
+  min-width: 44px;
+  text-align: center;
+`;
+
+const Desc = styled.div<{ isScale: boolean }>`
+  font-weight: 300;
+  font-size: 8px;
+  line-height: 10px;
+
+  transform: ${(props) =>
+    props.isScale ? 'translate(-8%, -0%) scale(0.75)' : ''};
+
+  display: block;
+  text-align: right;
+  color: #343232;
+  opacity: 0.8;
+  width: fit-content;
+  float: right;
+  p {
+    width: fit-content;
+    text-overflow: ellipsis;
+    white-space: pre;
+    float: right;
   }
 `;
 
