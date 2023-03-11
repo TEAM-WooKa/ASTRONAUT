@@ -57,21 +57,6 @@ const TextWrapper = styled.p`
   }
 `;
 
-const LANNY = (
-  <>
-    <TextWrapper>
-      우주인님의 고향은 <b>래니</b>입니다
-    </TextWrapper>
-    <TextWrapper>
-      래니는 우주 어딘가에 존재하는 지구를 닮은 행성입니다.
-    </TextWrapper>
-    <TextWrapper>
-      이상과 현실 사이를 넘나들며 멋지게 조율하는 우주인님은 <b>래니</b>에서
-      오셨네요!
-    </TextWrapper>
-  </>
-);
-
 const characterContents: Record<string, ReactNode> = {
   Purple_Lumy: PURPLE_LUMY,
   Green_Lumy: GREEN_LUMY,

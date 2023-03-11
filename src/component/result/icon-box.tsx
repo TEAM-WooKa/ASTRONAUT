@@ -13,14 +13,20 @@ interface IconBoxProps {
 export default function IconBox({ isLoading, onDownloadBtn }: IconBoxProps) {
   const router = useRouter();
 
+  const onDownloadClick = () => {
+    // onDownloadBtn()
+    alert(`이 기능은 추후에 서비스 예정입니다. ver.2를 기대해주세요!`);
+  };
   const onShareClick = async () => {
-    await navigator.clipboard.writeText(window.location.href);
-    alert('클립보드에 복사되었습니다.');
+    // await navigator.clipboard.writeText(window.location.href);
+    // alert('클립보드에 복사되었습니다. ');
+
+    alert(`이 기능은 추후에 서비스 예정입니다. ver.2를 기대해주세요!`);
   };
 
   return (
     <ShareWrapper>
-      <span onClick={onDownloadBtn}>
+      <span onClick={onDownloadClick}>
         {isLoading ? (
           <Image
             src="/images/pink-loading.svg"
