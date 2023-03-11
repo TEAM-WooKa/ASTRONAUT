@@ -15,7 +15,10 @@ export default function CardBottom({ star }: CardBottomProps) {
 
   return (
     <BottomWrapper>
-      <Tag isHidden={!star}>FROM : {star}</Tag>
+      <TagWrapper>
+        <Tag isHidden={!star}>{star}</Tag>
+      </TagWrapper>
+
       <Desc isScale={isChrome}>
         <p>이 카드를 소지한 사람은 별에서 온 우주인임을 증명합니다.</p>
         <p> This card certifies the bearer as a astronaut.</p>
@@ -29,14 +32,19 @@ const BottomWrapper = styled.div`
   display: flex;
 `;
 
-const Tag = styled.div<{ isHidden: boolean }>`
+const TagWrapper = styled.div`
   width: 100%;
   min-width: 123px;
-  max-width: 100%;
+  text-align: center;
+`;
+
+const Tag = styled.div<{ isHidden: boolean }>`
+  width: fit-content;
   font-family: 'GongGothicMedium';
   font-weight: 700;
   font-size: 10px;
-
+  margin: auto;
+  padding: 0 10px;
   color: ${(props) => props.theme.colors.main2};
   line-height: 20px;
 
@@ -50,7 +58,6 @@ const Tag = styled.div<{ isHidden: boolean }>`
 `;
 
 const Desc = styled.div<{ isScale: boolean }>`
-  /* width: 120%; */
   font-weight: 300;
   font-size: 8px;
   line-height: 10px;

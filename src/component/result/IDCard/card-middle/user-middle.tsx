@@ -1,5 +1,4 @@
 import { CharacterReturnType } from '@/utils/answer';
-import image from 'next/image';
 import { SyntheticEvent } from 'react';
 import styled from 'styled-components';
 interface CardMiddleProps {
