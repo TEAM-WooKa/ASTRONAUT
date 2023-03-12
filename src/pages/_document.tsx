@@ -50,10 +50,7 @@ class MyDocument extends Document {
           <meta name="og:description" content="We are the astronauts" />
           <meta name="og:type" content="website" />
           <meta name="og:url" content="https://astronaut-id-card.swygbro.com" />
-          <meta
-            name="og:image"
-            content="https://user-images.githubusercontent.com/49177223/224251439-1ea7a315-6c13-4121-9c6d-451512f78410.png"
-          />
+          <meta name="og:image" content="/thumbnail.png" />
           <meta name="twitter:title" content="우주인 ID card" />
           {/* Icon Tag */}
           <link rel="apple-touch-icon" href="/logos/favicon.ico" />
