@@ -41,7 +41,7 @@ class MyDocument extends Document {
           <meta name="description" content="We are the astronauts" />
           <meta
             name="keywords"
-            content="우주인,swyg,우주인 ID card,메타콘텐츠"
+            content="우주인,swyg,우주인 ID card,메타콘텐츠,기획자,개발자"
           />
 
           <meta charSet="utf-8" />
@@ -49,7 +49,7 @@ class MyDocument extends Document {
           <meta name="og:title" content="우주인 ID card" />
           <meta name="og:description" content="We are the astronauts" />
           <meta name="og:type" content="website" />
-          <meta name="og:url" content="https://astronaut-sumi.vercel.app/" />
+          <meta name="og:url" content="https://astronaut-id-card.swygbro.com" />
           <meta
             name="og:image"
             content="https://user-images.githubusercontent.com/49177223/224251439-1ea7a315-6c13-4121-9c6d-451512f78410.png"
@@ -58,6 +58,10 @@ class MyDocument extends Document {
           {/* Icon Tag */}
           <link rel="apple-touch-icon" href="/logos/favicon.ico" />
           <link rel="shortcut icon" href="/logos/favicon.ico" />
+          <script
+            defer
+            src="https://cdn.swygbro.com/public/widget/swyg-widget.js"
+          ></script>
         </Head>
         <body>
           <Main />
