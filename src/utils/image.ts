@@ -1,5 +1,5 @@
 import { toPng } from 'html-to-image';
-import { MutableRefObject } from 'react';
+import type { MutableRefObject } from 'react';
 
 export const downloadImage = async (
   ref: MutableRefObject<HTMLElement | null>,

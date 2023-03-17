@@ -1,13 +1,11 @@
-import {
-  GradientBoxStyled,
-  GradientButtonStyled,
-} from '@/assets/styles/gradient';
-import AText from '@/component/common/AText';
-import GradientBorderBox from '@/component/common/GradientBorderBox';
-import withLayout from '@/component/hoc/withLayout';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
+
+import { GradientButtonStyled } from '@/assets/styles/gradient';
+import AText from '@/component/common/AText';
+import GradientBorderBox from '@/component/common/GradientBorderBox';
+import withLayout from '@/component/hoc/withLayout';
 
 function Home() {
   const router = useRouter();

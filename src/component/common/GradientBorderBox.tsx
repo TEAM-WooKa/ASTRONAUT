@@ -1,6 +1,7 @@
-import { GradientBoxStyled } from '@/assets/styles/gradient';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import styled from 'styled-components';
+
+import { GradientBoxStyled } from '@/assets/styles/gradient';
 interface GradientBorderBoxProps {
   children: ReactNode;
   borderRadius?: string;

@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { ReactNode } from 'react';
 
 function withHead(
   Component: (props: any) => JSX.Element,
