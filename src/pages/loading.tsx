@@ -1,3 +1,8 @@
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import styled from 'styled-components';
+
 import GradientBox from '@/component/common/GradientBox';
 import Loading from '@/component/common/loading';
 import withLayout from '@/component/hoc/withLayout';
@@ -7,10 +12,6 @@ import {
   subQuestion5,
 } from '@/component/question/data';
 import { getStorage } from '@/utils/storage';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-import styled from 'styled-components';
 
 const getCharacter = (answers: { id: number; answer: string }[]) => {
   // TODO : answer index 받아오기
@@ -136,7 +137,7 @@ function LoadingPage() {
   const userData = getUserInputData();
 
   useEffect(() => {
-    let timer = setInterval(() => {
+    const timer = setInterval(() => {
       router.push({
         pathname: '/result/[type]',
         query: { type: 1, ...userData },

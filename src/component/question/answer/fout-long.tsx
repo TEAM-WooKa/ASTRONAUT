@@ -1,7 +1,7 @@
-import { GradientButtonStyled } from '@/assets/styles/gradient';
-import AnswerButton from '@/component/question/answer/button';
-import { isHangulChar } from '@/utils/hangul';
 import styled, { css } from 'styled-components';
+
+import { GradientButtonStyled } from '@/assets/styles/gradient';
+import { isHangulChar } from '@/utils/hangul';
 
 type HandleAnswerClickType = (answer: string) => void;
 

@@ -1,20 +1,21 @@
+import type { ReactNode } from 'react';
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+
 import { FlexColumn } from '@/component/core/Flex';
-import CardBottom from '@/component/result/IDCard/card-bottom';
 import CardMiddle from '@/component/result/IDCard/card-middle';
 import CardTop from '@/component/result/IDCard/card-top';
-import { CharacterReturnType } from '@/utils/answer';
+import type { CharacterReturnType } from '@/utils/answer';
 import {
-  PURPLE_LUMY,
-  GREEN_LUMY,
-  YELLOW_LUMY,
-  GREEN_LANNY,
-  PURPLE_LANNY,
-  YELLOW_LANNY,
   CHEE_CAT,
   DA_CAT,
+  GREEN_LANNY,
+  GREEN_LUMY,
+  PURPLE_LANNY,
+  PURPLE_LUMY,
+  YELLOW_LANNY,
+  YELLOW_LUMY,
 } from '@/utils/character';
-import { ReactNode, useEffect, useState } from 'react';
-import styled from 'styled-components';
 
 export default function Back({
   character,

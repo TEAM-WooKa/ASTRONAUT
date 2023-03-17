@@ -1,11 +1,13 @@
-import { CardDataType } from '@/component/result/IDCard';
+import type { SyntheticEvent } from 'react';
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+
+import type { CardDataType } from '@/component/result/IDCard';
 import CardBottom from '@/component/result/IDCard/card-bottom';
 import CardMiddle from '@/component/result/IDCard/card-middle';
 import UserMiddle from '@/component/result/IDCard/card-middle/user-middle';
 import CardTop from '@/component/result/IDCard/card-top';
-import { CharacterReturnType } from '@/utils/answer';
-import { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
-import styled from 'styled-components';
+import type { CharacterReturnType } from '@/utils/answer';
 
 interface FrontProps extends CardDataType {
   character: CharacterReturnType;

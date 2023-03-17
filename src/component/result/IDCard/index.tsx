@@ -1,11 +1,12 @@
+/* eslint-disable @next/next/no-img-element */
+import { useState } from 'react';
+import styled from 'styled-components';
+
 import { GradientBoxStyled } from '@/assets/styles/gradient';
+import { FullCenter } from '@/component/core/Flex';
 import Back from '@/component/result/IDCard/back';
 import Front from '@/component/result/IDCard/front';
-import { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import Image from 'next/image';
-import { FlexCenter, FullCenter } from '@/component/core/Flex';
-import { CharacterReturnType } from '@/utils/answer';
+import type { CharacterReturnType } from '@/utils/answer';
 
 export interface CardDataType {
   name: string;

@@ -1,10 +1,12 @@
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import type { ChangeEvent } from 'react';
+import { useState } from 'react';
+import styled from 'styled-components';
+
+import { GradientButtonStyled } from '@/assets/styles/gradient';
 import withLayout from '@/component/hoc/withLayout';
 import UserInputBox from '@/component/user/user-input-box';
-import styled from 'styled-components';
-import Image from 'next/image';
-import { GradientButtonStyled } from '@/assets/styles/gradient';
-import { useRouter } from 'next/router';
-import { ChangeEvent, useState } from 'react';
 import { setStorage } from '@/utils/storage';
 
 function convertBase64ToUrl(base64: string): string {
@@ -123,6 +125,7 @@ const GradientButton = styled(GradientButtonStyled)`
   padding: 2px;
   width: 270px;
 `;
+
 export default withLayout(
   UserPage,
   '사용자 입력',

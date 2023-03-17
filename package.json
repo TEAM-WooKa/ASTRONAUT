@@ -17,6 +17,8 @@
     "dom-to-image": "^2.6.0",
     "eslint": "^8.32.0",
     "eslint-config-next": "13.1.2",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
     "file-saver": "^2.0.5",
     "html-to-image": "^1.11.11",
     "next": "13.1.2",

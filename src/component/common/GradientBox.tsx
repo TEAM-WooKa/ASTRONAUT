@@ -1,7 +1,8 @@
+import type { ReactNode } from 'react';
+import styled from 'styled-components';
+
 import { Gradient1 } from '@/assets/styles/gradient';
 import GradientBorderBox from '@/component/common/GradientBorderBox';
-import { ReactNode } from 'react';
-import styled from 'styled-components';
 
 interface GradientBoxProps {
   title?: string;
