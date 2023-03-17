@@ -21,8 +21,8 @@ function Home() {
       <div>
         <MainLogoWrapper>
           <Image
-            src={'/images/title.png'}
-            alt="logo"
+            src={'/images/main-title.webp'}
+            alt="Astronaut ID Card service"
             width={350}
             height={124}
           />
