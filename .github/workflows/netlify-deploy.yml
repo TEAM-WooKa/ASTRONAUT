@@ -1,0 +1,36 @@
+name: Deploy CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Cache dependencies
+        id: cache # 나중에 install에서 cache가 되었는지 판단하는 key
+        uses: actions/cache@v3
+        with:
+          path: '**/node_modules' # 캐싱을 하는 저장공간, 의존성을 캐싱할거니 node_modules를 설정
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          # 이 key를 이용하여 캐싱된것이 있는지 확인한다. yarn.lock이 바뀔때마다 키가 변경되어 캐시버스팅이 된다.
+          # runner.os란 실행하는 환경을 의미한다. ex) Linux
+          restore-keys: |
+            ${{ runner.os }}-node-
+          # key를 찾지 못했을때 차선으로 탐색하는 key이다.
+
+      - name: Install node packages
+        if: steps.cache.outputs.cache-hit != 'true'
+        # cache가 되어있으면 이 과정을 생략하고 안되어 있으면 install을 진행한다.
+        run: yarn install --frozen-lockfile
+
+      - name: Deploy to Netlify Action
+        uses: jsmrcaga/action-netlify-deploy@v2.0.0
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
