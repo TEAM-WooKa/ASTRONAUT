@@ -1,6 +1,8 @@
 import type { SyntheticEvent } from 'react';
 import styled from 'styled-components';
 
+import type { CharacterReturnType } from '@/utils/answer';
+
 interface CardMiddleProps {
   children: React.ReactNode;
   character: CharacterReturnType;
