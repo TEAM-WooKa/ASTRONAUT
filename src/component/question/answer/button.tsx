@@ -1,6 +1,7 @@
+import styled, { css } from 'styled-components';
+
 import { GradientButtonStyled } from '@/assets/styles/gradient';
 import { isHangulChar } from '@/utils/hangul';
-import styled, { css } from 'styled-components';
 
 interface AnswerButtonProps {
   content: string;

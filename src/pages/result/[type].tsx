@@ -1,22 +1,16 @@
-import DownloadIcon from '@/assets/icons/DownloadIcon';
-import ReplayIcon from '@/assets/icons/ReplayIcon';
-import ShareIcon from '@/assets/icons/ShareIcon';
-import withLayout from '@/component/hoc/withLayout';
+/* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
-import IDCard, { CardDataType } from '@/component/result/IDCard';
-import { GetServerSidePropsContext } from 'next';
-import { checkKakao, Mobile } from '@/utils/device';
-import Content from '@/component/result/content';
-import { getStorage } from '@/utils/storage';
-import {
-  calcCharacter,
-  CharacterColorType,
-  CharacterType,
-} from '@/utils/answer';
-import { downloadImage, getImageUrl } from '@/utils/image';
+
+import withLayout from '@/component/hoc/withLayout';
 import IconBox from '@/component/result/icon-box';
+import type { CardDataType } from '@/component/result/IDCard';
+import IDCard from '@/component/result/IDCard';
+import type { CharacterColorType, CharacterType } from '@/utils/answer';
+import { calcCharacter } from '@/utils/answer';
+import { checkKakao, Mobile } from '@/utils/device';
+import { downloadImage, getImageUrl } from '@/utils/image';
+import { getStorage } from '@/utils/storage';
 
 const getImagedata = () => {
   const data = getStorage('user');

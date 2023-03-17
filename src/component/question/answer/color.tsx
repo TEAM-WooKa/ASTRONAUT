@@ -1,5 +1,6 @@
-import { ChangeEvent } from 'react';
+import type { ChangeEvent } from 'react';
 import styled from 'styled-components';
+
 import star from '@/assets/images/Star2.png';
 import { GradientButtonStyled } from '@/assets/styles/gradient';
 type HandleAnswerClickType = (answer: string) => void;

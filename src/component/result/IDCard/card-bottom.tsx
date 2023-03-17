@@ -1,4 +1,3 @@
-import { checkChrome } from '@/utils/device';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 

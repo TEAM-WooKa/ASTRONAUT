@@ -1,7 +1,8 @@
+import type { ChangeEvent } from 'react';
+import styled from 'styled-components';
+
 import GradientBorderBox from '@/component/common/GradientBorderBox';
 import DateBox from '@/component/user/date-box';
-import { ChangeEvent } from 'react';
-import styled from 'styled-components';
 
 interface UserInputBoxProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;

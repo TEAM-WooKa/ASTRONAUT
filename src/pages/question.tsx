@@ -1,19 +1,21 @@
-import { ChangeEvent, useMemo, useState } from 'react';
-import styled from 'styled-components';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import withLayout from '@/component/hoc/withLayout';
-import ProgressBar from '@/component/question/progress-bar';
+import type { ChangeEvent } from 'react';
+import { useMemo, useState } from 'react';
+import styled from 'styled-components';
+
 import GradientBox from '@/component/common/GradientBox';
+import withLayout from '@/component/hoc/withLayout';
 import Answer from '@/component/question/answer';
+import type { QuestionType } from '@/component/question/data';
 import {
-  QuestionType,
   QUESTION_DATA,
   subQuestion2,
   subQuestion5,
 } from '@/component/question/data';
+import ProgressBar from '@/component/question/progress-bar';
+import { getColorImageUrl, mappingColorValue } from '@/utils/answer';
 import { setStorage } from '@/utils/storage';
-import { mappingColorValue, getColorImageUrl } from '@/utils/answer';
 
 const QUESTION_END_CNT = QUESTION_DATA.length;
 

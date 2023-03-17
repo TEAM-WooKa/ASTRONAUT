@@ -13,7 +13,7 @@ export interface QuestionType {
   color: string;
 }
 
-interface SubQuestionType extends QuestionType {}
+type SubQuestionType = QuestionType;
 
 export const COLOR_CHANGE_IMAGE = 'color_lumi';
 

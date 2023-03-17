@@ -1,5 +1,6 @@
-import withHead from '@/component/hoc/withHead';
 import styled from 'styled-components';
+
+import withHead from '@/component/hoc/withHead';
 
 function withLayout(
   Component: (props: any) => JSX.Element,

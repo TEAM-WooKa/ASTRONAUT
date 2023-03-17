@@ -1,6 +1,6 @@
-import { GradientButtonStyled } from '@/assets/styles/gradient';
-import AnswerButton from '@/component/question/answer/button';
 import styled from 'styled-components';
+
+import { GradientButtonStyled } from '@/assets/styles/gradient';
 
 type HandleAnswerClickType = (answer: string) => void;
 

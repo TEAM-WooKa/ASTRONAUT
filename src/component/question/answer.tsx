@@ -1,10 +1,10 @@
-import { GradientButtonStyled } from '@/assets/styles/gradient';
+import type { ChangeEvent } from 'react';
+
 import Color from '@/component/question/answer/color';
 import FourChoice from '@/component/question/answer/four-choice';
 import FourLong from '@/component/question/answer/fout-long';
 import SecondChoice from '@/component/question/answer/second-choice';
-import { QuestionCategory } from '@/component/question/data';
-import { ChangeEvent } from 'react';
+import type { QuestionCategory } from '@/component/question/data';
 
 interface AnswerProps {
   type: QuestionCategory;
