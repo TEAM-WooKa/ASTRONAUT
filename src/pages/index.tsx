@@ -42,10 +42,10 @@ function Home() {
 
         <ImageWrapper>
           <Image
-            src={'/images/main_lanny.png'}
+            src={'/character_shadow/green_lanny.webp'}
             alt="logo"
             width={216}
-            height={154}
+            height={153.88}
           />
         </ImageWrapper>
       </div>
@@ -67,7 +67,7 @@ const Wrapper = styled.div`
 `;
 
 const MainLogoWrapper = styled.div`
-  margin-bottom: 32px;
+  margin-bottom: 10px;
 
   img {
     max-width: 100%;
