@@ -1,5 +1,6 @@
-import { FlexCenter } from '@/component/core/Flex';
 import styled from 'styled-components';
+
+import { FlexCenter } from '@/component/core/Flex';
 
 interface CharacterBoxProps {
   image: string;

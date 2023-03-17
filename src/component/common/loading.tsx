@@ -1,8 +1,7 @@
-import LoadingBarSVG from '@/component/image/loading-bar-svg';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
+
+import LoadingBarSVG from '@/component/image/loading-bar-svg';
 
 function Loading() {
   return (

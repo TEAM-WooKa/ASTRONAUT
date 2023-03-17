@@ -1,10 +1,12 @@
-import type { AppProps } from 'next/app';
-import { ThemeProvider } from 'styled-components';
-import GlobalStyle from '@/styles/global-styles';
-import theme from '@/styles/theme';
 import 'public/fonts/font.css';
 import 'public/fonts/Pretendard/stylesheet.css';
+
+import type { AppProps } from 'next/app';
 import { DefaultSeo } from 'next-seo';
+import { ThemeProvider } from 'styled-components';
+
+import GlobalStyle from '@/styles/global-styles';
+import theme from '@/styles/theme';
 
 const DEFAULT_SEO = {
   title: '우주인 ID card',
