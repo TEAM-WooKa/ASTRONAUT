@@ -60,27 +60,34 @@ const getCharacter = (answers: { id: number; answer: string }[]) => {
   const answerList = QUESTION_DATA[lastAnswerIdx].answer;
   const answerIdx = answerList?.indexOf(answers[lastAnswerIdx].answer) ?? 0;
 
-  if (total < 8 || total >= 30) {
+  const color = getTotalColor(total);
+
+  if (color === 'other') {
     return answerIdx === 0 || answerIdx === 1
       ? { char: 'cat', color: 'chee' }
       : { char: 'cat', color: 'da' };
   }
+
   if (answerIdx === 0 || answerIdx === 1) {
-    return { char: 'lanny', color: getTotalColor(total) };
+    // 외향형
+    return { char: 'lanny', color };
   } else {
-    return { char: 'lumy', color: getTotalColor(total) };
+    // 내향형
+    return { char: 'lumy', color };
   }
 };
 
-const getTotalColor = (total: number) => {
-  console.log('total: ', total);
-  if (total <= 14) {
+type ResultColorType = 'yellow' | 'green' | 'purple' | 'other';
+
+const getTotalColor = (total: number): ResultColorType => {
+  if (total >= 13 && total <= 16) {
     return 'yellow';
-  }
-  if (total <= 20) {
+  } else if (total >= 17 && total <= 23) {
     return 'green';
+  } else if (total >= 24 && total <= 33) {
+    return 'purple';
   }
-  return 'purple';
+  return 'other';
 };
 
 const getGoal = (goal: string) => {

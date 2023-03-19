@@ -22,7 +22,6 @@ export default function CardMiddle({
   imageError,
   character,
 }: CardMiddleProps) {
-  // NOTE : 난 도저히 여기에서 image가 undefind가 되는 이유를 알수 없다.
   if (imageError || !image) {
     return (
       <MiddleWrapper>
@@ -55,18 +54,4 @@ const TextWrapper = styled.div`
 
   background: ${(props) => props.theme.colors.sub2};
   border-radius: 16px;
-`;
-
-const ImageWrapper = styled.div`
-  position: relative;
-  width: 90px;
-  height: 120px;
-  border-radius: 16px;
-  min-width: 90px;
-`;
-
-const RomiImageWrapper = styled.div`
-  position: absolute;
-  bottom: -20px;
-  right: -15px;
 `;

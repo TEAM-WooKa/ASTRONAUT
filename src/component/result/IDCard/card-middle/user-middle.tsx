@@ -2,6 +2,7 @@ import type { SyntheticEvent } from 'react';
 import styled from 'styled-components';
 
 import type { CharacterReturnType } from '@/utils/answer';
+
 interface CardMiddleProps {
   children: React.ReactNode;
   character: CharacterReturnType;
@@ -64,6 +65,7 @@ const Star1 = styled.div`
   top: -5px;
   right: -10px;
 `;
+
 const ImageInnerWrapper = styled.div`
   width: 90px;
   height: 120px;
@@ -98,11 +100,12 @@ const ImageWrapper = styled.div`
   min-width: 90px;
 `;
 
+// TODO : 이름 변경
 const RomiImageWrapper = styled.div`
   position: absolute;
   bottom: -20px;
   right: -15px;
-
+  z-index: 1;
   img {
     height: 100%;
   }

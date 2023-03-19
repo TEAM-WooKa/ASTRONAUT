@@ -46,7 +46,7 @@ const Main = styled.div`
 
 const MainInner = styled.div`
   width: 340px;
-  padding: 50px 0;
+  padding: 30px 0;
   margin: auto;
   max-width: 340px;
   height: 100%;
