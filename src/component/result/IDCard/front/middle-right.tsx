@@ -2,13 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import InfoBox from '@/component/result/IDCard/front/info-box';
-
-interface MiddleInnerProps {
-  name: string;
-  birth: string;
-  whatILike: string;
-  goal: string;
-}
+import type { IDCardTextInfo } from '@/component/result/IDCard/types';
 
 // TODO : 삭제
 export default function MiddleRight({
@@ -16,7 +10,7 @@ export default function MiddleRight({
   birth,
   whatILike,
   goal,
-}: MiddleInnerProps) {
+}: IDCardTextInfo) {
   return (
     <Wrapper>
       <InfoBox name={name} birth={birth} whatILike={whatILike} goal={goal} />

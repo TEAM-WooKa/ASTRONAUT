@@ -2,20 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 import InfoBox from '@/component/result/IDCard/front/info-box';
-
-interface RightBoxProps {
-  name: string;
-  birth: string;
-  whatILike: string;
-  goal: string;
-}
+import type { IDCardTextInfo } from '@/component/result/IDCard/types';
 
 export default function RightBox({
   name,
   birth,
   whatILike,
   goal,
-}: RightBoxProps) {
+}: IDCardTextInfo) {
   return (
     <Wrapper>
       <TopWrapper>

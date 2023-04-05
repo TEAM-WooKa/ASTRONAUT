@@ -1,19 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-interface InfoBoxProps {
-  name: string;
-  birth: string;
-  whatILike: string;
-  goal: string;
-}
+import type { IDCardTextInfo } from '@/component/result/IDCard/types';
 
 export default function InfoBox({
   name,
   birth,
   whatILike,
   goal,
-}: InfoBoxProps) {
+}: IDCardTextInfo) {
   return (
     <FrontTextWrapper>
       <div>
