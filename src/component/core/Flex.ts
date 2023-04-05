@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
-export const FlexCenter = styled.div`
+export const Flex = styled.div<{ gap?: number | string }>`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  ${({ gap }) => gap && `gap: ${gap}px;`}
 `;
 
 export const FlexColumn = styled.div<{ gap?: number | string }>`
@@ -11,6 +10,16 @@ export const FlexColumn = styled.div<{ gap?: number | string }>`
   flex-direction: column;
 
   ${({ gap }) => gap && `gap: ${gap}px;`}
+`;
+
+export const FlexJustifyBetween = styled(Flex)`
+  justify-content: space-between;
+`;
+
+export const FlexCenter = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const FullCenter = styled(FlexCenter)`

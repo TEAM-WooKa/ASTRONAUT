@@ -32,7 +32,6 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <title>우주인 ID card</title>
           <meta name="description" content="We are the astronauts" />
           <meta
             name="keywords"
