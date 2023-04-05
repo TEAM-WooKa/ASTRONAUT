@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import InfoBox from '@/component/result/IDCard/front/info-box';
+
 interface RightBoxProps {
-  name?: string;
-  birth?: string;
-  whatILike?: string;
-  goal?: string;
+  name: string;
+  birth: string;
+  whatILike: string;
+  goal: string;
 }
 
 export default function RightBox({
@@ -17,25 +19,7 @@ export default function RightBox({
   return (
     <Wrapper>
       <TopWrapper>
-        <FrontTextWrapper>
-          <div>
-            <span>NAME :</span> <span>{name ?? '데이터가 없습니다'}</span>
-          </div>
-          <div>
-            <span>BIRTH DATE :</span>
-            <span>{birth ?? '데이터가 없습니다'}</span>
-          </div>
-          <div>
-            <span>LINING IN :</span> <span>{'지구별'}</span>
-          </div>
-          <div>
-            <span>WAHT I LIKE :</span>
-            <span>{whatILike ?? '데이터가 없습니다'}</span>
-          </div>
-          <div>
-            <span>GOAL :</span> <span>{goal ?? '데이터가 없습니다'}</span>
-          </div>
-        </FrontTextWrapper>
+        <InfoBox name={name} birth={birth} whatILike={whatILike} goal={goal} />
       </TopWrapper>
       <BottomWrapper>
         <Desc>

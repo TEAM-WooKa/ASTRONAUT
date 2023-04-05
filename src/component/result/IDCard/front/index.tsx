@@ -22,10 +22,10 @@ export default function Front({
   character,
 }: FrontProps) {
   const [imageError, setImageError] = useState(false);
-  const isImageNormal = image || !imageError;
+  // const isImageNormal = !!(image || !imageError);
 
   const handleImageError = (e: SyntheticEvent<HTMLImageElement, Event>) => {
-    e.currentTarget.src = '/character/yellow_lumy.png';
+    // e.currentTarget.src = character.image;
     setImageError(true);
   };
 
@@ -33,12 +33,10 @@ export default function Front({
     setImageError(image ? false : true);
   }, [image]);
 
-  console.log(isImageNormal);
-
   return (
     <InnerFace>
       <CardTop />
-      {isImageNormal ? (
+      {imageError ? (
         <CardInner>
           <LeftBox
             image={image}
@@ -55,7 +53,12 @@ export default function Front({
       ) : (
         <MiddleWrapper>
           <MiddleLeft character={character} />
-          <MiddleRight />
+          <MiddleRight
+            name={name}
+            birth={birth}
+            whatILike={whatILike}
+            goal={goal}
+          />
         </MiddleWrapper>
       )}
     </InnerFace>
