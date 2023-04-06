@@ -6,110 +6,9 @@ import styled from 'styled-components';
 import GradientBox from '@/component/common/GradientBox';
 import Loading from '@/component/common/loading';
 import withLayout from '@/component/hoc/withLayout';
-import {
-  QUESTION_DATA,
-  subQuestion2,
-  subQuestion5,
-} from '@/component/question/data';
+import getResult from '@/utils/result';
 import { getStorage } from '@/utils/storage';
 
-const getCharacter = (answers: { id: number; answer: string }[]) => {
-  // TODO : answer index 받아오기
-  let total = 0;
-  for (let i = 0; i < answers.length - 1; i++) {
-    if (answers[i].id == 3) {
-      if (answers[i].answer === '1') {
-        total += 4;
-      } else if (answers[i].answer === '2') {
-        total += 2;
-      } else {
-        total += 1;
-      }
-      continue;
-    }
-    if (answers[i].id === 2) {
-      const prevAnswer = answers[i - 1].answer;
-      const prevAnswerIdx = [
-        '다이어리',
-        '좋아하는 책',
-        '꽃이 담긴 화분',
-        '카메라',
-      ].indexOf(prevAnswer);
-      const answerList = subQuestion2[prevAnswerIdx]?.answer;
-      const answerIdx = answerList?.indexOf(answers[i].answer) ?? 0;
-
-      total += answerIdx + 1;
-      continue;
-    }
-    if (answers[i].id === 5) {
-      const prevAnswer = answers[i - 1].answer;
-      const prevAnswerIdx = ['YES', 'NO'].indexOf(prevAnswer);
-
-      const answerList = subQuestion5[prevAnswerIdx]?.answer;
-      const answerIdx = answerList?.indexOf(answers[i].answer) ?? 0;
-      total += answerIdx + 1;
-
-      continue;
-    }
-    const answerList = QUESTION_DATA[i].answer ?? ['YES', 'NO'];
-    const answerIdx = answerList?.indexOf(answers[i].answer) ?? 0;
-    total += answerIdx + 1;
-  }
-
-  const lastAnswerIdx = answers.length - 1;
-  const answerList = QUESTION_DATA[lastAnswerIdx].answer;
-  const answerIdx = answerList?.indexOf(answers[lastAnswerIdx].answer) ?? 0;
-
-  const color = getTotalColor(total);
-
-  if (color === 'other') {
-    return answerIdx === 0 || answerIdx === 1
-      ? { char: 'cat', color: 'chee' }
-      : { char: 'cat', color: 'da' };
-  }
-
-  if (answerIdx === 0 || answerIdx === 1) {
-    // 외향형
-    return { char: 'lanny', color };
-  } else {
-    // 내향형
-    return { char: 'lumy', color };
-  }
-};
-
-type ResultColorType = 'yellow' | 'green' | 'purple' | 'other';
-
-const getTotalColor = (total: number): ResultColorType => {
-  if (total >= 13 && total <= 16) {
-    return 'yellow';
-  } else if (total >= 17 && total <= 23) {
-    return 'green';
-  } else if (total >= 24 && total <= 33) {
-    return 'purple';
-  }
-  return 'other';
-};
-
-const getGoal = (goal: string) => {
-  const answerList = [
-    '지구별 정복하고야 말겠어!',
-    '빌보드 차트 1위! 지구별 대스타! ',
-    '지구별 방위대가 되어 지구를 지켜야지!',
-    '지구별의 비밀 밝히기!',
-  ];
-  const answerIdx = answerList.indexOf(goal);
-  return ['지구별 정복', '지구별 대스타', '지구별 방위대', '지구별 탐험가'][
-    answerIdx
-  ];
-};
-const calcResult = (answers: { id: number; answer: string }[]) => {
-  const whatILike = answers[5].answer;
-  const goal = getGoal(answers[7].answer);
-  const { color, char } = getCharacter(answers);
-  return { color, char, whatILike, goal };
-};
-
-// TODO: 더미 데이터를 지우고, localStorage에서 데이터를 가져와야 함.
 const getUserInputData = () => {
   const answers = getStorage('astronauts-answers');
   const user = getStorage('user');
@@ -118,7 +17,7 @@ const getUserInputData = () => {
 
   const { name, birth } = JSON.parse(user);
 
-  const { color, char, whatILike, goal } = calcResult(JSON.parse(answers));
+  const { color, char, whatILike, goal } = getResult(JSON.parse(answers));
   const total = {
     color,
     char,
@@ -135,6 +34,7 @@ function LoadingPage() {
   const router = useRouter();
 
   const userData = getUserInputData();
+  console.log('userData: ', userData);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -143,8 +43,8 @@ function LoadingPage() {
         query: { type: 1, ...userData },
       });
     }, 3000);
-
     return () => clearInterval(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -190,6 +90,7 @@ const Wrapper = styled.div`
   max-width: 475px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
 `;
+
 const InnerWrapper = styled.div`
   width: 350px;
 
@@ -197,6 +98,7 @@ const InnerWrapper = styled.div`
   flex-direction: column;
   gap: 50px;
 `;
+
 const GradientBoxInner = styled.div`
   padding: 10px 0 17px;
   text-align: center;
@@ -213,15 +115,11 @@ const GradientBoxInner = styled.div`
 const MainText = styled.div`
   font-family: 'Space Rave';
   font-size: 28px;
-  color: #fff;
   font-style: italic;
   font-weight: 400;
   font-size: 28px;
   line-height: 26px;
-  /* identical to box height, or 93% */
-
   /* 보조 컬러 2 */
-
   color: #f1f1f1;
 `;
 
