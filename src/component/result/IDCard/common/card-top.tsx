@@ -1,10 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 import styled from 'styled-components';
 
 export default function CardTop() {
   return (
     <>
       <TopWrapper>
-        <img src="/images/id-card.png" />
+        <img src="/images/id-card.png" alt="astronaut id card" />
         <span>NO. 00000001</span>
       </TopWrapper>
     </>

@@ -3,10 +3,8 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import type { CardDataType } from '@/component/result/IDCard';
-import CardTop from '@/component/result/IDCard/card-top';
+import CardTop from '@/component/result/IDCard/common/card-top';
 import LeftBox from '@/component/result/IDCard/front/left-box';
-import MiddleLeft from '@/component/result/IDCard/front/middle-left';
-import MiddleRight from '@/component/result/IDCard/front/middle-right';
 import RightBox from '@/component/result/IDCard/front/right-box';
 import type { CharacterReturnType } from '@/utils/answer';
 
@@ -22,10 +20,8 @@ export default function Front({
   character,
 }: FrontProps) {
   const [imageError, setImageError] = useState(false);
-  // const isImageNormal = !!(image || !imageError);
 
   const handleImageError = (e: SyntheticEvent<HTMLImageElement, Event>) => {
-    // e.currentTarget.src = character.image;
     setImageError(true);
   };
 
@@ -36,31 +32,15 @@ export default function Front({
   return (
     <InnerFace>
       <CardTop />
-      {imageError ? (
-        <CardInner>
-          <LeftBox
-            image={image}
-            character={character}
-            handleImageError={handleImageError}
-          />
-          <RightBox
-            name={name}
-            birth={birth}
-            whatILike={whatILike}
-            goal={goal}
-          />
-        </CardInner>
-      ) : (
-        <MiddleWrapper>
-          <MiddleLeft character={character} />
-          <MiddleRight
-            name={name}
-            birth={birth}
-            whatILike={whatILike}
-            goal={goal}
-          />
-        </MiddleWrapper>
-      )}
+      <CardInner>
+        <LeftBox
+          image={image}
+          character={character}
+          handleImageError={handleImageError}
+          isError={imageError}
+        />
+        <RightBox name={name} birth={birth} whatILike={whatILike} goal={goal} />
+      </CardInner>
     </InnerFace>
   );
 }
