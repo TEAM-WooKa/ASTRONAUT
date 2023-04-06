@@ -62,6 +62,7 @@ const Wrapper = styled.div`
   min-width: 90px;
   overflow: visible;
 `;
+
 const TopWrapper = styled.div`
   height: 120px;
 `;

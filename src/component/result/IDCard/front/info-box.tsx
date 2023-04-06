@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { InfoBoxContainerStyled } from '@/component/result/IDCard/styles';
 import type { IDCardTextInfo } from '@/component/result/IDCard/types';
 
 export default function InfoBox({
@@ -32,23 +33,15 @@ export default function InfoBox({
   );
 }
 
-const FrontTextWrapper = styled.div`
-  height: 120px;
-  display: flex;
-  flex-direction: column;
+const FrontTextWrapper = styled(InfoBoxContainerStyled)`
   align-items: flex-start;
   justify-content: space-between;
-  padding: 12px 10px;
-
-  background: ${(props) => props.theme.colors.sub2};
-  color: ${(props) => props.theme.colors.main2};
 
   font-family: 'GongGothicMedium';
   font-weight: 500;
   font-size: 10px;
   line-height: 12px;
 
-  border-radius: 16px;
   div {
     border-bottom: 0.1px solid #343232;
     width: 100%;

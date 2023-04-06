@@ -1,21 +1,10 @@
-import type { ReactNode } from 'react';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { FlexColumn } from '@/component/core/Flex';
-import CardMiddle from '@/component/result/IDCard/card-middle';
 import CardTop from '@/component/result/IDCard/card-top';
+import CharacterInfoBox from '@/component/result/IDCard/character-info-box';
+import CharacterProfile from '@/component/result/IDCard/character-profile';
 import type { CharacterReturnType } from '@/utils/answer';
-import {
-  CHEE_CAT,
-  DA_CAT,
-  GREEN_LANNY,
-  GREEN_LUMY,
-  PURPLE_LANNY,
-  PURPLE_LUMY,
-  YELLOW_LANNY,
-  YELLOW_LUMY,
-} from '@/utils/character';
 
 export default function Back({
   character,
@@ -31,11 +20,12 @@ export default function Back({
   return (
     <>
       <CardTop />
-      <CardMiddle character={character}>
-        <FlexColumn gap="1">{characterContents[character.name]}</FlexColumn>
-      </CardMiddle>
+      <MiddleWrapper>
+        <CharacterProfile character={character} />
+        <CharacterInfoBox character={character} />
+      </MiddleWrapper>
+
       <BottomWrapper>
-        <TagWrapper></TagWrapper>
         <Desc isScale={isChrome}>
           <p>
             1. 이 카드의 소지자는 우주선 탑승 시 본 ID 카드를 제시해주시길
@@ -53,46 +43,27 @@ export default function Back({
 
 const BottomWrapper = styled.div`
   width: 100%;
-  display: flex;
-  /* display: flex;
-  flex-direction: row-reverse; */
 `;
 
-const TagWrapper = styled.div`
-  width: 100%;
-  min-width: 44px;
-  text-align: center;
+const MiddleWrapper = styled.div`
+  display: flex;
+  gap: 20px;
+
+  height: 120px;
 `;
 
 const Desc = styled.div<{ isScale: boolean }>`
   font-weight: 300;
-  font-size: 8px;
-  line-height: 10px;
+  font-size: 10px;
 
-  transform: ${(props) =>
-    props.isScale ? 'translate(-8%, -0%) scale(0.75)' : ''};
+  transform: translate(12%, 0) scale(0.75);
 
-  display: block;
-  text-align: right;
   color: #343232;
   opacity: 0.8;
-  width: fit-content;
-  float: right;
+
   p {
-    width: fit-content;
     text-overflow: ellipsis;
     white-space: pre;
     float: right;
   }
 `;
-
-const characterContents: Record<string, ReactNode> = {
-  Purple_Lumy: PURPLE_LUMY,
-  Green_Lumy: GREEN_LUMY,
-  Yellow_Lumy: YELLOW_LUMY,
-  Purple_Lanny: PURPLE_LANNY,
-  Green_Lanny: GREEN_LANNY,
-  Yellow_Lanny: YELLOW_LANNY,
-  Da_Cat: DA_CAT,
-  Chee_Cat: CHEE_CAT,
-};

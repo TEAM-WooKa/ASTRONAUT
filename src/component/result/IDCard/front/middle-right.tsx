@@ -32,7 +32,7 @@ const Desc = styled.div`
   line-height: 10px;
   font-size: 10px;
 
-  transform: translate(0%, 80%) scale(0.75);
+  transform: translate(0%, 55%) scale(0.75);
 
   display: inline-block;
   text-align: right;
@@ -45,26 +45,5 @@ const Desc = styled.div`
     text-overflow: ellipsis;
     white-space: pre;
     float: right;
-  }
-`;
-
-const FrontTextWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: flex-start;
-
-  color: ${(props) => props.theme.colors.main2};
-  font-family: 'GongGothicMedium';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 10px;
-  line-height: 12px;
-
-  div {
-    border-bottom: 0.1px solid #343232;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
   }
 `;

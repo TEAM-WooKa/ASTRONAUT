@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { FlexCenter } from '@/component/core/Flex';
 import type { CharacterReturnType } from '@/utils/answer';
 
-export default function MiddleLeft({
+export default function CharacterProfile({
   character,
 }: {
   character: CharacterReturnType;

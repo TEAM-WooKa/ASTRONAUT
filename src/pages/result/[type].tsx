@@ -53,8 +53,8 @@ const getData = ({
       image: '',
     },
     character: {
-      name: characterName ?? 'Yellow_Lumy',
-      image: characterImage ?? '/characters/lumy.png',
+      name: characterName ?? 'Purple_Lumi',
+      image: characterImage ?? `/characters/lumi.png`,
     },
   };
 };

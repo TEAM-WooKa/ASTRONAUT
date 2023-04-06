@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 import type { CardDataType } from '@/component/result/IDCard';
 import CardTop from '@/component/result/IDCard/card-top';
+import MiddleLeft from '@/component/result/IDCard/character-profile';
 import LeftBox from '@/component/result/IDCard/front/left-box';
-import MiddleLeft from '@/component/result/IDCard/front/middle-left';
 import MiddleRight from '@/component/result/IDCard/front/middle-right';
 import RightBox from '@/component/result/IDCard/front/right-box';
 import type { CharacterReturnType } from '@/utils/answer';
