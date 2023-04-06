@@ -1,3 +1,5 @@
+import type { CharacterColorType, CharacterType } from '@/types/character';
+
 export interface AnswerType {
   label: string;
   score: number;
@@ -5,8 +7,6 @@ export interface AnswerType {
 }
 
 export type ButtonType = 'button-4' | 'button-2' | 'long-4';
-export type CharacterType = 'lanny' | 'lumy' | 'cat';
-export type CharacterColorType = 'green' | 'yellow' | 'purple' | 'chee' | 'da';
 
 export type QuestionType =
   | 'two-choice'
