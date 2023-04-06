@@ -23,6 +23,7 @@ interface IDCardProps {
 
 export default function IDCard({ cardRef, cardData, character }: IDCardProps) {
   const [isRotate, setIsRotate] = useState<boolean>(false);
+
   const [isLoading, setIsLoading] = useState(false); // NOTE: 제거?
   const onClick = () => {
     setIsRotate(!isRotate);

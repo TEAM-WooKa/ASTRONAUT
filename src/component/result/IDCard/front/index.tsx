@@ -22,10 +22,8 @@ export default function Front({
   character,
 }: FrontProps) {
   const [imageError, setImageError] = useState(false);
-  // const isImageNormal = !!(image || !imageError);
 
   const handleImageError = (e: SyntheticEvent<HTMLImageElement, Event>) => {
-    // e.currentTarget.src = character.image;
     setImageError(true);
   };
 
@@ -36,7 +34,7 @@ export default function Front({
   return (
     <InnerFace>
       <CardTop />
-      {imageError ? (
+      {!imageError ? (
         <CardInner>
           <LeftBox
             image={image}

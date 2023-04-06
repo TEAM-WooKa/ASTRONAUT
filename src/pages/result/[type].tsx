@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 
 import withLayout from '@/component/hoc/withLayout';
 import IconBox from '@/component/result/icon-box';
-import type { CardDataType } from '@/component/result/IDCard';
 import IDCard from '@/component/result/IDCard';
+import type { IDCardTextInfo } from '@/component/result/IDCard/types';
 import type { CharacterColorType, CharacterType } from '@/utils/answer';
 import { calcCharacter } from '@/utils/answer';
 import { checkKakao, Mobile } from '@/utils/device';
@@ -50,7 +50,6 @@ const getData = ({
       birth: (birth as string) ?? '데이터가 없습니다',
       whatILike: (whatILike as string) ?? '데이터가 없습니다',
       goal: (goal as string) ?? '데이터가 없습니다',
-      image: '',
     },
     character: {
       name: characterName ?? 'Purple_Lumi',
@@ -85,7 +84,7 @@ const getData = ({
 // }
 
 interface ResultProps {
-  cardData: CardDataType;
+  cardData: IDCardTextInfo;
   character: {
     name: string;
     image: string;
@@ -103,8 +102,9 @@ function Result() {
     color,
     char,
   });
+
   const cardRef = useRef(null);
-  const [image, setImage] = useState(cardData.image);
+  const [image, setImage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const handleDownloadImage = async () => {
@@ -154,7 +154,7 @@ function Result() {
       </h1>
       <IDCard
         cardRef={cardRef}
-        cardData={{ ...cardData, image }}
+        cardData={{ ...cardData, image: image ?? '' }}
         character={character}
       />
       <IconBox isLoading={isLoading} onDownloadBtn={onDownloadBtn} />
