@@ -9,7 +9,7 @@ import {
   ProfileTagContainerStyled,
   ProfileTagStyled,
 } from '@/component/result/IDCard/styles';
-import type { CharacterReturnType } from '@/utils/answer';
+import type { CharacterReturnType } from '@/types/character';
 
 interface LeftBoxProps {
   character: CharacterReturnType;

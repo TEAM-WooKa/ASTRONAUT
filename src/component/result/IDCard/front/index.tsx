@@ -6,7 +6,7 @@ import type { CardDataType } from '@/component/result/IDCard';
 import CardTop from '@/component/result/IDCard/common/card-top';
 import LeftBox from '@/component/result/IDCard/front/left-box';
 import RightBox from '@/component/result/IDCard/front/right-box';
-import type { CharacterReturnType } from '@/utils/answer';
+import type { CharacterReturnType } from '@/types/character';
 
 interface FrontProps extends CardDataType {
   character: CharacterReturnType;

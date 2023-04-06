@@ -1,23 +1,18 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import { GradientButtonStyled } from '@/assets/styles/gradient';
-import { isHangulChar } from '@/utils/hangul';
-
-type HandleAnswerClickType = (answer: string) => void;
+import type { AnswerRequestType } from '@/types/question';
 
 export default function FourLong({
-  handleAnswerClick,
-  answer,
-}: {
-  handleAnswerClick: HandleAnswerClickType;
-  answer: string[];
-}) {
+  onAnswerClick,
+  answers,
+}: AnswerRequestType) {
   return (
     <Wrapper>
-      {answer.map((content) => (
-        <ButtonWrapper key={content} onClick={() => handleAnswerClick(content)}>
-          <ButtonInner isHangul={isHangulChar(content)}>
-            <span>{content}</span>
+      {answers.map((answer) => (
+        <ButtonWrapper key={answer.label} onClick={() => onAnswerClick(answer)}>
+          <ButtonInner>
+            <span>{answer.label}</span>
           </ButtonInner>
         </ButtonWrapper>
       ))}
@@ -35,7 +30,7 @@ const ButtonWrapper = styled.div`
   height: 40px;
 `;
 
-const ButtonInner = styled(GradientButtonStyled)<{ isHangul: boolean }>`
+const ButtonInner = styled(GradientButtonStyled)`
   border-radius: 40px;
   padding: 2px;
   height: 40px;
@@ -47,22 +42,5 @@ const ButtonInner = styled(GradientButtonStyled)<{ isHangul: boolean }>`
     font-weight: 600;
     font-size: 16px;
     line-height: 18px;
-
-    /* ${(props) =>
-      props.isHangul
-        ? css`
-            font-family: 'Pretendard';
-            font-style: normal;
-            font-weight: 600;
-            font-size: 16px;
-            line-height: 18px;
-          `
-        : css`
-            font-family: 'Space-Rave';
-            font-style: italic;
-            font-size: 32px;
-            left: -3px;
-            bottom: 1px;
-          `} */
   }
 `;

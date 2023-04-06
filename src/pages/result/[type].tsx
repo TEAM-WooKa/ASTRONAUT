@@ -6,8 +6,8 @@ import withLayout from '@/component/hoc/withLayout';
 import IconBox from '@/component/result/icon-box';
 import IDCard from '@/component/result/IDCard';
 import type { IDCardTextInfo } from '@/component/result/IDCard/types';
-import type { CharacterColorType, CharacterType } from '@/utils/answer';
-import { calcCharacter } from '@/utils/answer';
+import type { CharacterColorType, CharacterType } from '@/types/character';
+import { getCharacterImageUrl } from '@/utils/character/image';
 import { checkKakao, Mobile } from '@/utils/device';
 import { downloadImage, getImageUrl } from '@/utils/image';
 import { getStorage } from '@/utils/storage';
@@ -39,7 +39,7 @@ const getData = ({
   color: queryType;
   char: queryType;
 }): ResultProps => {
-  const { name: characterName, image: characterImage } = calcCharacter({
+  const { name: characterName, image: characterImage } = getCharacterImageUrl({
     color: color as CharacterColorType,
     char: char as CharacterType,
   });

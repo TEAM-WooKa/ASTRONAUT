@@ -75,7 +75,7 @@ export const subQuestion5: SubQuestionType[] = [
     color: 'purple',
   },
 ];
-
+// TODO : 제거
 export const QUESTION_DATA: QuestionType[] = [
   {
     id: 1,

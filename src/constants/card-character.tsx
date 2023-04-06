@@ -36,6 +36,7 @@ const GREEN_LUMY = (
     </TextWrapper>
   </>
 );
+
 const PURPLE_LUMY = (
   <>
     <TextWrapper>

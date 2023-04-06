@@ -3,7 +3,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { InfoBoxContainerStyled } from '@/component/result/IDCard/styles';
-import type { CharacterReturnType } from '@/utils/answer';
 import {
   CHEE_CAT,
   DA_CAT,
@@ -13,7 +12,8 @@ import {
   PURPLE_LUMY,
   YELLOW_LANNY,
   YELLOW_LUMY,
-} from '@/utils/character';
+} from '@/constants/card-character';
+import type { CharacterReturnType } from '@/types/character';
 
 export default function CharacterInfoBox({
   character,

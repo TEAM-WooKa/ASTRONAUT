@@ -1,26 +1,21 @@
 import styled from 'styled-components';
 
 import { GradientButtonStyled } from '@/assets/styles/gradient';
-
-type HandleAnswerClickType = (answer: string) => void;
+import type { AnswerRequestType } from '@/types/question';
 
 export default function SecondChoice({
-  handleAnswerClick,
-}: {
-  handleAnswerClick: HandleAnswerClickType;
-}) {
+  onAnswerClick,
+  answers,
+}: AnswerRequestType) {
   return (
     <>
-      <ButtonWrapper>
-        <Wrapper onClick={() => handleAnswerClick('YES')}>
-          <span>YES</span>
-        </Wrapper>
-      </ButtonWrapper>
-      <ButtonWrapper>
-        <Wrapper onClick={() => handleAnswerClick('NO')}>
-          <span>NO</span>
-        </Wrapper>
-      </ButtonWrapper>
+      {answers.map((answer) => (
+        <ButtonWrapper key={answer.label}>
+          <Wrapper onClick={() => onAnswerClick(answer)}>
+            <span>{answer.label}</span>
+          </Wrapper>
+        </ButtonWrapper>
+      ))}
     </>
   );
 }

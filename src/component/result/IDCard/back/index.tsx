@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import CardTop from '@/component/result/IDCard/common/card-top';
 import CharacterInfoBox from '@/component/result/IDCard/common/character-info-box';
 import CharacterProfile from '@/component/result/IDCard/common/character-profile';
-import type { CharacterReturnType } from '@/utils/answer';
+import type { CharacterReturnType } from '@/types/character';
 
 export default function Back({
   character,
