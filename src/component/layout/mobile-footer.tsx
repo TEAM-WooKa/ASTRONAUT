@@ -1,6 +1,9 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
+
+import { GITHUB_URL, INSTAGRAM_URL } from '@/constants/path';
 
 export default function MobileFooter() {
   const router = useRouter();
@@ -11,18 +14,22 @@ export default function MobileFooter() {
       <TeamText>Astronaut ID Card Service. </TeamText>
       <TeamText>© 2023. TEAM-Wooka all rights reserved.</TeamText>
       <IconWrapper>
-        <Image
-          src="/icons/github-icon.png"
-          alt="github"
-          width={23}
-          height={23}
-        />
-        <Image
-          src="/icons/instagram-icon.png"
-          alt="instagram"
-          width={23}
-          height={23}
-        />
+        <Link href={GITHUB_URL}>
+          <Image
+            src="/icons/github-icon.png"
+            alt="github"
+            width={23}
+            height={23}
+          />
+        </Link>
+        <Link href={INSTAGRAM_URL}>
+          <Image
+            src="/icons/instagram-icon.png"
+            alt="instagram"
+            width={23}
+            height={23}
+          />
+        </Link>
       </IconWrapper>
     </Wrapper>
   );

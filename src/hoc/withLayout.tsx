@@ -42,12 +42,17 @@ const Main = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
 
+  display: flex;
   position: relative;
+
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
   @media screen and (min-width: 700px) {
     padding: 0;
     background-image: url('/images/desktop_full_bg.webp');
-    display: flex;
   }
 `;
 
