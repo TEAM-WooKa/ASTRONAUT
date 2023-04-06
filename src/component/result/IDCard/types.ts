@@ -1,7 +1,6 @@
-export interface IDCardType {
+export interface IDCardTextInfo {
   name: string;
   birth: string;
-  // liningIn: string;
   whatILike: string;
   goal: string;
 }

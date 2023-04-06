@@ -6,13 +6,10 @@ import { GradientBoxStyled } from '@/assets/styles/gradient';
 import { FullCenter } from '@/component/core/Flex';
 import Back from '@/component/result/IDCard/back';
 import Front from '@/component/result/IDCard/front';
+import type { IDCardTextInfo } from '@/component/result/IDCard/types';
 import type { CharacterReturnType } from '@/utils/answer';
 
-export interface CardDataType {
-  name: string;
-  birth: string;
-  whatILike: string;
-  goal: string;
+export interface CardDataType extends IDCardTextInfo {
   image: string;
 }
 
