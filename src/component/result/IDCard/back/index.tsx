@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import CardTop from '@/component/result/IDCard/card-top';
-import CharacterInfoBox from '@/component/result/IDCard/character-info-box';
-import CharacterProfile from '@/component/result/IDCard/character-profile';
+import CardTop from '@/component/result/IDCard/common/card-top';
+import CharacterInfoBox from '@/component/result/IDCard/common/character-info-box';
+import CharacterProfile from '@/component/result/IDCard/common/character-profile';
 import type { CharacterReturnType } from '@/utils/answer';
 
 export default function Back({
@@ -11,12 +10,6 @@ export default function Back({
 }: {
   character: CharacterReturnType;
 }) {
-  const [isChrome, setIsChrome] = useState(false);
-
-  useEffect(() => {
-    setIsChrome(/Chrome/i.test(window.navigator.userAgent));
-  }, []);
-
   return (
     <>
       <CardTop />
@@ -26,7 +19,7 @@ export default function Back({
       </MiddleWrapper>
 
       <BottomWrapper>
-        <Desc isScale={isChrome}>
+        <Desc>
           <p>
             1. 이 카드의 소지자는 우주선 탑승 시 본 ID 카드를 제시해주시길
             바랍니다.
@@ -52,7 +45,7 @@ const MiddleWrapper = styled.div`
   height: 120px;
 `;
 
-const Desc = styled.div<{ isScale: boolean }>`
+const Desc = styled.div`
   font-weight: 300;
   font-size: 10px;
 

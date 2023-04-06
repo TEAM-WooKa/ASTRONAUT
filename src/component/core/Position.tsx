@@ -15,3 +15,9 @@ export const AbsoluteCenter = styled.div`
   bottom: 0;
   margin: auto;
 `;
+
+export const AbsoluteForceHorizontalCenter = styled.div`
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+`;

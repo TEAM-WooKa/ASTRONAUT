@@ -2,11 +2,18 @@ import type { SyntheticEvent } from 'react';
 import React from 'react';
 import styled from 'styled-components';
 
+import { FlexCenter } from '@/component/core/Flex';
+import CharacterProfile from '@/component/result/IDCard/common/character-profile';
+import {
+  CoverImage,
+  ProfileTagContainerStyled,
+  ProfileTagStyled,
+} from '@/component/result/IDCard/styles';
 import type { CharacterReturnType } from '@/utils/answer';
 
 interface LeftBoxProps {
   character: CharacterReturnType;
-
+  isError: boolean;
   image: string;
   handleImageError: (e: SyntheticEvent<HTMLImageElement, Event>) => void;
 }
@@ -15,16 +22,26 @@ export default function LeftBox({
   image,
   handleImageError,
   character,
+  isError,
 }: LeftBoxProps) {
+  if (isError) {
+    return <CharacterProfile character={character} />;
+  }
+
   return (
     <Wrapper>
       <TopWrapper>
         <ImageWrapper>
           <CharacterImageWrapper>
-            <Img src={character.image} width="60" height="48" alt="image" />
+            <CoverImage
+              src={character.image}
+              width="60"
+              height="48"
+              alt="image"
+            />
           </CharacterImageWrapper>
           <ImageInnerWrapper>
-            <Img
+            <CoverImage
               src={image}
               width="90"
               height="120"
@@ -33,7 +50,7 @@ export default function LeftBox({
             />
           </ImageInnerWrapper>
           <Star1>
-            <Img
+            <CoverImage
               src="/images/star.png"
               width="27.64px"
               height="27.64px"
@@ -41,7 +58,7 @@ export default function LeftBox({
             />
           </Star1>
           <Star2>
-            <Img
+            <CoverImage
               src="/images/star.png"
               width="18.43px"
               height="18.43px"
@@ -50,9 +67,9 @@ export default function LeftBox({
           </Star2>
         </ImageWrapper>
       </TopWrapper>
-      <BottomWrapper>
-        <Tag>{character.name}</Tag>
-      </BottomWrapper>
+      <ProfileTagContainerStyled>
+        <ProfileTagStyled>{character.name}</ProfileTagStyled>
+      </ProfileTagContainerStyled>
     </Wrapper>
   );
 }
@@ -65,29 +82,6 @@ const Wrapper = styled.div`
 
 const TopWrapper = styled.div`
   height: 120px;
-`;
-
-const BottomWrapper = styled.div`
-  margin-top: 8px;
-  height: 20px;
-  position: relative;
-`;
-
-const Tag = styled.div`
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: fit-content;
-  font-family: 'GongGothicMedium';
-  font-weight: 700;
-  font-size: 10px;
-  padding: 0 5px;
-  line-height: 20px;
-
-  color: ${(props) => props.theme.colors.main2};
-  background: ${(props) => props.theme.colors.sub2};
-  border-radius: 10px;
 `;
 
 const Star2 = styled.div`
@@ -109,10 +103,6 @@ const ImageInnerWrapper = styled.div`
   overflow: hidden;
 `;
 
-const Img = styled.img`
-  object-fit: cover;
-`;
-
 const ImageWrapper = styled.div`
   position: relative;
   width: 90px;
@@ -130,4 +120,17 @@ const CharacterImageWrapper = styled.div`
   img {
     height: 100%;
   }
+`;
+
+const CharacterWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+`;
+
+const CharacterMainImageWrapper = styled(FlexCenter)`
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: ${(props) => props.theme.colors.sub2};
 `;
