@@ -37,10 +37,10 @@ function LoadingPage() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      router.push({
-        pathname: '/result/[type]',
-        query: { type: 1, ...userData },
-      });
+      // router.push({
+      //   pathname: '/result/[type]',
+      //   query: { type: 1, ...userData },
+      // });
     }, 3000);
     return () => clearInterval(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -69,9 +69,23 @@ function LoadingPage() {
           </GradientBoxInner>
         </GradientBox>
       </InnerWrapper>
+
+      <OuterOverlay />
     </Wrapper>
   );
 }
+
+const OuterOverlay = styled.div`
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+  z-index: -1;
+`;
 
 const Wrapper = styled.div`
   position: absolute;
@@ -86,13 +100,12 @@ const Wrapper = styled.div`
   align-items: center;
   height: 100vh;
   width: 100vw;
-  max-width: 475px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+  max-width: 100%;
+  z-index: 1;
 `;
 
 const InnerWrapper = styled.div`
   width: 350px;
-
   display: flex;
   flex-direction: column;
   gap: 50px;
