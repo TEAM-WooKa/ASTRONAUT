@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { GradientButtonStyled } from '@/assets/styles/gradient';
 import AText from '@/component/common/AText';
 import GradientBorderBox from '@/component/common/GradientBorderBox';
-import withLayout from '@/component/hoc/withLayout';
+import withLayout from '@/hoc/withLayout';
 
 function Home() {
   const router = useRouter();

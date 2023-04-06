@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import GradientBox from '@/component/common/GradientBox';
 import Loading from '@/component/common/loading';
-import withLayout from '@/component/hoc/withLayout';
+import withLayout from '@/hoc/withLayout';
 import getResult from '@/utils/result';
 import { getStorage } from '@/utils/storage';
 
@@ -34,7 +34,6 @@ function LoadingPage() {
   const router = useRouter();
 
   const userData = getUserInputData();
-  console.log('userData: ', userData);
 
   useEffect(() => {
     const timer = setInterval(() => {

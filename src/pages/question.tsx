@@ -3,11 +3,11 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import withLayout from '@/component/hoc/withLayout';
 import BasicQuestion from '@/component/question/basic-question';
 import ColorQuestion from '@/component/question/color-question';
 import ProgressBar from '@/component/question/progress-bar';
 import { QUESTION_INFO_LIST } from '@/constants/question';
+import withLayout from '@/hoc/withLayout';
 import type { AnswerHistoryType, AnswerType } from '@/types/question';
 import { setStorage } from '@/utils/storage';
 
