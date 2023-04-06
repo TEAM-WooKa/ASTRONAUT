@@ -49,7 +49,7 @@ function Question() {
       return subQuestion5[prevAnswerIdx];
     }
     return thisQuestion;
-  }, [questionIndex]);
+  }, [answers, questionIndex]);
 
   const isColorQuestion = currentQuestion?.id === 3;
 
@@ -58,21 +58,7 @@ function Question() {
       const colorValue = answer as keyof typeof mappingColorValue;
       answer = mappingColorValue[colorValue];
     }
-    // if (currentQuestion.id === 4 && answer === 'NO') {
-    //   const newAnswer = [
-    //     ...answers,
-    //     {
-    //       id: 4,
-    //       answer,
-    //     },
-    //     {
-    //       id: 5,
-    //       answer,
-    //     },
-    //   ];
-    //   setAnswers(newAnswer);
-    //   return newAnswer;
-    // }
+
     const newAnswer = [
       ...answers,
       {
