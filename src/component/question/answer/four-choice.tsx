@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import AnswerButton from '@/component/question/answer/button';
+import { GradientButtonStyled } from '@/assets/styles/gradient';
 import type { AnswerRequestType } from '@/types/question';
 
 export default function FourChoice({
@@ -10,11 +10,9 @@ export default function FourChoice({
   return (
     <Wrapper>
       {answers.map((answer) => (
-        <AnswerButton
-          key={answer.label}
-          content={answer.label}
-          onClick={() => onAnswerClick(answer)}
-        />
+        <ButtonWrapper key={answer.label} onClick={() => onAnswerClick(answer)}>
+          <span>{answer.label}</span>
+        </ButtonWrapper>
       ))}
     </Wrapper>
   );
@@ -26,4 +24,18 @@ const Wrapper = styled.div`
   justify-items: center;
   gap: 16px;
   width: 100%;
+`;
+
+const ButtonWrapper = styled(GradientButtonStyled)`
+  border-radius: 40px;
+  padding: 2px;
+  width: 130px;
+
+  span {
+    position: relative;
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-size: 20px;
+    font-weight: bold;
+  }
 `;

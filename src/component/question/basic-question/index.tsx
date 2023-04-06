@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import GradientBox from '@/component/common/GradientBox';
 import Answer from '@/component/question/answer';
-import CharacterImage from '@/component/question/character-image';
+import CharacterImage from '@/component/question/basic-question/character-image';
 import type {
   AnswerType,
   FourChoiceQuestionType,

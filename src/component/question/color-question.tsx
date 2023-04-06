@@ -4,7 +4,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import GradientBox from '@/component/common/GradientBox';
-import ColorAnswer from '@/component/question/color-answer';
+import ColorAnswer from '@/component/question/answer/color-answer';
 import type { AnswerType, ColorQuestionInfoType } from '@/types/question';
 import { getColorLumiUrl } from '@/utils/character/image';
 

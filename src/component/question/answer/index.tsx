@@ -1,7 +1,7 @@
 import React from 'react';
 
 import FourChoice from '@/component/question/answer/four-choice';
-import FourLong from '@/component/question/answer/fout-long';
+import FourLong from '@/component/question/answer/four-long';
 import SecondChoice from '@/component/question/answer/second-choice';
 import type {
   AnswerListType,
