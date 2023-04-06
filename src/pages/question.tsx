@@ -1,85 +1,66 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import type { ChangeEvent } from 'react';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 import GradientBox from '@/component/common/GradientBox';
 import withLayout from '@/component/hoc/withLayout';
-import Answer from '@/component/question/answer';
-import type { QuestionType } from '@/component/question/data';
-import {
-  QUESTION_DATA,
-  subQuestion2,
-  subQuestion5,
-} from '@/component/question/data';
+import Answer from '@/component/question/answer/index';
+import ColorAnswer from '@/component/question/color-answer';
 import ProgressBar from '@/component/question/progress-bar';
-import { getColorImageUrl, mappingColorValue } from '@/utils/answer';
+import { QUESTION_INFO_LIST } from '@/constants/question';
+import type {
+  AnswerHistoryType,
+  AnswerType,
+  CharacterColorType,
+  CharacterType,
+} from '@/types/question';
+import { getColorImageUrl } from '@/utils/answer';
 import { setStorage } from '@/utils/storage';
 
-const QUESTION_END_CNT = QUESTION_DATA.length;
-
-const questions = QUESTION_DATA;
-
-type AnswerType = { id: number; answer: string };
+const FIRST_QUESTION_ID = '1';
+const questions = QUESTION_INFO_LIST;
+const PROGRESS_STEP = 10;
 
 function Question() {
   const router = useRouter();
-
-  const [answers, setAnswers] = useState<AnswerType[]>([]);
+  const [answerHistory, setAnswerHistory] = useState<AnswerHistoryType[]>([]);
+  const [progressPercent, setProgressPercent] = useState(0);
 
   const [answerColorStatus, setAnswerColorStatus] = useState('3');
-  const questionIndex = answers.length;
+  const [currentQuestionIndex, setCurrentQuestionIndex] =
+    useState(FIRST_QUESTION_ID);
 
-  const currentQuestion = useMemo(() => {
-    const thisQuestion = questions[questionIndex];
-    if (thisQuestion?.id === 2) {
-      const prevAnswer = answers[questionIndex - 1].answer;
-      const prevAnswerIdx = [
-        '다이어리',
-        '좋아하는 책',
-        '꽃이 담긴 화분',
-        '카메라',
-      ].indexOf(prevAnswer);
-      return subQuestion2[prevAnswerIdx];
-    }
-    if (thisQuestion?.id === 5) {
-      const prevAnswer = answers[questionIndex - 1].answer;
-      const prevAnswerIdx = ['YES', 'NO'].indexOf(prevAnswer);
-      return subQuestion5[prevAnswerIdx];
-    }
-    return thisQuestion;
-  }, [answers, questionIndex]);
-
-  const isColorQuestion = currentQuestion?.id === 3;
-
-  const getNewAnswer = (answer: string) => {
-    if (isColorQuestion) {
-      const colorValue = answer as keyof typeof mappingColorValue;
-      answer = mappingColorValue[colorValue];
-    }
-
-    const newAnswer = [
-      ...answers,
+  const currentQuestion = questions[currentQuestionIndex];
+  const isColorQuestion = currentQuestion.type === 'color';
+  const getNewAnswer = (answer: AnswerType) => {
+    const newAnswer: AnswerHistoryType[] = [
+      ...answerHistory,
       {
         id: currentQuestion.id,
-        answer,
+        ...answer,
       },
     ];
+    setAnswerHistory(newAnswer);
     console.log('newAnswer: ', newAnswer);
-
-    setAnswers(newAnswer);
     return newAnswer;
   };
 
-  const handleAnswerClick = (answer: string) => {
-    const newAnswer = getNewAnswer(answer);
+  const handleAnswerClick = (answer: AnswerType) => {
+    const nextQuestionId = answer.nextQuestionId
+      ? answer.nextQuestionId
+      : currentQuestion.nextQuestionId;
 
-    if (questionIndex === QUESTION_END_CNT - 1) {
-      // TODO  : recoil 적용 생각중
+    const newAnswer = getNewAnswer(answer);
+    if (nextQuestionId === 'end') {
       setStorage('astronauts-answers', JSON.stringify(newAnswer));
       router.push(`/user`);
+      return;
     }
+
+    setCurrentQuestionIndex(nextQuestionId);
+    setProgressPercent(progressPercent + PROGRESS_STEP);
   };
 
   const handleAnswerChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -87,7 +68,7 @@ function Question() {
     setAnswerColorStatus(value);
   };
 
-  if (currentQuestion === undefined) return <></>;
+  // if (currentQuestion === undefined) return <></>;
 
   return (
     <Wrapper>
@@ -99,7 +80,7 @@ function Question() {
           alt="we-are-The Astronauts"
         />
       </div>
-      <ProgressBar percent={questionIndex * 10} />
+      <ProgressBar percent={progressPercent} />
       <div>
         <ImageBox>
           {isColorQuestion ? (
@@ -109,28 +90,37 @@ function Question() {
               width={250}
               height={191}
               placeholder="blur"
-              blurDataURL={'/images/blur.webp'}
+              blurDataURL="/images/blur.webp"
               priority
             />
           ) : (
-            getQuestionCharacterImage(currentQuestion)
+            getQuestionCharacterImage(
+              currentQuestion.color,
+              currentQuestion.character,
+            )
           )}
         </ImageBox>
-        <GradientBox title={`Q${questionIndex + 1}`}>
+        <GradientBox title={`Q${currentQuestion.id}`}>
           <QuestionInnerBox>
-            {currentQuestion.question.map((q, index) => (
+            {currentQuestion.content.map((q, index) => (
               <p key={index + q}>{q}</p>
             ))}
           </QuestionInnerBox>
         </GradientBox>
       </div>
-      <Answer
-        type={currentQuestion.type}
-        answer={currentQuestion.answer}
-        handleAnswerClick={handleAnswerClick}
-        answerColorStatus={answerColorStatus}
-        handleAnswerChange={handleAnswerChange}
-      />
+      {isColorQuestion ? (
+        <ColorAnswer
+          handleAnswerSubmit={handleAnswerClick}
+          answerColorStatus={answerColorStatus}
+          handleAnswerChange={handleAnswerChange}
+        />
+      ) : (
+        <Answer
+          type={currentQuestion.type}
+          answers={currentQuestion.answers}
+          handleAnswerClick={handleAnswerClick}
+        />
+      )}
     </Wrapper>
   );
 }
@@ -159,9 +149,12 @@ const QuestionInnerBox = styled.div`
   color: ${(props) => props.theme.colors.bg};
 `;
 
-const getQuestionCharacterImage = (question: QuestionType) => {
-  const imageURL = `/problem/${question.color}_${question.character}.png`;
-  const { width, height } = getCharacterImageSize(question.character);
+const getQuestionCharacterImage = (
+  color: CharacterColorType,
+  character: CharacterType,
+) => {
+  const imageURL = `/problem/${color}_${character}.png`;
+  const { width, height } = getCharacterImageSize(character);
 
   return (
     <Image
@@ -205,6 +198,7 @@ const getCharacterImageSize = (
       };
   }
 };
+
 export default withLayout(
   Question,
   '우주인 테스트',

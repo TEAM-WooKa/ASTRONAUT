@@ -27,7 +27,7 @@ export default function Answer({
   }
   if (type === 'button-4') {
     return (
-      <FourChoice handleAnswerClick={handleAnswerClick} answer={answer ?? []} />
+      <FourChoice onAnswerClick={handleAnswerClick} answer={answer ?? []} />
     );
   }
   if (type === 'long-4') {

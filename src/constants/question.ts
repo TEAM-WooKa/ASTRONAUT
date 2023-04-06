@@ -11,15 +11,15 @@ export const ColorQuestionInfo: ColorQuestionInfoType = {
   ],
   answers: [
     {
-      color: 'purple',
+      label: 'purple',
       score: 4,
     },
     {
-      color: 'green',
+      label: 'green',
       score: 2,
     },
     {
-      color: 'yellow',
+      label: 'yellow',
       score: 1,
     },
   ],
@@ -191,7 +191,7 @@ export const QUESTION_INFO_LIST: Record<string, QuestionInfoType> = {
   '5-1': {
     id: '5-1',
     nextQuestionId: '6',
-    type: 'four-choice',
+    type: 'four-sentence',
     content: ['그 지적 생명체는 어떤 모습일까요?'],
     answers: [
       {

@@ -1,23 +1,19 @@
 import styled from 'styled-components';
 
 import AnswerButton from '@/component/question/answer/button';
-
-type HandleAnswerClickType = (answer: string) => void;
+import type { AnswerRequestType } from '@/types/question';
 
 export default function FourChoice({
-  handleAnswerClick,
-  answer,
-}: {
-  handleAnswerClick: HandleAnswerClickType;
-  answer: string[];
-}) {
+  onAnswerClick,
+  answers,
+}: AnswerRequestType) {
   return (
     <Wrapper>
-      {answer.map((item) => (
+      {answers.map((answer) => (
         <AnswerButton
-          key={item}
-          content={item}
-          onClick={() => handleAnswerClick(item)}
+          key={answer.label}
+          content={answer.label}
+          onClick={() => onAnswerClick(answer)}
         />
       ))}
     </Wrapper>
