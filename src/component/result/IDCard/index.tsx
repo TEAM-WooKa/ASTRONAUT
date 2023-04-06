@@ -4,6 +4,8 @@ import styled from 'styled-components';
 
 import { GradientBoxStyled } from '@/assets/styles/gradient';
 import { FullCenter } from '@/component/core/Flex';
+import { AbsoluteHorizontalCenter } from '@/component/core/Position';
+import GuideMessage from '@/component/result/guide-message';
 import Back from '@/component/result/IDCard/back';
 import Front from '@/component/result/IDCard/front';
 import type { IDCardTextInfo } from '@/component/result/IDCard/types';
@@ -21,7 +23,7 @@ interface IDCardProps {
 
 export default function IDCard({ cardRef, cardData, character }: IDCardProps) {
   const [isRotate, setIsRotate] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // NOTE: 제거?
   const onClick = () => {
     setIsRotate(!isRotate);
   };
@@ -53,9 +55,18 @@ export default function IDCard({ cardRef, cardData, character }: IDCardProps) {
           <Back character={character} />
         </InnerFace>
       </BackWrapper>
+      <GuideMessageWrapper>
+        <GuideMessage />
+      </GuideMessageWrapper>
     </Card>
   );
 }
+
+const GuideMessageWrapper = styled(AbsoluteHorizontalCenter)`
+  z-index: 10;
+  top: -28px;
+  width: fit-content;
+`;
 
 const LoadingWrapper = styled(FullCenter)`
   position: absolute;
@@ -71,6 +82,7 @@ const Card = styled.div`
   perspective: 600px;
   position: relative;
   cursor: pointer;
+
   .front,
   .back {
     transition: all 0.5s ease-in-out;
