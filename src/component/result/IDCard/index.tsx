@@ -9,7 +9,7 @@ import GuideMessage from '@/component/result/guide-message';
 import Back from '@/component/result/IDCard/back';
 import Front from '@/component/result/IDCard/front';
 import type { IDCardTextInfo } from '@/component/result/IDCard/types';
-import type { CharacterReturnType } from '@/utils/answer';
+import type { CharacterReturnType } from '@/types/character';
 
 export interface CardDataType extends IDCardTextInfo {
   image: string;

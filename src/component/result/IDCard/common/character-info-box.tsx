@@ -13,7 +13,7 @@ import {
   YELLOW_LANNY,
   YELLOW_LUMY,
 } from '@/constants/card-character';
-import type { CharacterReturnType } from '@/utils/answer';
+import type { CharacterReturnType } from '@/types/character';
 
 export default function CharacterInfoBox({
   character,

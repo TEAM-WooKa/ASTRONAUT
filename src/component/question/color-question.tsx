@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import GradientBox from '@/component/common/GradientBox';
 import ColorAnswer from '@/component/question/color-answer';
 import type { AnswerType, ColorQuestionInfoType } from '@/types/question';
-import { getColorImageUrl } from '@/utils/answer';
+import { getColorLumiUrl } from '@/utils/character/image';
 
 export default function ColorQuestion({
   currentQuestion,
@@ -27,7 +27,7 @@ export default function ColorQuestion({
       <div>
         <ImageBox>
           <Image
-            src={getColorImageUrl(answerColorStatus)}
+            src={getColorLumiUrl(answerColorStatus)}
             alt="character image"
             width={250}
             height={191}

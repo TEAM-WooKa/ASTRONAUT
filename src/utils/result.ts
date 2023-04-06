@@ -1,9 +1,6 @@
 import { I_CHARACTER_QUESTION } from '@/constants/question';
-import type {
-  AnswerHistoryType,
-  CharacterColorType,
-  CharacterType,
-} from '@/types/question';
+import type { CharacterColorType, CharacterType } from '@/types/character';
+import type { AnswerHistoryType } from '@/types/question';
 
 type PropensityType = 'E' | 'I';
 
