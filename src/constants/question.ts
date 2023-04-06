@@ -1,48 +1,4 @@
-export interface AnswerType {
-  label: string;
-  score: number;
-  nextQuestionId?: string;
-}
-
-export type ButtonType = 'button-4' | 'button-2' | 'long-4';
-export type CharacterType = 'lanny' | 'lumy' | 'cat';
-export type CharacterColorType = 'green' | 'yellow' | 'purple' | 'chee' | 'da';
-
-interface BaseQuestionType {
-  id: string;
-  nextQuestionId: string;
-  content: string[];
-
-  character: CharacterType;
-  color: CharacterColorType;
-}
-
-interface TwoChoiceQuestionType extends BaseQuestionType {
-  type: 'two-choice';
-  answers: [AnswerType, AnswerType];
-}
-
-interface FourChoiceQuestionType extends BaseQuestionType {
-  type: 'four-choice' | 'four-sentence';
-  answers: [AnswerType, AnswerType, AnswerType, AnswerType];
-}
-
-type ColorQuestionInfoType = {
-  id: string;
-  nextQuestionId: string;
-  type: 'color';
-  content: string[];
-
-  answers: {
-    color: 'green' | 'yellow' | 'purple';
-    score: number;
-  }[];
-};
-
-type QuestionInfoType =
-  | TwoChoiceQuestionType
-  | FourChoiceQuestionType
-  | ColorQuestionInfoType;
+import type { ColorQuestionInfoType, QuestionInfoType } from '@/types/question';
 
 export const ColorQuestionInfo: ColorQuestionInfoType = {
   id: '3',
@@ -68,6 +24,7 @@ export const ColorQuestionInfo: ColorQuestionInfoType = {
     },
   ],
 };
+
 export const QUESTION_INFO_LIST: Record<string, QuestionInfoType> = {
   1: {
     id: '1',
