@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import DesktopHeader from '@/component/layout/desktop-header';
+import MobileFooter from '@/component/layout/mobile-footer';
 import withHead from '@/hoc/withHead';
 
 function withLayout(
@@ -17,6 +18,7 @@ function withLayout(
             <MainInner>
               <Component {...props} />
             </MainInner>
+            <MobileFooter />
           </Main>
         </Container>
       </>
@@ -41,7 +43,6 @@ const Main = styled.div`
   background-size: cover;
 
   position: relative;
-  padding: 20px;
 
   @media screen and (min-width: 700px) {
     padding: 0;
@@ -52,10 +53,10 @@ const Main = styled.div`
 
 const MainInner = styled.div`
   width: 350px;
-  padding: 30px 0;
+  padding-top: 30px;
   margin: auto;
   max-width: 350px;
-  height: 100%;
+  height: fit-content;
 
   position: relative;
 `;
