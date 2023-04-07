@@ -1,5 +1,19 @@
 import type { ColorQuestionInfoType, QuestionInfoType } from '@/types/question';
 
+const GOAL_QUESTION = [
+  '지구별 정복하고야 말겠어!',
+  '빌보드 차트 1위! 지구별 대스타! ',
+  '지구별 방위대가 되어 지구를 지켜야지!',
+  '지구별의 비밀 밝히기!',
+];
+
+export const GOAL_MAPPING = {
+  [GOAL_QUESTION[0]]: '지구별 정복',
+  [GOAL_QUESTION[1]]: '지구별 대스타',
+  [GOAL_QUESTION[2]]: '지구별 방위대',
+  [GOAL_QUESTION[3]]: '지구별 탐험가',
+};
+
 export const E_CHARACTER_QUESTION = [
   '궁금한것 투성이! 우선 주변을 둘러보자!',
   '고향별에서 새로운 친구를 사귈래!',
