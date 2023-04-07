@@ -62,8 +62,6 @@ const MainInner = styled.div`
   margin: auto;
   max-width: 350px;
   height: fit-content;
-
-  position: relative;
 `;
 
 export default withLayout;
