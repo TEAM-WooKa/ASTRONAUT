@@ -23,7 +23,7 @@ export default function UserInputBox({
       <InputBoxInner>
         <Input
           type="text"
-          placeholder="지구별에서의 이름을 알려주세요."
+          placeholder="우주인님의 닉네임을 알려주세요."
           name="name"
           onChange={onChange}
           value={name}
@@ -31,14 +31,16 @@ export default function UserInputBox({
         <DateBox birth={birth} onChange={onChange} />
         <FileInput>
           <FileInputLabel htmlFor="file" isSelected={isFileSelected}>
-            {isFileSelected ? '사진이 등록되었습니다.' : '사진을 등록해주세요.'}
+            {isFileSelected
+              ? '프로필 사진이 등록되었습니다.'
+              : '프로필 사진을 등록해주세요.'}
           </FileInputLabel>
           <FileInputButton htmlFor="file">파일찾기</FileInputButton>
           <input
             type="file"
             name="file"
             id="file"
-            placeholder="사진을 등록해주세요."
+            placeholder="프로필 사진을 등록해주세요."
             onChange={onChange}
           />
         </FileInput>

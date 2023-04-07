@@ -11,7 +11,7 @@ export default function DateBox({ birth, onChange }: DateBoxProps) {
     <label htmlFor="date">
       <DateInputWrapper>
         <DateValue isEmpty={isEmpty}>
-          {isEmpty ? '지구별 생일을 알려주세요.' : birth}
+          {isEmpty ? '우주인님의 생일을 알려주세요.' : birth}
         </DateValue>
         <DateInput
           type="date"

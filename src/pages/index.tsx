@@ -28,14 +28,16 @@ function Home() {
           </MainLogoWrapper>
           <GradientBorderBox>
             <TextWrapper>
-              <p>지구별에 여행 온 우주인인 당신!</p>
-              <p>지구별에서 행복한 여행을 즐기고 있으신가요?</p>
+              <p> 우리는 모두 먼 우주의 어느 별에서 태어나서 </p>
+              <p>지구로 잠시 여행온 우주인이라는 사실 알고계셨나요?</p>
               <br />
-              <p>언젠가 수명이 다해 고향별로 돌아가기 위해선</p>
-              <p> 우주인 ID 카드 발급이 필요합니다</p>
+              <p>지구별에서의 수명이 끝나면 </p>
+              <p>우리는 각자가 태어난 고향별로 돌아가야 합니다.</p>
               <br />
-              <p> 우주인 테스트 후 ID 카드를 발급 받을 수 있습니다.</p>
-              <p> 같은 별에서 온 우주인 친구들을 찾아보세요.</p>
+              <p>테스트를 통해 우주인님의 고향별 캐릭터를 찾고</p>
+              <p>우주선 탑승에 필요한 ID 카드를 공유해보세요.</p>
+              <br />
+              <p>그리고 같은 별에서 온 우주인 친구들을 찾아보세요.</p>
             </TextWrapper>
           </GradientBorderBox>
 
@@ -55,12 +57,6 @@ function Home() {
     </>
   );
 }
-
-const OuterWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -91,13 +87,14 @@ const TextWrapper = styled(AText)`
 
 const ButtonWrapper = styled.div`
   width: 280px;
-  margin: 0 auto;
+  margin: 25px auto 0;
 `;
 
 const GradientButton = styled(GradientButtonStyled)`
   font-size: 32px;
   border-radius: 40px;
   padding: 2px;
+  color: ${(props) => props.theme.colors[3]};
 `;
 
 const ImageWrapper = styled.div`

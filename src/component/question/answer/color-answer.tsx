@@ -94,6 +94,7 @@ const InputWrapper = styled.div`
 
 const GradientButton = styled(GradientButtonStyled)`
   font-family: 'Space-Rave';
+  color: ${(props) => props.theme.colors[3]};
 
   font-size: 32px;
   border-radius: 40px;

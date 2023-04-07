@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
 
 import IconBox from '@/component/result/icon-box';
 import IDCard from '@/component/result/IDCard';
@@ -143,7 +144,7 @@ function Result() {
 
   return (
     <>
-      <h1>
+      <Heading>
         {/* TODO : logo 분리 */}
         <img
           src={'/images/logos/logo-aics.png'}
@@ -151,7 +152,7 @@ function Result() {
           height={62}
           alt="result"
         />
-      </h1>
+      </Heading>
       <IDCard
         cardRef={cardRef}
         cardData={{ ...cardData, image: image ?? '' }}
@@ -163,4 +164,7 @@ function Result() {
   );
 }
 
+const Heading = styled.h1`
+  margin-bottom: 35px;
+`;
 export default withLayout(Result, '우주인 결과', '우주인 테스트 결과 페이지');

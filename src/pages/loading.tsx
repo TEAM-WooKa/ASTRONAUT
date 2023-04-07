@@ -37,10 +37,10 @@ function LoadingPage() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      // router.push({
-      //   pathname: '/result/[type]',
-      //   query: { type: 1, ...userData },
-      // });
+      router.push({
+        pathname: '/result/[type]',
+        query: { type: 1, ...userData },
+      });
     }, 3000);
     return () => clearInterval(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
