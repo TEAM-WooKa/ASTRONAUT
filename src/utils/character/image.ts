@@ -40,12 +40,12 @@ export const mappingColorValue = {
 };
 
 export const getColorLumiUrl = (value: string) => {
-  if (value === mappingColorValue['blue']) return '/characters/blue_lumy.png';
+  if (value === mappingColorValue['blue']) return '/character/green_lumy.webp';
   if (value === mappingColorValue['purple'])
-    return '/characters/purple_lumy.png';
+    return '/character/purple_lumy.webp';
   if (value === mappingColorValue['yellow'])
-    return '/characters/yellow_lumy.png';
-  return '/characters/lumi.png';
+    return '/character/yellow_lumy.webp';
+  return '/character/yellow_lumy.webp';
 };
 
 function capitalize(str: string) {
@@ -62,7 +62,7 @@ export const getCharacterImageUrl = ({
 }) => {
   const data = {
     name: `${capitalize(color)}_${capitalize(char)}`,
-    image: `/characters/${color}_${char}.png`,
+    image: `/character/${color}_${char}.webp`,
   };
   return data;
 };

@@ -31,9 +31,10 @@ const getCharacter = (
   score: number,
   propensity: PropensityType,
 ): CharacterType => {
-  if (score < 13 && score > 33) {
+  if (score < 13 || score > 33) {
     return 'cat';
   }
+
   return propensity == 'I' ? 'lumy' : 'lanny';
 };
 
