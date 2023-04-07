@@ -10,6 +10,10 @@ import withLayout from '@/hoc/withLayout';
 function Home() {
   const router = useRouter();
 
+  const goHome = () => {
+    router.push('/');
+  };
+
   const goTest = () => {
     router.push('question');
   };
@@ -18,7 +22,7 @@ function Home() {
     <>
       <Wrapper>
         <div>
-          <MainLogoWrapper>
+          <MainLogoWrapper onClick={goHome}>
             <Image
               src={'/images/main-title.webp'}
               alt="Astronaut ID Card service"
