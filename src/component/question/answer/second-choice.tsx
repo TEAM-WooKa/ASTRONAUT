@@ -35,5 +35,6 @@ const Wrapper = styled(GradientButtonStyled)`
     font-size: 32px;
     left: -3px;
     bottom: 1px;
+    color: ${(props) => props.theme.colors[3]};
   }
 `;

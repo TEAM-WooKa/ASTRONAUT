@@ -119,7 +119,7 @@ const WarnMessage = styled.p`
   font-size: 14px;
 `;
 const GradientButton = styled(GradientButtonStyled)`
-  color: ${(props) => props.theme.colors.main2};
+  color: ${(props) => props.theme.colors[3]};
   font-size: 32px;
   border-radius: 40px;
   padding: 2px;

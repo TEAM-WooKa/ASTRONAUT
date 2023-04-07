@@ -94,6 +94,7 @@ const GradientButton = styled(GradientButtonStyled)`
   font-size: 32px;
   border-radius: 40px;
   padding: 2px;
+  color: ${(props) => props.theme.colors[3]};
 `;
 
 const ImageWrapper = styled.div`
