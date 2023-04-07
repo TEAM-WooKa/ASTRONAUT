@@ -5,8 +5,8 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import { GradientButtonStyled } from '@/assets/styles/gradient';
-import withLayout from '@/component/hoc/withLayout';
 import UserInputBox from '@/component/user/user-input-box';
+import withLayout from '@/hoc/withLayout';
 import { setStorage } from '@/utils/storage';
 
 function convertBase64ToUrl(base64: string): string {

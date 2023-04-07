@@ -2,10 +2,10 @@
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 
-import withLayout from '@/component/hoc/withLayout';
 import IconBox from '@/component/result/icon-box';
 import IDCard from '@/component/result/IDCard';
 import type { IDCardTextInfo } from '@/component/result/IDCard/types';
+import withLayout from '@/hoc/withLayout';
 import type { CharacterColorType, CharacterType } from '@/types/character';
 import { getCharacterImageUrl } from '@/utils/character/image';
 import { checkKakao, Mobile } from '@/utils/device';

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-import withHead from '@/component/hoc/withHead';
+import DesktopHeader from '@/component/layout/desktop-header';
+import MobileFooter from '@/component/layout/mobile-footer';
+import withHead from '@/hoc/withHead';
 
 function withLayout(
   Component: (props: any) => JSX.Element,
@@ -11,11 +13,12 @@ function withLayout(
     return (
       <>
         <Container className="container">
-          <header></header>
           <Main>
+            <DesktopHeader />
             <MainInner>
               <Component {...props} />
             </MainInner>
+            <MobileFooter />
           </Main>
         </Container>
       </>
@@ -32,24 +35,35 @@ const Container = styled.div`
 `;
 
 const Main = styled.div`
-  max-width: 475px;
   text-align: center;
   width: 100%;
-  padding: 20px;
   background-image: url('/images/bg.png');
   background-origin: border-box;
   background-repeat: no-repeat;
   background-size: cover;
 
+  display: flex;
   position: relative;
+
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  @media screen and (min-width: 700px) {
+    padding: 0;
+    background-image: url('/images/desktop_full_bg.webp');
+  }
 `;
 
 const MainInner = styled.div`
-  width: 340px;
-  padding: 30px 0;
+  width: 350px;
+  padding-top: 30px;
   margin: auto;
-  max-width: 340px;
-  height: 100%;
+  max-width: 350px;
+  height: fit-content;
+
+  position: relative;
 `;
 
 export default withLayout;

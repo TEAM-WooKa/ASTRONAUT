@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import GradientBox from '@/component/common/GradientBox';
 import { FlexCenter } from '@/component/core/Flex';
-import withLayout from '@/component/hoc/withLayout';
+import withLayout from '@/hoc/withLayout';
 
 function ResultImagePage() {
   const { query, back } = useRouter();

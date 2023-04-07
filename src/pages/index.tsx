@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { GradientButtonStyled } from '@/assets/styles/gradient';
 import AText from '@/component/common/AText';
 import GradientBorderBox from '@/component/common/GradientBorderBox';
-import withLayout from '@/component/hoc/withLayout';
+import withLayout from '@/hoc/withLayout';
 
 function Home() {
   const router = useRouter();
@@ -15,44 +15,52 @@ function Home() {
   };
 
   return (
-    <Wrapper>
-      <div>
-        <MainLogoWrapper>
-          <Image
-            src={'/images/main-title.webp'}
-            alt="Astronaut ID Card service"
-            width={350}
-            height={124}
-          />
-        </MainLogoWrapper>
-        <GradientBorderBox>
-          <TextWrapper>
-            <p>지구별에 여행 온 우주인인 당신!</p>
-            <p>지구별에서 행복한 여행을 즐기고 있으신가요?</p>
-            <br />
-            <p>언젠가 수명이 다해 고향별로 돌아가기 위해선</p>
-            <p> 우주인 ID 카드 발급이 필요합니다</p>
-            <br />
-            <p> 우주인 테스트 후 ID 카드를 발급 받을 수 있습니다.</p>
-            <p> 같은 별에서 온 우주인 친구들을 찾아보세요.</p>
-          </TextWrapper>
-        </GradientBorderBox>
+    <>
+      <Wrapper>
+        <div>
+          <MainLogoWrapper>
+            <Image
+              src={'/images/main-title.webp'}
+              alt="Astronaut ID Card service"
+              width={350}
+              height={124}
+            />
+          </MainLogoWrapper>
+          <GradientBorderBox>
+            <TextWrapper>
+              <p>지구별에 여행 온 우주인인 당신!</p>
+              <p>지구별에서 행복한 여행을 즐기고 있으신가요?</p>
+              <br />
+              <p>언젠가 수명이 다해 고향별로 돌아가기 위해선</p>
+              <p> 우주인 ID 카드 발급이 필요합니다</p>
+              <br />
+              <p> 우주인 테스트 후 ID 카드를 발급 받을 수 있습니다.</p>
+              <p> 같은 별에서 온 우주인 친구들을 찾아보세요.</p>
+            </TextWrapper>
+          </GradientBorderBox>
 
-        <ImageWrapper>
-          <Image
-            src={'/character_shadow/green_lanny.webp'}
-            alt="logo"
-            width={216}
-            height={153.88}
-          />
-        </ImageWrapper>
-      </div>
-      <ButtonWrapper>
-        <GradientButton onClick={goTest}>&gt; test</GradientButton>
-      </ButtonWrapper>
-    </Wrapper>
+          <ImageWrapper>
+            <Image
+              src={'/character_shadow/green_lanny.webp'}
+              alt="logo"
+              width={216}
+              height={153.88}
+            />
+          </ImageWrapper>
+        </div>
+        <ButtonWrapper>
+          <GradientButton onClick={goTest}>&gt; test</GradientButton>
+        </ButtonWrapper>
+      </Wrapper>
+    </>
   );
 }
+
+const OuterWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
 
 const Wrapper = styled.div`
   display: flex;
