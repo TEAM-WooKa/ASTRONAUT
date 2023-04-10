@@ -1,18 +1,27 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 import { GITHUB_URL, INSTAGRAM_URL } from '@/constants/path';
 
 export default function DesktopHeader() {
+  const router = useRouter();
+
+  const goHome = () => {
+    router.push('/');
+  };
+
   return (
     <Wrapper>
-      <Image
-        src={'/images/main-title.webp'}
-        alt="Astronaut ID Card service"
-        width={350}
-        height={124}
-      />
+      <div onClick={goHome}>
+        <Image
+          src={'/images/main-title.webp'}
+          alt="Astronaut ID Card service"
+          width={350}
+          height={124}
+        />
+      </div>
       <TeamText>© 2023. TEAM-Wooka all rights reserved.</TeamText>
       <IconWrapper>
         <Link href={GITHUB_URL}>

@@ -47,31 +47,32 @@ function LoadingPage() {
   }, []);
 
   return (
-    <Wrapper>
-      <InnerWrapper>
-        <MainText>
-          <Image
-            src="/images/loading.svg"
-            alt="loading..."
-            width={155}
-            height={43}
-          />
-        </MainText>
+    <>
+      <Wrapper>
+        <InnerWrapper>
+          <MainText>
+            <Image
+              src="/images/loading.svg"
+              alt="loading..."
+              width={155}
+              height={43}
+            />
+          </MainText>
 
-        <LoadingWrapper>
-          <Loading />
-        </LoadingWrapper>
+          <LoadingWrapper>
+            <Loading />
+          </LoadingWrapper>
 
-        <GradientBox>
-          <GradientBoxInner>
-            <p>이 ID카드를 지참하셔서</p>
-            <p>고향별로 향하는 우주선 탑승 시 제시해주세요!</p>
-          </GradientBoxInner>
-        </GradientBox>
-      </InnerWrapper>
-
+          <GradientBox>
+            <GradientBoxInner>
+              <p>이 ID카드를 지참하셔서</p>
+              <p>고향별로 향하는 우주선 탑승 시 제시해주세요!</p>
+            </GradientBoxInner>
+          </GradientBox>
+        </InnerWrapper>
+      </Wrapper>
       <OuterOverlay />
-    </Wrapper>
+    </>
   );
 }
 
@@ -84,21 +85,16 @@ const OuterOverlay = styled.div`
   top: 0;
   bottom: 0;
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
-  z-index: -1;
+  z-index: 0;
 `;
 
 const Wrapper = styled.div`
-  position: absolute;
-  right: 0;
-  left: 0;
-  top: 0;
-  bottom: 0;
+  position: relative;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   width: 100vw;
   max-width: 100%;
   z-index: 1;

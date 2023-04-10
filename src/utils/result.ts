@@ -1,4 +1,4 @@
-import { I_CHARACTER_QUESTION } from '@/constants/question';
+import { GOAL_MAPPING, I_CHARACTER_QUESTION } from '@/constants/question';
 import type { CharacterColorType, CharacterType } from '@/types/character';
 import type { AnswerHistoryType } from '@/types/question';
 
@@ -31,9 +31,10 @@ const getCharacter = (
   score: number,
   propensity: PropensityType,
 ): CharacterType => {
-  if (score < 13 && score > 33) {
+  if (score < 13 || score > 33) {
     return 'cat';
   }
+
   return propensity == 'I' ? 'lumy' : 'lanny';
 };
 
@@ -53,7 +54,8 @@ const getResult = (answers: AnswerHistoryType[]) => {
 
   const characterColor = getCharacterColor(score, propensity);
   const character = getCharacter(score, propensity);
-  const goal = answers.filter((answer) => answer.id === '8')[0].label;
+  const goal =
+    GOAL_MAPPING[answers.filter((answer) => answer.id === '8')[0].label];
   const whatILike = answers.filter((answer) => answer.id === '6')[0].label;
 
   return { color: characterColor, char: character, whatILike, goal };

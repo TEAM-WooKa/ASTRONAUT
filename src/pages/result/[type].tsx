@@ -135,6 +135,9 @@ function Result() {
   const onDownloadBtn = () => {
     handleDownloadImage();
   };
+  const goHome = () => {
+    router.push('/');
+  };
 
   useEffect(() => {
     const image = getImagedata();
@@ -144,7 +147,7 @@ function Result() {
 
   return (
     <>
-      <Heading>
+      <Heading onClick={goHome}>
         {/* TODO : logo 분리 */}
         <img
           src={'/images/logos/logo-aics.png'}

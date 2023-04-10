@@ -10,6 +10,10 @@ import withLayout from '@/hoc/withLayout';
 function Home() {
   const router = useRouter();
 
+  const goHome = () => {
+    router.push('/');
+  };
+
   const goTest = () => {
     router.push('question');
   };
@@ -18,7 +22,7 @@ function Home() {
     <>
       <Wrapper>
         <div>
-          <MainLogoWrapper>
+          <MainLogoWrapper onClick={goHome}>
             <Image
               src={'/images/main-title.webp'}
               alt="Astronaut ID Card service"
@@ -74,6 +78,10 @@ const MainLogoWrapper = styled.div`
   img {
     max-width: 100%;
   }
+
+  @media screen and (min-width: 700px) {
+    display: none;
+  }
 `;
 
 const TextWrapper = styled(AText)`
@@ -88,6 +96,10 @@ const TextWrapper = styled(AText)`
 const ButtonWrapper = styled.div`
   width: 280px;
   margin: 25px auto 0;
+
+  @media screen and (min-width: 700px) {
+    margin-top: 40px;
+  }
 `;
 
 const GradientButton = styled(GradientButtonStyled)`
@@ -99,6 +111,10 @@ const GradientButton = styled(GradientButtonStyled)`
 
 const ImageWrapper = styled.div`
   margin-top: 25px;
+
+  @media screen and (min-width: 700px) {
+    margin-top: 40px;
+  }
 `;
 
 export default withLayout(Home, 'title', 'desc');
