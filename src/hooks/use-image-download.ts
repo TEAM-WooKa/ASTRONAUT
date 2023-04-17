@@ -25,6 +25,7 @@ function useImageDownload() {
         return url;
       });
     }
+    return null;
   };
 
   return {

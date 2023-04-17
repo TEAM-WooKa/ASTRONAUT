@@ -1,16 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/router';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import IconBox from '@/component/result/icon-box';
 import IDCard from '@/component/result/IDCard';
 import type { IDCardTextInfo } from '@/component/result/IDCard/types';
 import withLayout from '@/hoc/withLayout';
+import useImageDownload from '@/hooks/use-image-download';
 import type { CharacterColorType, CharacterType } from '@/types/character';
 import { getCharacterImageUrl } from '@/utils/character/image';
 import { checkKakao, Mobile } from '@/utils/device';
-import { downloadImage, getImageUrl } from '@/utils/image';
 import { getStorage } from '@/utils/storage';
 
 const getImagedata = () => {
@@ -104,37 +104,47 @@ function Result() {
     char,
   });
 
-  const cardRef = useRef(null);
   const [image, setImage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  const {
+    captureArea: cardRef,
+    onImageDownload,
+    getImageBlob,
+  } = useImageDownload();
+
   const handleDownloadImage = async () => {
     setIsLoading(true);
+    try {
+      if (checkKakao() || Mobile()) {
+        // window.alert('모바일 환경에서는 다운로드가 원활하지 않을 수 있습니다. ');
+        setTimeout(async () => {
+          const imageUrl = await getImageBlob();
+          if (imageUrl) {
+            localStorage.setItem('card-image', imageUrl);
 
-    if (checkKakao() || Mobile()) {
-      window.alert('모바일 환경에서는 다운로드가 원활하지 않을 수 있습니다. ');
-      setTimeout(async () => {
-        const imageUrl = await getImageUrl(cardRef);
-        if (imageUrl) {
-          localStorage.setItem('card-image', imageUrl);
+            router.push({
+              pathname: '/result/img',
+              query: { image: imageUrl },
+            });
+          }
 
-          router.push({
-            pathname: '/result/img',
-            query: { image: imageUrl },
-          });
-        }
-
-        setIsLoading(false);
-      }, 1000);
-      return;
+          setIsLoading(false);
+        }, 1000);
+        return;
+      }
+      // await downloadImage(cardRef);
+      await onImageDownload();
+    } catch (error) {
+    } finally {
+      setIsLoading(false);
     }
-    await downloadImage(cardRef);
-    setIsLoading(false);
   };
 
   const onDownloadBtn = () => {
     handleDownloadImage();
   };
+
   const goHome = () => {
     router.push('/');
   };
