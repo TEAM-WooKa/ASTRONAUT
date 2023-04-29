@@ -87,9 +87,10 @@ const IconWrapper = styled.div`
 
 const NoticeWrapper = styled.div<{ isOpen: boolean }>`
   position: absolute;
-  bottom: -235px;
+  bottom: 0;
+  height: 35px;
+  overflow: hidden;
+  transition: height 0.5s ease-in-out;
 
-  transition: bottom 0.5s ease-in-out;
-
-  ${({ isOpen }) => isOpen && `bottom: 22px;`};
+  ${({ isOpen }) => isOpen && `height: 290px;`};
 `;
