@@ -68,7 +68,7 @@ const Title = styled.h3`
   font-family: 'Pretendard';
   font-weight: 700;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 26px;
 
   color: #40424a;
 
@@ -83,6 +83,14 @@ const Title = styled.h3`
 
 const ContentItem = styled.div`
   display: flex;
+
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+
+  /* 4 */
+
+  color: #40424a;
 
   span {
     width: 20px;

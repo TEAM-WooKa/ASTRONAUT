@@ -87,7 +87,7 @@ const IconWrapper = styled.div`
 
 const NoticeWrapper = styled.div<{ isOpen: boolean }>`
   position: absolute;
-  bottom: -202px;
+  bottom: -235px;
 
   transition: bottom 0.5s ease-in-out;
 
