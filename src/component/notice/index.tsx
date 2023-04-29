@@ -32,7 +32,7 @@ function Notice() {
             <span>3.</span>
             <p>
               고향별은 우주인님의 지구별 여행을 응원하고 있답니다. 지구별에서
-              행복한 시간 보내시길 바래요!
+              행복한 시간 보내시길 바라요!
             </p>
           </ContentItem>
         </ContentWrapper>
