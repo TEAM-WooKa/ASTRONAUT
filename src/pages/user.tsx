@@ -38,15 +38,12 @@ function UserPage() {
 
   const handleNextPage = () => {
     // ? name, birth, image가 모두 존재해야 다음 페이지로 넘어감
-    if (!input.name || !input.birth || !image) {
+    if (!input.name || !input.birth) {
       alert('모든 정보를 입력해주세요');
 
       return;
     }
-    //? 1. image를 업로드, image url을 localstorage에 저장
-    //? 3. localstorage에 저장된 image url을 서버에 전송
-    //? 4. 서버에서 받은 result id를 localstorage에 저장
-    //? 5. localstorage에 저장된 result id를 이용해 result 페이지로 이동
+
     const userData = {
       name: input.name,
       birth: input.birth,
