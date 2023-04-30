@@ -11,18 +11,18 @@ import theme from '@/styles/theme';
 const DEFAULT_SEO = {
   title: '우주인 ID card',
   description: 'We are the astronauts',
-  canonical: 'https://astronaut-sumi.vercel.app/',
+  canonical: 'https://astronaut-id-card.swygbro.com',
   openGraph: {
     type: 'website',
     locale: 'ko_KR',
-    url: 'https://astronaut-sumi.vercel.app/',
+    url: 'https://astronaut-id-card.swygbro.com',
     title: '우주인 ID card',
     site_name: '우주인 ID card',
     images: [
       {
-        url: 'https://user-images.githubusercontent.com/49177223/223789248-9cafb888-e552-42c0-92f2-d383364c3026.png',
+        url: '/thumbnail.png',
         width: 285,
-        height: 167,
+        height: 214,
         alt: 'lumy',
       },
     ],
