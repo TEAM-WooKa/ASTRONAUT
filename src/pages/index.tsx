@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { GradientButtonStyled } from '@/assets/styles/gradient';
 import AText from '@/component/common/AText';
 import GradientBorderBox from '@/component/common/GradientBorderBox';
+import Notice from '@/component/notice';
 import withLayout from '@/hoc/withLayout';
 
 function Home() {
@@ -19,7 +20,7 @@ function Home() {
   };
 
   return (
-    <>
+    <div>
       <Wrapper>
         <div>
           <MainLogoWrapper onClick={goHome}>
@@ -58,7 +59,10 @@ function Home() {
           <GradientButton onClick={goTest}>&gt; test</GradientButton>
         </ButtonWrapper>
       </Wrapper>
-    </>
+      <NoticeWrapper>
+        <Notice></Notice>
+      </NoticeWrapper>
+    </div>
   );
 }
 
@@ -70,6 +74,9 @@ const Wrapper = styled.div`
 
   width: 100%;
   height: 100%;
+  @media screen and (max-width: 700px) {
+    min-height: calc(100vh - 60px);
+  }
 `;
 
 const MainLogoWrapper = styled.div`
@@ -114,6 +121,14 @@ const ImageWrapper = styled.div`
 
   @media screen and (min-width: 700px) {
     margin-top: 40px;
+  }
+`;
+
+const NoticeWrapper = styled.div`
+  display: block;
+  margin-top: 50px;
+  @media screen and (min-width: 700px) {
+    display: none;
   }
 `;
 

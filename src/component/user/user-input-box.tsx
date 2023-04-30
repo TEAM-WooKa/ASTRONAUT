@@ -40,7 +40,7 @@ export default function UserInputBox({
             type="file"
             name="file"
             id="file"
-            placeholder="프로필 사진을 등록해주세요."
+            placeholder="프로필 사진을 등록해주세요.(선택)"
             onChange={onChange}
           />
         </FileInput>

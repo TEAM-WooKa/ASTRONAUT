@@ -353,7 +353,7 @@ export const QUESTION_INFO_LIST: Record<string, QuestionInfoType> = {
     type: 'four-choice',
     nextQuestionId: '10',
 
-    content: ['당신이 가장 좋아하는 음악 장르는 무엇인가요?'],
+    content: ['우주인님이 가장 좋아하는 음악 장르는 무엇인가요?'],
     answers: [
       {
         label: 'K-POP',
