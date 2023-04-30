@@ -1,12 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import styled from 'styled-components';
 
+import Notice from '@/component/notice';
 import { GITHUB_URL, INSTAGRAM_URL } from '@/constants/path';
 
 export default function DesktopHeader() {
   const router = useRouter();
+  const [isNoticeOpen, setIsNoticeOpen] = useState(false);
 
   const goHome = () => {
     router.push('/');
@@ -41,6 +44,12 @@ export default function DesktopHeader() {
           />
         </Link>
       </IconWrapper>
+      <NoticeWrapper
+        onClick={() => setIsNoticeOpen((prev) => !prev)}
+        isOpen={isNoticeOpen}
+      >
+        <Notice />
+      </NoticeWrapper>
     </Wrapper>
   );
 }
@@ -57,6 +66,7 @@ const Wrapper = styled.header`
   z-index: 10;
 
   display: none;
+  position: relative;
   @media screen and (min-width: 700px) {
     display: flex;
   }
@@ -73,4 +83,14 @@ const IconWrapper = styled.div`
   display: flex;
   gap: 16px;
   justify-content: center;
+`;
+
+const NoticeWrapper = styled.div<{ isOpen: boolean }>`
+  position: absolute;
+  bottom: 0;
+  height: 35px;
+  overflow: hidden;
+  transition: height 0.5s ease-in-out;
+
+  ${({ isOpen }) => isOpen && `height: 290px;`};
 `;

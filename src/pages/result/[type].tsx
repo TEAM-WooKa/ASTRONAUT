@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import Notice from '@/component/notice';
 import IconBox from '@/component/result/icon-box';
 import IDCard from '@/component/result/IDCard';
 import type { IDCardTextInfo } from '@/component/result/IDCard/types';
@@ -173,6 +174,9 @@ function Result() {
       />
       <IconBox isLoading={isLoading} onDownloadBtn={onDownloadBtn} />
       {/* <Content /> */}
+      <NoticeWrapper>
+        <Notice />
+      </NoticeWrapper>
     </>
   );
 }
@@ -180,4 +184,9 @@ function Result() {
 const Heading = styled.h1`
   margin-bottom: 35px;
 `;
+
+const NoticeWrapper = styled.div`
+  margin-top: 35px;
+`;
+
 export default withLayout(Result, '우주인 결과', '우주인 테스트 결과 페이지');
