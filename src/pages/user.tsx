@@ -37,7 +37,6 @@ function UserPage() {
   const [imageUrl, setImageUrl] = useState('');
 
   const handleNextPage = () => {
-    // ? name, birth, image가 모두 존재해야 다음 페이지로 넘어감
     if (!input.name || !input.birth) {
       alert('모든 정보를 입력해주세요');
 
@@ -52,7 +51,6 @@ function UserPage() {
 
     setStorage('user', JSON.stringify(userData));
 
-    // TODO : result 계산
     router.push('/loading');
   };
 
