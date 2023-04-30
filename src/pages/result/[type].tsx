@@ -118,7 +118,8 @@ function Result() {
     setIsLoading(true);
     try {
       if (checkKakao() || Mobile()) {
-        // window.alert('모바일 환경에서는 다운로드가 원활하지 않을 수 있습니다. ');
+        window.alert('모바일 환경에서의 다운로드는 준비중입니다.');
+        return;
         setTimeout(async () => {
           const imageUrl = await getImageBlob();
           if (imageUrl) {
