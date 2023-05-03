@@ -100,8 +100,9 @@ const FileInput = styled.div`
   }
 `;
 const FileInputLabelCommon = styled.label`
-  display: inline-block;
-  padding: 11px 16px;
+  display: inline-flex;
+  align-items: center;
+  padding-left: 16px;
   cursor: pointer;
 `;
 
@@ -114,6 +115,7 @@ const FileInputLabel = styled(FileInputLabelCommon)<{ isSelected: boolean }>`
 const FileInputButton = styled(FileInputLabelCommon)`
   color: ${(props) => props.theme.colors[3]};
   width: fit-content;
+  padding-right: 16px;
 `;
 
 const InputBoxInner = styled.div`
