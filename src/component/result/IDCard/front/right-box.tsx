@@ -18,7 +18,7 @@ export default function RightBox({
       <BottomWrapper>
         <Desc>
           <p>이 카드를 소지한 사람은 별에서 온 우주인임을 증명합니다.</p>
-          <p> This card certifies the bearer as a astronaut.</p>
+          <p> This card certifies the bearer as an astronaut.</p>
         </Desc>
       </BottomWrapper>
     </Wrapper>
