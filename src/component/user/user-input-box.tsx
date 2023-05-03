@@ -33,7 +33,7 @@ export default function UserInputBox({
           <FileInputLabel htmlFor="file" isSelected={isFileSelected}>
             {isFileSelected
               ? '프로필 사진이 등록되었습니다.'
-              : '프로필 사진을 등록해주세요.'}
+              : '프로필 사진을 등록해주세요. (선택)'}
           </FileInputLabel>
           <FileInputButton htmlFor="file">파일찾기</FileInputButton>
           <input
